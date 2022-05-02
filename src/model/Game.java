@@ -87,7 +87,7 @@ public class Game {
 
     public String log(){
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%d,%d,%d; %s; %s; %s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), whitePlayer.log(), blackPlayer.log(), gameBoard.log()));
+        builder.append(String.format("%d,%d,%d;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), whitePlayer.log(), blackPlayer.log(), gameBoard.log()));
         return builder.toString();
     }
 

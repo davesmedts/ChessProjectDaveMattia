@@ -1,9 +1,6 @@
 package model;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +11,7 @@ public class TestPossibleMoves {
         Player dave = new Player("Dave");
         Player mattia = new Player("mattia");
         Game chessGame = new Game(dave, mattia);
-        System.out.println(chessGame.log());
+//        System.out.println(chessGame.log());
 
         Path logFile = Paths.get("log.txt");
         if (Files.exists(logFile)) {
@@ -24,7 +21,7 @@ public class TestPossibleMoves {
                 e.printStackTrace();
             }
         }
-        try{
+        try {
             Files.createFile(logFile);
             FileWriter writer = new FileWriter(logFile.toFile());
             writer.write(chessGame.log());
@@ -33,10 +30,28 @@ public class TestPossibleMoves {
             e.printStackTrace();
         }
 
+        String savedGameText = null;
+        Scanner logfile = null;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(logFile)));
+            savedGameText = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(savedGameText);
 
-        Scanner logfile = new Scanner("log.txt");
-        String savedGame = logfile.nextLine();
-        System.out.println(savedGame);
+
+        String[] firstParsing = savedGameText.split(";");
+        String[] startDateValues = firstParsing[0].split(",");
+        String[] whitePlayerValues = firstParsing[1].split(",");
+        String[] blackPlayerValues = firstParsing[2].split(",");
+        String[] gameboardValues = firstParsing[3].split(",");
+
+        System.out.println(startDateValues[0]);
+        System.out.println(whitePlayerValues[0]);
+        System.out.println(blackPlayerValues[0]);
+        System.out.println(gameboardValues.length);
+        System.out.println(startDateValues[1]);
 
 //        chessGame.play();
 
@@ -85,4 +100,5 @@ public class TestPossibleMoves {
 //        Square squareOne = new Square(1,'A');
 //        Square squareTwo = new Square(1,'A');
 //        System.out.println(squareOne.equals(squareTwo));
-    }}
+    }
+}
