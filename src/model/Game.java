@@ -12,10 +12,12 @@ public class Game {
     private LocalDateTime stopTime;
     private Player winner;
     private boolean gameFinished;
+    private ChessGameSaver saver;
 
     //constructor
     public Game(Player playerOne, Player playerTwo) {
         this.startTime = LocalDateTime.now();
+        this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
         Random rd = new Random();
         boolean playerOneIsBlack = rd.nextBoolean();
@@ -61,6 +63,10 @@ public class Game {
         return gameBoard;
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
     public void play() {
         System.out.printf("%s, you are playing white", whitePlayer);
         System.out.printf("%n%s, you are playing black", blackPlayer);
@@ -69,6 +75,8 @@ public class Game {
             if (turn == Color.WHITE) {
                 whitePlayer.selectPiece(whitePlayer, blackPlayer);
                 turn = Color.BLACK;
+                saver.save();
+
                 if (whitePlayer.isWinner()) {
                     gameFinished = true;
                     System.out.printf("Game Over! %s wins!", whitePlayer);
@@ -76,6 +84,8 @@ public class Game {
             } else {
                 blackPlayer.selectPiece(blackPlayer, whitePlayer);
                 turn = Color.WHITE;
+                saver.save();
+
                 if (blackPlayer.isWinner()) {
                     gameFinished = true;
                     System.out.printf("Game Over! %s wins!", blackPlayer);
@@ -85,9 +95,10 @@ public class Game {
         }
     }
 
+
     public String log(){
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%d,%d,%d;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), whitePlayer.log(), blackPlayer.log(), gameBoard.log()));
+        builder.append(String.format("%d,%d,%d,%d,%d,%d;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), startTime.getHour(), startTime.getMinute(), startTime.getSecond(), whitePlayer.log(), blackPlayer.log(), gameBoard.log()));
         return builder.toString();
     }
 

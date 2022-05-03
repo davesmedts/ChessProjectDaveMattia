@@ -97,9 +97,9 @@ public class Square implements Comparable<Square> {
         StringBuilder builder = new StringBuilder();
         if (squareContent != null) {
 
-            builder.append(String.format("%s: %s", this, this.squareContent.log()));
+            builder.append(String.format("%s:%s", this, this.squareContent.log()));
         } else {
-            builder.append(String.format("%s: %s", this, null));
+            builder.append(String.format("%s:%s", this, null));
 
         }
         return builder.toString();

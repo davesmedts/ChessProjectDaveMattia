@@ -54,8 +54,8 @@ public class Player {
     public void initializePieces() {
         if (color == Color.WHITE) {
 //        pawns
-            for (int i = 0; i < 5; i++) {
-                int pawnRow = 4;
+            for (int i = 0; i < 8; i++) {
+                int pawnRow = 2;
                 char pawnColumn = (char) (65 + i);
 //              Hier moeten we de juiste squares ophalen om positie van Piece te linken aan de juiste square op het bord.
                 Square startPosition = lookupSquare(pawnColumn, pawnRow);
@@ -70,25 +70,25 @@ public class Player {
             startPosition.setSquareContent(pieces.get(pieces.size() - 1)); // take the last added Piece and assign the piece to the square.
 //          This generic way of working will come back for all the other pieces as well.
 
-////        queen
-//            char queenColumn = 'D';
-//            int queenRow = 1;
-//            startPosition = lookupSquare(queenColumn, queenRow);
-//            pieces.add(new Queen(Color.WHITE, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//
-////        Knights
-//            char knightOneColumn = 'B';
-//            char knightTwoColumn = 'G';
-//            int knightRow = 1;
-//            startPosition = lookupSquare(knightOneColumn, knightRow);
-//            pieces.add(new Knight(Color.WHITE, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//            startPosition = lookupSquare(knightTwoColumn, knightRow);
-//            pieces.add(new Knight(Color.WHITE, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
+//        queen
+            char queenColumn = 'D';
+            int queenRow = 1;
+            startPosition = lookupSquare(queenColumn, queenRow);
+            pieces.add(new Queen(Color.WHITE, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+
+//        Knights
+            char knightOneColumn = 'B';
+            char knightTwoColumn = 'G';
+            int knightRow = 1;
+            startPosition = lookupSquare(knightOneColumn, knightRow);
+            pieces.add(new Knight(Color.WHITE, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+            startPosition = lookupSquare(knightTwoColumn, knightRow);
+            pieces.add(new Knight(Color.WHITE, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
 ////        rooks
             char rookOneColumn = 'A';
             char rookTwoColumn = 'H';
@@ -101,29 +101,29 @@ public class Player {
             pieces.add(new Rook(Color.WHITE, startPosition));
             startPosition.setSquareContent(pieces.get(pieces.size() - 1));
 
-////        bishops
-//            char bishopOneColumn = 'C';
-//            char bishopTwoColumn = 'F';
-//            int bishopRow = 1;
-//            startPosition = lookupSquare(bishopOneColumn, bishopRow);
-//            pieces.add(new Bishop(Color.WHITE, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//            startPosition = lookupSquare(bishopTwoColumn, bishopRow);
-//            pieces.add(new Bishop(Color.WHITE, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
+//        bishops
+            char bishopOneColumn = 'C';
+            char bishopTwoColumn = 'F';
+            int bishopRow = 1;
+            startPosition = lookupSquare(bishopOneColumn, bishopRow);
+            pieces.add(new Bishop(Color.WHITE, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+            startPosition = lookupSquare(bishopTwoColumn, bishopRow);
+            pieces.add(new Bishop(Color.WHITE, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
 
         } else { // for the black Pieces we do the same as above.
-//            //        pawns
-//            for (int i = 0; i < 5; i++) {
-//                int pawnRow = 7;
-//                char pawnColumn = (char) (65 + i);
-////              Hier moeten we de juiste squares ophalen om positie van Piece te linken aan de juiste square op het bord.
-//                Square startPosition = lookupSquare(pawnColumn, pawnRow);
-//                pieces.add(new Pawn(Color.BLACK, startPosition));
-//                startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//            }
+            //        pawns
+            for (int i = 0; i < 8; i++) {
+                int pawnRow = 7;
+                char pawnColumn = (char) (65 + i);
+//              Hier moeten we de juiste squares ophalen om positie van Piece te linken aan de juiste square op het bord.
+                Square startPosition = lookupSquare(pawnColumn, pawnRow);
+                pieces.add(new Pawn(Color.BLACK, startPosition));
+                startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+            }
 
 //        king
             char kingColumn = 'E';
@@ -133,51 +133,51 @@ public class Player {
             startPosition.setSquareContent(pieces.get(pieces.size() - 1));
 
 
-////        queen
-//            char queenColumn = 'D';
-//            int queenRow = 8;
-//            startPosition = lookupSquare(queenColumn, queenRow);
-//            pieces.add(new Queen(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//
-////        Knights
-//            char knightOneColumn = 'B';
-//            char knightTwoColumn = 'G';
-//            int knightRow = 8;
-//            startPosition = lookupSquare(knightOneColumn, knightRow);
-//            pieces.add(new Knight(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//            startPosition = lookupSquare(knightTwoColumn, knightRow);
-//            pieces.add(new Knight(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//
-////        rooks
-//            char rookOneColumn = 'A';
-//            char rookTwoColumn = 'H';
-//            int rookRow = 8;
-//            startPosition = lookupSquare(rookOneColumn, rookRow);
-//            pieces.add(new Rook(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//            startPosition = lookupSquare(rookTwoColumn, rookRow);
-//            pieces.add(new Rook(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//
-////        bishops
-//            char bishopOneColumn = 'C';
-//            char bishopTwoColumn = 'F';
-//            int bishopRow = 8;
-//            startPosition = lookupSquare(bishopOneColumn, bishopRow);
-//            pieces.add(new Bishop(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
-//
-//            startPosition = lookupSquare(bishopTwoColumn, bishopRow);
-//            pieces.add(new Bishop(Color.BLACK, startPosition));
-//            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+//        queen
+            char queenColumn = 'D';
+            int queenRow = 8;
+            startPosition = lookupSquare(queenColumn, queenRow);
+            pieces.add(new Queen(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+
+//        Knights
+            char knightOneColumn = 'B';
+            char knightTwoColumn = 'G';
+            int knightRow = 8;
+            startPosition = lookupSquare(knightOneColumn, knightRow);
+            pieces.add(new Knight(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+            startPosition = lookupSquare(knightTwoColumn, knightRow);
+            pieces.add(new Knight(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+
+//        rooks
+            char rookOneColumn = 'A';
+            char rookTwoColumn = 'H';
+            int rookRow = 8;
+            startPosition = lookupSquare(rookOneColumn, rookRow);
+            pieces.add(new Rook(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+            startPosition = lookupSquare(rookTwoColumn, rookRow);
+            pieces.add(new Rook(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+
+//        bishops
+            char bishopOneColumn = 'C';
+            char bishopTwoColumn = 'F';
+            int bishopRow = 8;
+            startPosition = lookupSquare(bishopOneColumn, bishopRow);
+            pieces.add(new Bishop(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
+
+            startPosition = lookupSquare(bishopTwoColumn, bishopRow);
+            pieces.add(new Bishop(Color.BLACK, startPosition));
+            startPosition.setSquareContent(pieces.get(pieces.size() - 1));
 
         }
 
@@ -293,19 +293,19 @@ public class Player {
             if (!isFound) {
                 throw new IllegalMoveException("Invoer behoort niet tot de mogelijke zetten, probeer opnieuw: ");
             }
-//            king = kingLookup(color);
-//            boolean kingIsChecked = king.defineCheckStatus(gameBoard, opponent);
-//            if (kingIsChecked) {
-//                selectedPiece.setPosition(startPosition);
-//                startPosition.setSquareContent(selectedPiece);
-//                targetSquareObject.setSquareContent(targetSquareContent);
-//                if (targetSquareContent != null) {
-//                    targetSquareContent.setPosition(targetSquareObject);
-//                }
-//                throw new IllegalMoveException("Je kan deze zet niet doen omdat je jezelf dan in check gaat zetten. Probeer opnieuw: ");
-//            } else {
-//                king.setChecked(false);
-//            }
+            king = kingLookup(color);
+            boolean kingIsChecked = king.defineCheckStatus(gameBoard, opponent);
+            if (kingIsChecked) {
+                selectedPiece.setPosition(startPosition);
+                startPosition.setSquareContent(selectedPiece);
+                targetSquareObject.setSquareContent(targetSquareContent);
+                if (targetSquareContent != null) {
+                    targetSquareContent.setPosition(targetSquareObject);
+                }
+                throw new IllegalMoveException("Je kan deze zet niet doen omdat je jezelf dan in check gaat zetten. Probeer opnieuw: ");
+            } else {
+                king.setChecked(false);
+            }
             moves.add(targetSquareObject); // add move to moves list in the player
             selectedPiece.addMove(targetSquareObject); // add the move to the move list in piece
 
@@ -370,7 +370,8 @@ public class Player {
 
     public String log(){
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%s",player)).append(String.format(",%s", moves));
+
+        builder.append(String.format("%s",player)).append(String.format(",%s", getLastMove()));
         return builder.toString();
     }
 }

@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TestPossibleMoves {
@@ -12,48 +13,48 @@ public class TestPossibleMoves {
         Player mattia = new Player("mattia");
         Game chessGame = new Game(dave, mattia);
 //        System.out.println(chessGame.log());
-
-        Path logFile = Paths.get("log.txt");
-        if (Files.exists(logFile)) {
-            try {
-                Files.delete(logFile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            Files.createFile(logFile);
-            FileWriter writer = new FileWriter(logFile.toFile());
-            writer.write(chessGame.log());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String savedGameText = null;
-        Scanner logfile = null;
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(logFile)));
-            savedGameText = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHms");
+//        String filename = chessGame.getStartTime().format(formatter);
+//        Path logFile = Paths.get("resources/savedGames/" + filename + ".txt");
+//        if (Files.exists(logFile)) {
+//            try {
+//                Files.delete(logFile);
+//                System.out.println(logFile.getFileName() + " was deleted.");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        try (FileWriter writer = new FileWriter(logFile.toFile());){
+////            Files.createFile(logFile);
+//            writer.write(chessGame.log());
+//            System.out.println(logFile.getFileName() + " was created");
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        String savedGameText = null;
+//        try (BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(logFile)));){
+//            savedGameText = reader.readLine();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        System.out.println(savedGameText);
 
-
-        String[] firstParsing = savedGameText.split(";");
-        String[] startDateValues = firstParsing[0].split(",");
-        String[] whitePlayerValues = firstParsing[1].split(",");
-        String[] blackPlayerValues = firstParsing[2].split(",");
-        String[] gameboardValues = firstParsing[3].split(",");
-
-        System.out.println(startDateValues[0]);
-        System.out.println(whitePlayerValues[0]);
-        System.out.println(blackPlayerValues[0]);
-        System.out.println(gameboardValues.length);
-        System.out.println(startDateValues[1]);
-
-//        chessGame.play();
+//
+//        String[] firstParsing = savedGameText.split(";");
+//        String[] startDateValues = firstParsing[0].split(",");
+//        String[] whitePlayerValues = firstParsing[1].split(",");
+//        String[] blackPlayerValues = firstParsing[2].split(",");
+//        String[] gameboardValues = firstParsing[3].split(",");
+//
+//        System.out.println(startDateValues[0]);
+//        System.out.println(whitePlayerValues[0]);
+//        System.out.println(blackPlayerValues[0]);
+//        System.out.println(gameboardValues.length);
+//        System.out.println(startDateValues[1]);
+//
+        chessGame.play();
 
 //        Piece pawn = new Pawn(Color.WHITE, new Square(2, 'A'));
 //        System.out.println("pawn");
