@@ -76,6 +76,7 @@ public class ChessBoardView extends GridPane {
                 }
 
 
+
                 String squareName = columnLetter + String.valueOf(rowNumber);
 
 
