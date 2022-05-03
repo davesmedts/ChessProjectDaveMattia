@@ -30,10 +30,10 @@ public class ChessBoardView extends GridPane {
     public GridPane drawBoard() {
         int count = 0;
 
-        for (int column = 1; column < 9; column++) {
+        for (int column = 8; column > 0; column--) {
             count++;
 
-            for (int row = 1; row < 9; row++) {
+            for (int row = 8; row > 0; row--) {
 
                 GridPane gameSquare = new GridPane();
 
@@ -44,31 +44,62 @@ public class ChessBoardView extends GridPane {
                 gameSquare.getRowConstraints().addAll(rowHeight);
 
                 char columnLetter = (char) (64 + column); //ASCII code gebruiken om int naar char om te zetten
-                int rowNumber = row;
+
+                int rowNumber = 0;
+
+                //workaround for the squares
+                switch (row) {
+                    case 8:
+                        rowNumber = rowNumber + 1;
+                        break;
+                    case 7:
+                        rowNumber = rowNumber + 2;
+                        break;
+                    case 6:
+                        rowNumber = rowNumber + 3;
+                        break;
+                    case 5:
+                        rowNumber = rowNumber + 4;
+                        break;
+                    case 4:
+                        rowNumber = rowNumber + 5;
+                        break;
+                    case 3:
+                        rowNumber = rowNumber + 6;
+                        break;
+                    case 2:
+                        rowNumber = rowNumber + 7;
+                        break;
+                    case 1:
+                        rowNumber = rowNumber + 8;
+                        break;
+                }
+
 
                 String squareName = columnLetter + String.valueOf(rowNumber);
+
+
                 Text SQUARENAME = new Text(squareName);
 
-                ImageView knight = new ImageView("/chess-knight-solid2.png");
-
+//                ImageView knight = new ImageView("/chess-knight-solid2.png");
 
 
                 if (count % 2 == 0) {
 
                     gameSquare.setStyle("-fx-background-color: #718d71;");
 
-                    this.add(gameSquare, row, column);
+                    this.add(gameSquare, column, row);
 
 
                 } else {
 
                     gameSquare.setStyle("-fx-background-color: #e7e3e3;");
 
-                    this.add(gameSquare, row, column);
-                    this.add(knight, row, column);
+                    this.add(gameSquare, column, row);
+//                    this.add(knight, row, column);
                 }
 
-//                this.add(SQUARENAME,row,column);
+                gameSquare.add(SQUARENAME, column, row);
 
                 count++;
 
