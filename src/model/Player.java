@@ -180,12 +180,6 @@ public class Player {
             startPosition.setSquareContent(pieces.get(pieces.size() - 1));
 
         }
-
-        if (color == Color.WHITE) {
-            movesValidator.setWhitePieces(pieces);
-        } else {
-            movesValidator.setBlackPieces(pieces);
-        }
     }
 
     //    this method can be used to find a square that matches the column and row arguments

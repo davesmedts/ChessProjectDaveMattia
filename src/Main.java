@@ -9,7 +9,7 @@ import view.newGameView.NewGameView;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-        Game model = new Game(new Player("Deef"), new Player("Matti magic"));
+        Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
         NewGameView view = new NewGameView();
         NewGamePresenter presenter = new NewGamePresenter(model, view);
         primaryStage.setScene(new Scene(view));

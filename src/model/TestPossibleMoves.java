@@ -11,7 +11,11 @@ public class TestPossibleMoves {
     public static void main(String[] args) {
         Player dave = new Player("Dave");
         Player mattia = new Player("mattia");
-        Game chessGame = new Game(dave, mattia);
+
+        Game chessGame = new Game(dave,mattia,false);
+
+
+//        Game chessGame = new Game(dave, mattia, true);
 //        System.out.println(chessGame.log());
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHms");
 //        String filename = chessGame.getStartTime().format(formatter);
@@ -54,7 +58,7 @@ public class TestPossibleMoves {
 //        System.out.println(gameboardValues.length);
 //        System.out.println(startDateValues[1]);
 //
-        chessGame.play();
+//        chessGame.play();
 
 //        Piece pawn = new Pawn(Color.WHITE, new Square(2, 'A'));
 //        System.out.println("pawn");

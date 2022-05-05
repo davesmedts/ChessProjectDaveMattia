@@ -1,5 +1,7 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,6 +36,23 @@ public class ChessGameSaver {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void load(String savedGameFileName){
+        Path path = Paths.get("resources/savedGames/"+ savedGameFileName +  ".txt");
+
+        System.out.println("File to check: " + path);
+        boolean exists = Files.exists(path);
+        System.out.println("File to check exists: " + exists);
+
+        String savedGameText = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(path)));){
+            savedGameText = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(savedGameText);
+
     }
 
 

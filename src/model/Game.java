@@ -13,9 +13,36 @@ public class Game {
     private Player winner;
     private boolean gameFinished;
     private ChessGameSaver saver;
+    private ChessGameLoader loader;
+    boolean isNewGame;
 
     //constructor
-    public Game(Player playerOne, Player playerTwo) {
+    public Game(Player playerOne, Player playerTwo, boolean isNewGame) {
+        this.isNewGame = isNewGame;
+        if(isNewGame){
+            newGame(playerOne, playerTwo);
+        } else {
+            loadGame();
+        }
+    }
+
+    public void setStopTime(LocalDateTime stopTime) {
+        this.stopTime = stopTime;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    public Board getGameBoard() {
+        return gameBoard;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void newGame(Player playerOne, Player playerTwo){
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
@@ -33,11 +60,6 @@ public class Game {
         whitePlayer.setGameBoard(gameBoard);
         blackPlayer.setGameBoard(gameBoard);
 
-        // Create the movesValidator and assign it to the board and the players
-        MovesValidator movesValidator = gameBoard.createMovesValidator();
-        whitePlayer.setMovesValidator(movesValidator);
-        blackPlayer.setMovesValidator(movesValidator);
-
 
 //        player who plays white always has the first turn.
         turn = Color.WHITE;
@@ -49,22 +71,11 @@ public class Game {
         whitePlayer.initializePieces();
         blackPlayer.setColor(Color.BLACK);
         blackPlayer.initializePieces();
+
     }
 
-    public void setStopTime(LocalDateTime stopTime) {
-        this.stopTime = stopTime;
-    }
-
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
-
-    public Board getGameBoard() {
-        return gameBoard;
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public void loadGame(){
+        this.loader = new ChessGameLoader("02052022223059");
     }
 
     public void play() {
