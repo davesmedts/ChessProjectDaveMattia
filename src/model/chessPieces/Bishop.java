@@ -73,4 +73,10 @@ public class Bishop extends Piece {
     public String log() {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());
     }
+
+
+    @Override
+    public String toString() {
+        return "Bishop" + getColor().toString().toLowerCase();
+    }
 }

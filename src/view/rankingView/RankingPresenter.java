@@ -1,18 +1,19 @@
 package view.rankingView;
 
 
-import model.Model;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import model.Game;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 
 public class RankingPresenter {
 
-    private Model model;
+    private Game model;
     private RankingView view;
 
-    public RankingPresenter(Model model,
+    public RankingPresenter(Game model,
                             RankingView view) {
         this.model = model;
         this.view = view;

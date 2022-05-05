@@ -1,13 +1,18 @@
 package view.gameView;
 
-import model.Model;
+import model.Board;
+import model.Game;
+import model.Square;
+import model.chessPieces.Piece;
+
+import java.util.List;
 
 public class GamePresenter {
 
-    private Model model;
+    private Game model;
     private GameView view;
 
-    public GamePresenter(Model model,
+    public GamePresenter(Game model,
                          GameView view) {
         this.model = model;
         this.view = view;
@@ -15,9 +20,35 @@ public class GamePresenter {
         this.updateView();
     }
     private void addEventHandlers() {
+
+
+
     }
 
     private void updateView() {
+       Board backendBoard = model.getGameBoard();
+
+       List<Square> backendSquares =backendBoard.getSquares();
+       List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+
+        for (Square backendSquare : backendSquares) {
+            for (ChessBoardSquare frontendSquare : frontendSquares) {
+                if(backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter() ){
+                    if(backendSquare.getSquareContent() != null){
+                       String piece = backendSquare.getSquareContent().toString();
+                       frontendSquare.setContent(piece);
+
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
     }
 
 }

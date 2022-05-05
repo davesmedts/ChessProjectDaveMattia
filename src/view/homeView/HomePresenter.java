@@ -1,6 +1,6 @@
 package view.homeView;
 
-import model.Model;
+import model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.loadGameView.LoadGamePresenter;
@@ -13,10 +13,10 @@ import view.rankingView.RankingView;
 
 public class HomePresenter {
 
-    private Model model;
+    private Game model;
     private HomeView view;
 
-    public HomePresenter(Model model,
+    public HomePresenter(Game model,
                          HomeView view) {
         this.model = model;
         this.view = view;

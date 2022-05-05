@@ -1,13 +1,14 @@
 package view.splashScreenView;
 
-import model.Model;
+
+import model.Game;
 
 public class SplashScreenPresenter {
 
-    private Model model;
+    private Game model;
     private SplashScreenView view;
 
-    public SplashScreenPresenter(Model model,
+    public SplashScreenPresenter(Game model,
                                  SplashScreenView view) {
         this.model = model;
         this.view = view;

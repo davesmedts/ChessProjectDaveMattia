@@ -222,5 +222,9 @@ public class Pawn extends Piece {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());
     }
 
+    @Override
+    public String toString() {
+        return "Pawn" + getColor().toString().toLowerCase();
+    }
 }
 

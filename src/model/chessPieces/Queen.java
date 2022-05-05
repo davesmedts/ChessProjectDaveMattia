@@ -176,4 +176,9 @@ public class Queen extends Piece {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());
     }
 
+
+    @Override
+    public String toString() {
+        return "Queen" + getColor().toString().toLowerCase();
+    }
 }

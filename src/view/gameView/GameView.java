@@ -4,6 +4,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.util.List;
+
 
 public class GameView extends BorderPane {
     private VBox mainContainer;
@@ -28,10 +30,9 @@ public class GameView extends BorderPane {
 
     private Label statusBarText;
 
-    private GridPane gameChessBoard;
+    private ChessBoardView gameChessBoardGrid;
+    private List<ChessBoardSquare> chessBoardSquares;
 
-
-    private ImageView knight;
 
 
     public GameView() {
@@ -43,8 +44,9 @@ public class GameView extends BorderPane {
 //        mainContainerNodes
 
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
-        this.knight = new ImageView("/chess-knight-solid2.png");
-        gameChessBoard = new ChessBoardView().drawBoard();
+        gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard();
+
+        chessBoardSquares = gameChessBoardGrid.getGameSquares();
 
 
 
@@ -83,8 +85,7 @@ public class GameView extends BorderPane {
 
 //        MainContainerContent
 
-        this.setCenter(knight);
-        this.setCenter(gameChessBoard);
+        this.setCenter(gameChessBoardGrid);
 
 //        leftArea
         leftContainer.getChildren().addAll(chessLogo, homeBtn, opslaanBtn, stopSpelBtn);
@@ -97,6 +98,10 @@ public class GameView extends BorderPane {
         //        statusbar
         this.setBottom(statusBarText);
 
+    }
+
+    public List<ChessBoardSquare> getChessBoardSquares() {
+        return chessBoardSquares;
     }
 
 

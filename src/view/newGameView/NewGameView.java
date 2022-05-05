@@ -16,6 +16,7 @@ public class NewGameView extends BorderPane {
     private Button homeBtn;
     private Button startSpel;
 
+
     private MenuItem afsluiten;
     private MenuItem opslaan;
     private MenuItem openen;
@@ -113,5 +114,9 @@ public class NewGameView extends BorderPane {
 
     public Button getHomeBtn() {
         return homeBtn;
+    }
+
+    public Button getStartSpel() {
+        return startSpel;
     }
 }

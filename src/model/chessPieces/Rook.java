@@ -104,4 +104,8 @@ public class Rook extends Piece {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());
     }
 
+    @Override
+    public String toString() {
+        return "Rook" + getColor().toString().toLowerCase();
+    }
 }

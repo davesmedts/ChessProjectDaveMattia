@@ -53,4 +53,8 @@ public abstract class Piece {
     }
 
     public abstract String log();
+
+
+    @Override
+    public abstract String toString();
 }

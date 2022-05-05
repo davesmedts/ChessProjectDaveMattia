@@ -1,18 +1,17 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.*;
-import view.gameView.GamePresenter;
-import view.gameView.GameView;
-import view.loadGameView.LoadGamePresenter;
-import view.loadGameView.LoadGameView;
+import model.Game;
+import model.Player;
+import view.newGameView.NewGamePresenter;
+import view.newGameView.NewGameView;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-        Model model = new Model();
-        GameView view = new GameView();
-        GamePresenter presenter = new GamePresenter(model, view);
+        Game model = new Game(new Player("Deef"), new Player("Matti magic"));
+        NewGameView view = new NewGameView();
+        NewGamePresenter presenter = new NewGamePresenter(model, view);
         primaryStage.setScene(new Scene(view));
         primaryStage.show();
     }

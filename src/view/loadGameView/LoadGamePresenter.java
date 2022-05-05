@@ -1,6 +1,6 @@
 package view.loadGameView;
 
-import model.Model;
+import model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.homeView.HomePresenter;
@@ -8,10 +8,10 @@ import view.homeView.HomeView;
 
 public class LoadGamePresenter {
 
-    private Model model;
+    private Game model;
     private LoadGameView view;
 
-    public LoadGamePresenter(Model model,
+    public LoadGamePresenter(Game model,
                              LoadGameView view) {
         this.model = model;
         this.view = view;

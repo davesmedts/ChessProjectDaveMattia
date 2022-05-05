@@ -380,4 +380,9 @@ public class King extends Piece {
     public String log() {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());
     }
+
+    @Override
+    public String toString() {
+        return "King" + getColor().toString().toLowerCase();
+    }
 }
