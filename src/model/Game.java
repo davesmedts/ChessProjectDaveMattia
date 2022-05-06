@@ -75,7 +75,13 @@ public class Game {
     }
 
     public void loadGame(){
-        this.loader = new ChessGameLoader("02052022223059");
+        this.loader = new ChessGameLoader("06052022215601");
+        this.blackPlayer = loader.getBlackPlayer();
+        this.whitePlayer = loader.getWhitePlayer();
+        this.startTime = loader.getStartTime();
+        this.gameBoard = loader.getGameBoard();
+        this.saver = new ChessGameSaver(this);
+
     }
 
     public void play() {
@@ -109,7 +115,7 @@ public class Game {
 
     public String log(){
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%d,%d,%d,%d,%d,%d;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), startTime.getHour(), startTime.getMinute(), startTime.getSecond(), whitePlayer.log(), blackPlayer.log(), gameBoard.log()));
+        builder.append(String.format("%d,%d,%d,%d,%d,%d;%s;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), startTime.getHour(), startTime.getMinute(), startTime.getSecond(), whitePlayer.log(), blackPlayer.log(), gameBoard.log(), this.turn));
         return builder.toString();
     }
 

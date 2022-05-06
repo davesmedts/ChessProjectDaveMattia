@@ -15,6 +15,24 @@ public class ChessGameLoader {
     Player blackPlayer;
     LocalDateTime startTime;
     Board gameBoard;
+    Color turn;
+    ChessGameSaver saver;
+
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public Board getGameBoard() {
+        return gameBoard;
+    }
 
     public ChessGameLoader(String savedGameFileName) {
         Path path = Paths.get("resources/savedGames/" + savedGameFileName + ".txt");
@@ -34,34 +52,44 @@ public class ChessGameLoader {
         String[] savedGameData = savedGameText.split(";");
 
         String[] startDateElements = savedGameData[0].split(",");
-        this.startTime = LocalDateTime.of(Integer.parseInt(startDateElements[3]),Integer.parseInt(startDateElements[1]), Integer.parseInt(startDateElements[0]), Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[4]), Integer.parseInt(startDateElements[5]));
+        this.startTime = LocalDateTime.of(Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[1]), Integer.parseInt(startDateElements[0]), Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[4]), Integer.parseInt(startDateElements[5]));
 
         this.gameBoard = new Board();
-
+        if(savedGameData[1].equals("WHITE")){
+            this.turn = Color.WHITE;
+        } else {
+            this.turn = Color.BLACK;
+        }
 
         String[] whitePlayerData = savedGameData[1].split(",");
         this.whitePlayer = new Player(whitePlayerData[0]);
         whitePlayer.setGameBoard(this.gameBoard);
+        whitePlayer.setColor(Color.WHITE);
         Square lastMove = whitePlayer.lookupSquare(whitePlayerData[1].charAt(0), whitePlayerData[1].charAt(0));
         whitePlayer.getMoves().add(lastMove);
 
         String[] blackPlayerData = savedGameData[2].split(",");
         this.blackPlayer = new Player(blackPlayerData[0]);
         blackPlayer.setGameBoard(gameBoard);
+        blackPlayer.setColor(Color.BLACK);
         lastMove = blackPlayer.lookupSquare(blackPlayerData[1].charAt(0), blackPlayerData[1].charAt(0));
         blackPlayer.getMoves().add(lastMove);
 
         String[] boardData = savedGameData[3].split(",");
         for (String boardSquareData : boardData) {
-            Square boardSquare = whitePlayer.lookupSquare(boardData[0].charAt(0), boardData[1].charAt(1));
-            if (!boardData[1].equals("null")) {
-                String[] boardSquareContentData = boardSquareData.split(":");
+            String[] parsedBoardSquareData = boardSquareData.split(":");
+            char column = parsedBoardSquareData[0].charAt(0);
+            int row = Character.getNumericValue(parsedBoardSquareData[0].charAt(1));
+            Square boardSquare = gameBoard.lookupSquare(column, row);
+            if (!parsedBoardSquareData[1].equals("null")) {
+                String[] boardSquareContentData = parsedBoardSquareData[1].split("-");
                 Color pieceColor;
-                Piece loadedpiece = null;
                 if (boardSquareContentData[1].equals("WHITE")) {
                     pieceColor = Color.WHITE;
-                } else
+                } else {
                     pieceColor = Color.BLACK;
+                }
+                Piece loadedpiece = null;
                 switch (boardSquareContentData[0]) {
                     case "King":
                         loadedpiece = new King(pieceColor, boardSquare);
@@ -86,10 +114,8 @@ public class ChessGameLoader {
                     loadedpiece.setPosition(boardSquare);
                     boardSquare.setSquareContent(loadedpiece);
                 }
-
             }
         }
-
-
     }
 }
+

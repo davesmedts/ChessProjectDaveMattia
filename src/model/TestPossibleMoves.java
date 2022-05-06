@@ -58,7 +58,7 @@ public class TestPossibleMoves {
 //        System.out.println(gameboardValues.length);
 //        System.out.println(startDateValues[1]);
 //
-//        chessGame.play();
+        chessGame.play();
 
 //        Piece pawn = new Pawn(Color.WHITE, new Square(2, 'A'));
 //        System.out.println("pawn");
