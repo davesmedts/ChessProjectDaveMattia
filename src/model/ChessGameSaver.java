@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,7 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 public class ChessGameSaver {
     Game chessGame;
@@ -53,6 +56,18 @@ public class ChessGameSaver {
         }
         System.out.println(savedGameText);
 
+    }
+
+    public String logHistory(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm");
+        String gameDate = chessGame.getStartTime().format(formatter);
+        String whitePlayer = chessGame.getWhitePlayer().toString();
+        String blackPlayer = chessGame.getBlackPlayer().toString();
+        String winner = chessGame.getWinner().toString();
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(gameDate).append(";").append(whitePlayer).append(";").append(blackPlayer).append(";").append(winner).append("\n");
+        return builder.toString();
     }
 
 

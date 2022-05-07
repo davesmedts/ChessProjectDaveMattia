@@ -37,6 +37,18 @@ public class Game {
         return startTime;
     }
 
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
+
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
     public void newGame(Player playerOne, Player playerTwo){
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
@@ -88,6 +100,7 @@ public class Game {
                 whitePlayer.selectPiece(whitePlayer, blackPlayer);
                 turn = Color.BLACK;
                 saver.save();
+//                System.out.println(saver.logHistory());
 
                 if (whitePlayer.isWinner()) {
                     gameFinished = true;

@@ -64,10 +64,8 @@ public class ChessBoardSquare extends GridPane {
                 break;
         }
         if (imageView != null) {
-
             this.add(imageView, 0, 0);
             GridPane.setHalignment(imageView, HPos.CENTER);
-
         }
     }
 
