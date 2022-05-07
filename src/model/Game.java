@@ -9,7 +9,6 @@ public class Game {
     private Board gameBoard;
     private Color turn;
     private LocalDateTime startTime;
-    private LocalDateTime stopTime;
     private Player winner;
     private boolean gameFinished;
     private ChessGameSaver saver;
@@ -24,10 +23,6 @@ public class Game {
         } else {
             loadGame();
         }
-    }
-
-    public void setStopTime(LocalDateTime stopTime) {
-        this.stopTime = stopTime;
     }
 
     public void setWinner(Player winner) {
