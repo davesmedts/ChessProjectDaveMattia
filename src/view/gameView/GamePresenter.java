@@ -1,5 +1,9 @@
 package view.gameView;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import model.Board;
 import model.Game;
 import model.Square;
@@ -20,10 +24,14 @@ public class GamePresenter {
         this.updateView();
     }
     private void addEventHandlers() {
+//        EventHandler<ActionEvent> buttonEventHandler(){
+//            return event -> {
+//                Node node = (Node) event.getTarget();
+//                int row = GridPane.getRowIndex(node);
+//                int column = GridPane.getColumnIndex(node);
+//            };
+        }
 
-
-
-    }
 
     private void updateView() {
        Board backendBoard = model.getGameBoard();
