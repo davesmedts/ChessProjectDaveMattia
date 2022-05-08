@@ -12,10 +12,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
+
         HomeView view = new HomeView();
         HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
+
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
+
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

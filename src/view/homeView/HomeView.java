@@ -1,15 +1,15 @@
 package view.homeView;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 
-public class HomeView extends BorderPane {
+public class HomeView extends GridPane {
     private VBox mainContainer;
     private HBox helpIconsContainer;
 
@@ -23,7 +23,6 @@ public class HomeView extends BorderPane {
     private MenuItem spelregels;
     private MenuItem info;
 
-    private ImageView chessLogo;
     private Label titel;
 
     private ImageView helpIcon;
@@ -31,6 +30,7 @@ public class HomeView extends BorderPane {
     private ImageView settingsIcon;
 
     private Label statusBarText;
+
 
 
     public HomeView() {
@@ -44,8 +44,10 @@ public class HomeView extends BorderPane {
         this.newGameBtn = new Button("nieuw spel");
         this.openenBtn = new Button("hervat spel");
         this.rangschikkingBtn = new Button("Rangschikking");
-        this.chessLogo = new ImageView("/applicationLogo.png");
         this.titel = new Label("Welkom bij Chess");
+        titel.setId("TitelHomeView");
+        this.setId("HomeView");
+
 //        menuNodes
         this.afsluiten = new MenuItem("afsluiten");
         this.openen = new MenuItem("openen");
@@ -66,11 +68,14 @@ public class HomeView extends BorderPane {
 
     private void layoutNodes() {
 
+
 //        menu
         final Menu bestandMenu = new Menu("Bestand",null, this.openen, this.opslaan, this.afsluiten);
         final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);
         final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.setTop(menuBar);
+
+        this.add(menuBar, 0 ,0,4,1);
+
 
 //        MainContainerContent
         this.newGameBtn.setPrefSize(150, 40);
@@ -78,16 +83,51 @@ public class HomeView extends BorderPane {
         this.rangschikkingBtn.setPrefSize(150, 40);
         mainContainer.setSpacing(10);
         mainContainer.setPadding(new Insets(20));
-        mainContainer.getChildren().addAll(chessLogo, titel, newGameBtn, openenBtn, rangschikkingBtn);
-        mainContainer.setAlignment(Pos.CENTER);
-        this.setCenter(mainContainer);
+        mainContainer.getChildren().addAll(titel, newGameBtn, openenBtn, rangschikkingBtn);
+        mainContainer.setAlignment(Pos.TOP_RIGHT);
+        this.add(mainContainer, 2 ,2);
+        setGridLinesVisible(true);
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
-        this.setRight(helpIconsContainer);
+        helpIconsContainer.setAlignment(Pos.TOP_CENTER);
+        this.add(helpIconsContainer, 3 ,1);
 
 //        statusbar
-        this.setBottom(statusBarText);
+        statusBarText.setAlignment(Pos.BOTTOM_CENTER);
+        this.add(statusBarText,1,3,2,1);
+
+        // column constraints
+        ColumnConstraints col1Constraints = new ColumnConstraints();
+        col1Constraints.setPercentWidth(30);
+        ColumnConstraints col2Constraints = new ColumnConstraints();
+        col2Constraints.setPercentWidth(20);
+        ColumnConstraints col3Constraints = new ColumnConstraints();
+        col3Constraints.setPercentWidth(30);
+        ColumnConstraints col4Constraints = new ColumnConstraints();
+        col4Constraints.setPercentWidth(20);
+        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints,col4Constraints);
+
+
+        // constraints Gridpane
+        this.setConstraints(menuBar,     0, 0, 4, 1,
+                HPos.CENTER,       VPos.CENTER,
+                Priority.ALWAYS, Priority.ALWAYS);
+
+
+        this.setConstraints(mainContainer,     2, 2, 1, 1,
+                HPos.LEFT,       VPos.CENTER,
+                Priority.ALWAYS, Priority.ALWAYS);
+
+        this.setConstraints(helpIconsContainer,     3, 1, 1, 1,
+                HPos.LEFT,       VPos.CENTER,
+                Priority.ALWAYS, Priority.ALWAYS);
+
+
+        this.setConstraints(statusBarText,     1, 3, 2, 1,
+                HPos.CENTER,       VPos.CENTER,
+                Priority.ALWAYS, Priority.ALWAYS);
+
     }
 
     public Button getNewGameBtn() {
