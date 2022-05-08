@@ -88,7 +88,7 @@ public class ChessBoardView extends GridPane {
 
                 } else {
 
-                    gameSquare.setStyle("-fx-background-color: #e7e3e3;");
+                    gameSquare.setStyle("-fx-background-color: #a2b4a2;");
 
                     this.add(gameSquare, column, row);
 

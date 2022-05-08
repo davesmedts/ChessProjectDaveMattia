@@ -25,21 +25,48 @@ public class ChessBoardSquare extends GridPane {
 
 
     public void setContent(String piece) {
-        switch(piece) {
+        switch (piece) {
             case "Knightblack":
                 this.imageView = new ImageView("/Knightblack.png");
-
-
+                break;
+            case "Kingblack":
+                this.imageView = new ImageView("/Kingblack.png");
+                break;
+            case "Queenblack":
+                this.imageView = new ImageView("/Queenblack.png");
+                break;
+            case "Pawnblack":
+                this.imageView = new ImageView("/Pawnblack.png");
+                break;
+            case "Rookblack":
+                this.imageView = new ImageView("/Rookblack.png");
+                break;
+            case "Bishopblack":
+                this.imageView = new ImageView("/BishopBlack.png");
+                break;
+            case"Knightwhite":
+                this.imageView = new ImageView("Knightwhite.png");
+                break;
+            case"Kingwhite":
+                this.imageView = new ImageView("Kingwhite.png");
+                break;
+            case"Queenwhite":
+                this.imageView = new ImageView("Queenwhite.png");
+                break;
+            case"Pawnwhite":
+                this.imageView = new ImageView("Pawnwhite.png");
+                break;
+            case"Rookwhite":
+                this.imageView = new ImageView("Rookwhite.png");
+                break;
+            case"Bishopwhite":
+                this.imageView = new ImageView("Bishopwhite.png");
+                break;
         }
-
-        if(imageView != null){
-
-            this.add(imageView,0,0);
+        if (imageView != null) {
+            this.add(imageView, 0, 0);
             GridPane.setHalignment(imageView, HPos.CENTER);
-
         }
-
-
     }
 
     public int getRowNumber() {

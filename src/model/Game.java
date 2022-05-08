@@ -9,7 +9,6 @@ public class Game {
     private Board gameBoard;
     private Color turn;
     private LocalDateTime startTime;
-    private LocalDateTime stopTime;
     private Player winner;
     private boolean gameFinished;
     private ChessGameSaver saver;
@@ -26,10 +25,6 @@ public class Game {
         }
     }
 
-    public void setStopTime(LocalDateTime stopTime) {
-        this.stopTime = stopTime;
-    }
-
     public void setWinner(Player winner) {
         this.winner = winner;
     }
@@ -40,6 +35,18 @@ public class Game {
 
     public LocalDateTime getStartTime() {
         return startTime;
+    }
+
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
+
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     public void newGame(Player playerOne, Player playerTwo){
@@ -93,6 +100,7 @@ public class Game {
                 whitePlayer.selectPiece(whitePlayer, blackPlayer);
                 turn = Color.BLACK;
                 saver.save();
+//                System.out.println(saver.logHistory());
 
                 if (whitePlayer.isWinner()) {
                     gameFinished = true;
