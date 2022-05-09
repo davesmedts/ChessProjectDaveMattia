@@ -16,8 +16,8 @@ public class Main extends Application {
         HomeView view = new HomeView();
         HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
-
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
+
 
 
         primaryStage.setScene(scene);

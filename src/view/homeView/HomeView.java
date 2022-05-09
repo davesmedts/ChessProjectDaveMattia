@@ -141,4 +141,17 @@ public class HomeView extends GridPane {
     public Button getOpenenBtn() {
         return openenBtn;
     }
+
+
+    public ImageView getHelpIcon() {
+        return helpIcon;
+    }
+
+    public ImageView getSettingsIcon() {
+        return settingsIcon;
+    }
+
+    public Label getStatusBarText() {
+        return statusBarText;
+    }
 }

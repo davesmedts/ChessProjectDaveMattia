@@ -1,5 +1,12 @@
 package view.homeView;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +29,7 @@ public class HomePresenter {
         this.view = view;
         this.addEventHandlers();
         this.updateView();
+//        this.addWindowEventHandlers();
     }
 
 
@@ -37,6 +45,23 @@ public class HomePresenter {
             }
         });
 
+        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter aboutPresenter = new SettingsPresenter(model, settingsView);
+                Stage aboutStage = new Stage();
+                aboutStage.initOwner(view.getScene().getWindow());
+                aboutStage.initModality(Modality.APPLICATION_MODAL);
+                aboutStage.setScene(new Scene(settingsView));
+                aboutStage.setX(view.getScene().getWindow().getX() + 100);
+                aboutStage.setY(view.getScene().getWindow().getY() + 100);
+                aboutStage.showAndWait();
+            }
+
+        });
+
+
         // blijven op dezelfde Stage, rangschikking opvragen
         view.getRangschikkingBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -47,6 +72,7 @@ public class HomePresenter {
                 RankingView.getScene().getWindow().sizeToScene();
             }
         });
+
 
         // blijven op dezelfde Stage, spel hervatten
         view.getOpenenBtn().setOnAction(new EventHandler<ActionEvent>() {
@@ -60,6 +86,33 @@ public class HomePresenter {
         });
 
     }
+
+
+
+
+//        private void addWindowEventHandlers() {
+//
+//            view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Alert alert = new Alert(Alert.AlertType.WARNING);
+//                    alert.setHeaderText("Hierdoor stopt het spel!");
+//                    alert.setContentText("Ben je zeker?");
+//                    alert.setTitle("Opgelet!");
+//                    alert.getButtonTypes().clear();
+//                    ButtonType neen = new ButtonType("Neen");
+//                    ButtonType ja = new ButtonType("Ja");
+//                    alert.getButtonTypes().addAll(neen, ja);
+//                    alert.showAndWait();
+//                    if (alert.getResult() == null || alert.getResult().equals(neen)) {
+//                        event.consume();
+//                    }
+//                }
+//            });
+//        }
+
+
+
 
     private void updateView() {
     }
