@@ -116,7 +116,7 @@ public class Player {
 
         } else { // for the black Pieces we do the same as above.
             //        pawns
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 5; i++) {
                 int pawnRow = 7;
                 char pawnColumn = (char) (65 + i);
 //              Hier moeten we de juiste squares ophalen om positie van Piece te linken aan de juiste square op het bord.
@@ -317,28 +317,28 @@ public class Player {
             opponentColor = Color.WHITE;
         }
 
-//        King opponentKing = kingLookup(opponentColor);
-//        boolean opponentIsChecked = opponentKing.defineCheckStatus(gameBoard, this);
-//        if (opponentIsChecked) {
-//            opponentKing.setChecked(true);
-//        } else {
-//            opponentKing.setChecked(false);
-//        }
-//
-////        isCheckMate - check
-//        if (opponentKing.isChecked()) {
-//            boolean isCheckMate = opponentKing.defineCheckMateStatus(gameBoard, this);
-//            if (isCheckMate) {
-//                opponentKing.setCheckmate(true);
-//                isWinner = true;
-//            }
-//        }
-//
-//        if (opponentIsChecked && !opponentKing.isCheckmate()) {
-//            System.out.println(opponentColor + " staat schaak");
-//        } else if (opponentKing.isCheckmate()) {
-//            System.out.println("Schaakmat!");
-//        }
+        King opponentKing = kingLookup(opponentColor);
+        boolean opponentIsChecked = opponentKing.defineCheckStatus(gameBoard, this);
+        if (opponentIsChecked) {
+            opponentKing.setChecked(true);
+        } else {
+            opponentKing.setChecked(false);
+        }
+
+//        isCheckMate - check
+        if (opponentKing.isChecked()) {
+            boolean isCheckMate = opponentKing.defineCheckMateStatus(gameBoard, this);
+            if (isCheckMate) {
+                opponentKing.setCheckmate(true);
+                isWinner = true;
+            }
+        }
+
+        if (opponentIsChecked && !opponentKing.isCheckmate()) {
+            System.out.println(opponentColor + " staat schaak");
+        } else if (opponentKing.isCheckmate()) {
+            System.out.println("Schaakmat!");
+        }
 
         if (selectedPiece instanceof Pawn && selectedPiece.getPosition().getRowNumber() == 8 && selectedPiece.getColor() == Color.WHITE) {
             System.out.println("U kan uw pion promoveren. Geef de letter van het stuk in (Q,K,B,R):");
