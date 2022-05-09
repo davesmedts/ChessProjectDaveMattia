@@ -19,10 +19,11 @@ public class Main extends Application {
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
 
-
         primaryStage.setScene(scene);
+        presenter.addWindowEventHandlers();
         primaryStage.show();
     }
+
     public static void main(String[] args) {
         Application.launch(args);
     }

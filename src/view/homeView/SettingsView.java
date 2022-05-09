@@ -19,7 +19,6 @@ public class SettingsView extends Parent {
 
     private void initialiseNodes() {
 
-
     }
 
 
@@ -28,9 +27,4 @@ public class SettingsView extends Parent {
 
     }
 
-
-    @Override
-    public Node getStyleableNode() {
-        return super.getStyleableNode();
-    }
 }
