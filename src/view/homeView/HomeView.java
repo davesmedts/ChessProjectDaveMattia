@@ -111,7 +111,7 @@ public class HomeView extends GridPane {
 
         // constraints Gridpane
         this.setConstraints(menuBar,     0, 0, 4, 1,
-                HPos.CENTER,       VPos.CENTER,
+                HPos.CENTER,       VPos.TOP,
                 Priority.ALWAYS, Priority.ALWAYS);
 
 
@@ -125,7 +125,7 @@ public class HomeView extends GridPane {
 
 
         this.setConstraints(statusBarText,     1, 3, 2, 1,
-                HPos.CENTER,       VPos.CENTER,
+                HPos.CENTER,       VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
 
     }
