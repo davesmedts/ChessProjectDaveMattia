@@ -1,4 +1,4 @@
-package view.homeView;
+package view.symbolView;
 
 import model.Game;
 

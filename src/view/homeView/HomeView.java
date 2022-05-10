@@ -56,10 +56,10 @@ public class HomeView extends GridPane {
         this.info = new MenuItem("info");
 
 //        Icons on the right part of the screen
-        this.helpIconsContainer = new HBox();
+        this.helpIconsContainer = new HBox(8);
         this.helpIcon = new ImageView("/questionIconGold.png");
-        this.settingsIcon = new ImageView("/infoIconGold.png");
-        this.infoIcon = new ImageView("/settingsIconGold.png");
+        this.settingsIcon = new ImageView("/settingsIconGold.png");
+        this.infoIcon = new ImageView("/infoIconGold.png");
 
 //        statusbar
         this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
@@ -149,6 +149,10 @@ public class HomeView extends GridPane {
 
     public ImageView getSettingsIcon() {
         return settingsIcon;
+    }
+
+    public ImageView getInfoIcon() {
+        return infoIcon;
     }
 
     public Label getStatusBarText() {

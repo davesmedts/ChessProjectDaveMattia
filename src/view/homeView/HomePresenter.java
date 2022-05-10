@@ -16,6 +16,8 @@ import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
+import view.symbolView.SettingsPresenter;
+import view.symbolView.SettingsView;
 
 
 public class HomePresenter {
@@ -45,7 +47,7 @@ public class HomePresenter {
             }
         });
 
-        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+        view.getHelpIcon().setOnMouseClicked(new EventHandler<>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 SettingsView settingsView = new SettingsView();
