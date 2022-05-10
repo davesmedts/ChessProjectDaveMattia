@@ -2,8 +2,11 @@ package view.symbolView;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 import model.Game;
 import view.gameView.ChessBoardView;
+import view.gameView.GamePresenter;
+import view.gameView.GameView;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
@@ -15,6 +18,7 @@ public class SettingsPresenter {
 
     private Game model;
     private SettingsView view;
+    private GameView gameView;
 
     public SettingsPresenter(Game model,
                              SettingsView view) {
@@ -30,6 +34,12 @@ public class SettingsPresenter {
         view.getApplyColor().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+               String colorOne=  view.getColorOne().getText();
+               String colorTwo = view.getColorTwo().getText();
+
+                gameView.setColorOne(colorOne);
+                gameView.setColorTwo(colorTwo);
+
 
             }
         });

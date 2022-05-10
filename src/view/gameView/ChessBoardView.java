@@ -16,22 +16,13 @@ import java.util.List;
  */
 public class ChessBoardView extends GridPane {
     private List<ChessBoardSquare> gameSquares = new ArrayList<>();
-    private String colorOne = "BLUE";
-    private String colorTwo = "GREEN";
 
-    public void setColorOne(String colorOne) {
-        this.colorOne = colorOne;
-    }
-
-    public void setColorTwo(String colorTwo) {
-        this.colorTwo = colorTwo;
-    }
 
     public List<ChessBoardSquare> getGameSquares() {
         return gameSquares;
     }
 
-    public GridPane drawBoard() {
+    public GridPane drawBoard(String colorOne, String colorTwo) {
         int count = 0;
 
         for (int column = 8; column > 0; column--) {

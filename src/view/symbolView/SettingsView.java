@@ -48,5 +48,11 @@ public class SettingsView extends GridPane {
         return applyColor;
     }
 
+    public TextField getColorOne() {
+        return colorOne;
+    }
 
+    public TextField getColorTwo() {
+        return colorTwo;
+    }
 }
