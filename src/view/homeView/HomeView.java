@@ -68,7 +68,6 @@ public class HomeView extends GridPane {
 
     private void layoutNodes() {
 
-
 //        menu
         final Menu bestandMenu = new Menu("Bestand",null, this.openen, this.opslaan, this.afsluiten);
         final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);

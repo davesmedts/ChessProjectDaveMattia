@@ -3,6 +3,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Game;
 import model.Player;
+import view.gameView.GamePresenter;
+import view.gameView.GameView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 import view.newGameView.NewGamePresenter;
@@ -20,7 +22,7 @@ public class Main extends Application {
 
 
         primaryStage.setScene(scene);
-        presenter.addWindowEventHandlers();
+//        presenter.addWindowEventHandlers();
         primaryStage.show();
     }
 

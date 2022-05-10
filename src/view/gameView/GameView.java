@@ -33,7 +33,16 @@ public class GameView extends BorderPane {
     private ChessBoardView gameChessBoardGrid;
     private List<ChessBoardSquare> chessBoardSquares;
 
+    private String colorOne = "BLUE";
+    private String colorTwo = "RED";
 
+    public void setColorOne(String colorOne) {
+        this.colorOne = colorOne;
+    }
+
+    public void setColorTwo(String colorTwo) {
+        this.colorTwo = colorTwo;
+    }
 
     public GameView() {
         this.initialiseNodes();
@@ -44,7 +53,7 @@ public class GameView extends BorderPane {
 //        mainContainerNodes
 
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
-        gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard();
+        gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard(colorOne, colorTwo);
 
         chessBoardSquares = gameChessBoardGrid.getGameSquares();
 
