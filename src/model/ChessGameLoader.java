@@ -34,6 +34,10 @@ public class ChessGameLoader {
         return gameBoard;
     }
 
+    public Color getTurn() {
+        return turn;
+    }
+
     public ChessGameLoader(String savedGameFileName) {
         Path path = Paths.get("resources/savedGames/" + savedGameFileName + ".txt");
 
@@ -52,10 +56,10 @@ public class ChessGameLoader {
         String[] savedGameData = savedGameText.split(";");
 
         String[] startDateElements = savedGameData[0].split(",");
-        this.startTime = LocalDateTime.of(Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[1]), Integer.parseInt(startDateElements[0]), Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[4]), Integer.parseInt(startDateElements[5]));
+        this.startTime = LocalDateTime.of(Integer.parseInt(startDateElements[2]), Integer.parseInt(startDateElements[1]), Integer.parseInt(startDateElements[0]), Integer.parseInt(startDateElements[3]), Integer.parseInt(startDateElements[4]), Integer.parseInt(startDateElements[5]));
 
         this.gameBoard = new Board();
-        if(savedGameData[1].equals("WHITE")){
+        if(savedGameData[4].equals("WHITE")){
             this.turn = Color.WHITE;
         } else {
             this.turn = Color.BLACK;
