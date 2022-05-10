@@ -1,6 +1,11 @@
 package view.symbolView;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import model.Game;
+import view.gameView.ChessBoardView;
+import view.newGameView.NewGamePresenter;
+import view.newGameView.NewGameView;
 
 /**
  * @author Mattia Verreydt
@@ -21,6 +26,13 @@ public class SettingsPresenter {
 
 
     private void addEventHandlers() {
+
+        view.getApplyColor().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
 
     }
 

@@ -47,18 +47,18 @@ public class HomePresenter {
             }
         });
 
-        view.getHelpIcon().setOnMouseClicked(new EventHandler<>() {
+        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 SettingsView settingsView = new SettingsView();
-                SettingsPresenter aboutPresenter = new SettingsPresenter(model, settingsView);
-                Stage aboutStage = new Stage();
-                aboutStage.initOwner(view.getScene().getWindow());
-                aboutStage.initModality(Modality.APPLICATION_MODAL);
-                aboutStage.setScene(new Scene(settingsView));
-                aboutStage.setX(view.getScene().getWindow().getX() + 100);
-                aboutStage.setY(view.getScene().getWindow().getY() + 100);
-                aboutStage.showAndWait();
+                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(settingsView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
             }
 
         });
