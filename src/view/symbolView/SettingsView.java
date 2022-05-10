@@ -27,8 +27,8 @@ public class SettingsView extends GridPane {
 
 
     private void initialiseNodes() {
-         colorOne= new TextField("GREY");
-         colorTwo= new TextField("PINK");
+         this.colorOne= new TextField("GREEN");
+         this.colorTwo= new TextField("BLUE");
          applyColor = new Button("apply");
 
     }
