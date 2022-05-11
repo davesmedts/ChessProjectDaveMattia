@@ -30,11 +30,38 @@ public class SettingsPresenter {
 
     private void addEventHandlers() {
 
-        view.getApplyColor().setOnAction(new EventHandler<ActionEvent>() {
+        view.getThemeOne().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String colorOne = view.getColorOne().getText();
-                String colorTwo = view.getColorTwo().getText();
+
+                String colorOne = "#57271d";
+                String colorTwo = "#ecddc8";
+
+                NewGameView.colorOne = colorOne;
+                NewGameView.colorTwo = colorTwo;
+
+            }
+        });
+
+        view.getThemeTwo().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                String colorOne = "PINK";
+                String colorTwo = "YELLOW";
+
+                NewGameView.colorOne = colorOne;
+                NewGameView.colorTwo = colorTwo;
+
+            }
+        });
+
+        view.getThemeThree().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                String colorOne = "CORAL";
+                String colorTwo = "TEAL";
 
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
