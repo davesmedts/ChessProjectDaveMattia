@@ -17,9 +17,9 @@ public class SettingsView extends GridPane {
 
 //    TextField colorOne;
 //    TextField colorTwo;
-    private ToggleButton ThemeOne;
-    private ToggleButton ThemeTwo;
-    private ToggleButton ThemeThree;
+    private static ToggleButton ThemeOne;
+    private static ToggleButton ThemeTwo;
+    private static ToggleButton ThemeThree;
     private Button applyColor;
 
 
@@ -31,12 +31,17 @@ public class SettingsView extends GridPane {
 
 
     private void initialiseNodes() {
-//         this.colorOne= new TextField("GREEN");
-//         this.colorTwo= new TextField("BLUE");
+        this.setId("HomeView");
         ThemeOne = new ToggleButton("classic");
         ThemeTwo = new ToggleButton("funky");
         ThemeThree = new ToggleButton("stylish");
-         applyColor = new Button ("apply");
+
+
+
+
+       ThemeOne.setStyle("-fx-background-color: GREEN");
+       ThemeTwo.setStyle("-fx-background-color: RED");
+       ThemeThree.setStyle("-fx-background-color: RED");
 
     }
 
@@ -70,7 +75,19 @@ public class SettingsView extends GridPane {
         return ThemeThree;
     }
 
-//    public TextField getColorOne() {
+    public void setThemeOne(ToggleButton themeOne) {
+        ThemeOne = themeOne;
+    }
+
+    public void setThemeTwo(ToggleButton themeTwo) {
+        ThemeTwo = themeTwo;
+    }
+
+    public void setThemeThree(ToggleButton themeThree) {
+        ThemeThree = themeThree;
+    }
+
+    //    public TextField getColorOne() {
 //        return colorOne;
 //    }
 //

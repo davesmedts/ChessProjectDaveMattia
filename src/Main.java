@@ -9,14 +9,16 @@ import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
+import view.symbolView.SettingsPresenter;
+import view.symbolView.SettingsView;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        HomeView view = new HomeView();
-        HomePresenter presenter = new HomePresenter(model, view);
+        SettingsView view = new SettingsView();
+        SettingsPresenter presenter = new SettingsPresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

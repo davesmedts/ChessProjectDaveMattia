@@ -40,6 +40,13 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
+                view.getThemeOne().setStyle("-fx-background-color: GREEN");
+
+
+                    view.getThemeTwo().setStyle("-fx-background-color: RED");
+                    view.getThemeThree().setStyle("-fx-background-color: RED");
+
+
             }
         });
 
@@ -53,6 +60,13 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
+                view.getThemeTwo().setStyle("-fx-background-color: GREEN");
+
+
+                    view.getThemeOne().setStyle("-fx-background-color: RED");
+                    view.getThemeThree().setStyle("-fx-background-color: RED");
+
+
             }
         });
 
@@ -65,6 +79,11 @@ public class SettingsPresenter {
 
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
+
+                view.getThemeThree().setStyle("-fx-background-color: GREEN");
+
+                view.getThemeTwo().setStyle("-fx-background-color: RED");
+                view.getThemeOne().setStyle("-fx-background-color: RED");
 
             }
         });

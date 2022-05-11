@@ -37,8 +37,8 @@ public class NewGameView extends BorderPane {
     private TextField tekstPlayerWhite;
     private TextField tekstPlayerBlack;
 
-    public static String colorOne = "BLUE";
-    public static String colorTwo = "RED";
+    public static String colorOne = "#57271d";
+    public static String colorTwo = "#ecddc8";
 
     public String getColorOne() {
         return colorOne;
