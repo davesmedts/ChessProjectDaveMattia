@@ -85,7 +85,7 @@ public class HomeView extends GridPane {
         mainContainer.getChildren().addAll(titel, newGameBtn, openenBtn, rangschikkingBtn);
         mainContainer.setAlignment(Pos.TOP_RIGHT);
         this.add(mainContainer, 2 ,2);
-        setGridLinesVisible(true);
+
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);

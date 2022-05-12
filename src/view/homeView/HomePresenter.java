@@ -25,6 +25,9 @@ public class HomePresenter {
     private Game model;
     private HomeView view;
 
+    public static String colorOne;
+    public static String colorTwo;
+
     public HomePresenter(Game model,
                          HomeView view) {
         this.model = model;
@@ -59,6 +62,9 @@ public class HomePresenter {
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
+                SettingsPresenter.colorOne = colorOne;
+                SettingsPresenter.colorTwo = colorTwo;
+
             }
 
         });
@@ -90,9 +96,7 @@ public class HomePresenter {
     }
 
 
-
-
-        public void addWindowEventHandlers() {
+    public void addWindowEventHandlers() {
 
             view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override

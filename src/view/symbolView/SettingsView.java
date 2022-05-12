@@ -1,13 +1,14 @@
 package view.symbolView;
 
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.WindowEvent;
 
 /**
  * @author Mattia Verreydt
@@ -15,12 +16,11 @@ import javafx.scene.layout.GridPane;
  */
 public class SettingsView extends GridPane {
 
-//    TextField colorOne;
-//    TextField colorTwo;
-    private static ToggleButton ThemeOne;
-    private static ToggleButton ThemeTwo;
-    private static ToggleButton ThemeThree;
-    private Button applyColor;
+    private static ToggleButton themeOne;
+    private static ToggleButton themeTwo;
+    private static ToggleButton themeThree;
+    private HBox buttonContainer;
+    private Label settingTitle;
 
 
     public SettingsView() {
@@ -32,66 +32,61 @@ public class SettingsView extends GridPane {
 
     private void initialiseNodes() {
         this.setId("HomeView");
-        ThemeOne = new ToggleButton("classic");
-        ThemeTwo = new ToggleButton("funky");
-        ThemeThree = new ToggleButton("stylish");
+        themeOne = new ToggleButton("classic");
+        themeTwo = new ToggleButton("funky");
+        themeThree = new ToggleButton("stylish");
+        this.buttonContainer = new HBox(15);
+        this.settingTitle = new Label("Settings");
 
 
+        themeOne.setStyle("-fx-background-color: GREEN");
+        themeTwo.setStyle("-fx-background-color: RED");
+        themeThree.setStyle("-fx-background-color: RED");
 
-
-       ThemeOne.setStyle("-fx-background-color: GREEN");
-       ThemeTwo.setStyle("-fx-background-color: RED");
-       ThemeThree.setStyle("-fx-background-color: RED");
 
     }
 
 
     private void layoutNodes() {
-//        this.add(colorOne, 1, 0, 2, 1);
-//        this.add(colorTwo, 1, 1, 2, 1);
-        this.add(ThemeOne,1,1);
-        this.add(ThemeTwo,2,2);
-        this.add(ThemeThree,3,3);
-//        this.add(applyColor,4,4);
+        buttonContainer.getChildren().addAll(themeOne, themeTwo, themeThree);
 
-        ColumnConstraints col1Constraints = new ColumnConstraints();
-        col1Constraints.setPercentWidth(20);
+this.add(settingTitle,0,0);
+        this.add(buttonContainer, 1, 1);
+
+        ColumnConstraints colConstraints = new ColumnConstraints();
+        colConstraints.setPercentWidth(33);
+
+        this.setPadding(new Insets(15));
+        this.setStyle("-fx-background-color: BLACK;");
+
+        settingTitle.setStyle(" -fx-font-weight: bold;" +"-fx-text-fill: WHITE");
 
     }
 
-//    public Button getApplyColor() {
-//        return applyColor;
-//    }
+
 
     public ToggleButton getThemeOne() {
-        return ThemeOne;
+        return themeOne;
     }
 
     public ToggleButton getThemeTwo() {
-        return ThemeTwo;
+        return themeTwo;
     }
 
     public ToggleButton getThemeThree() {
-        return ThemeThree;
+        return themeThree;
     }
 
     public void setThemeOne(ToggleButton themeOne) {
-        ThemeOne = themeOne;
+        this.themeOne = themeOne;
     }
 
     public void setThemeTwo(ToggleButton themeTwo) {
-        ThemeTwo = themeTwo;
+        this.themeTwo = themeTwo;
     }
 
     public void setThemeThree(ToggleButton themeThree) {
-        ThemeThree = themeThree;
+        this.themeThree = themeThree;
     }
 
-    //    public TextField getColorOne() {
-//        return colorOne;
-//    }
-//
-//    public TextField getColorTwo() {
-//        return colorTwo;
-//    }
 }

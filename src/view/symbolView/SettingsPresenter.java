@@ -2,11 +2,16 @@ package view.symbolView;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.WindowEvent;
 import model.Game;
 import view.gameView.ChessBoardView;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
+import view.homeView.HomePresenter;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
@@ -40,12 +45,10 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
+
                 view.getThemeOne().setStyle("-fx-background-color: GREEN");
-
-
-                    view.getThemeTwo().setStyle("-fx-background-color: RED");
-                    view.getThemeThree().setStyle("-fx-background-color: RED");
-
+                view.getThemeTwo().setStyle("-fx-background-color: RED");
+                view.getThemeThree().setStyle("-fx-background-color: RED");
 
             }
         });
@@ -60,11 +63,10 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
+
                 view.getThemeTwo().setStyle("-fx-background-color: GREEN");
-
-
-                    view.getThemeOne().setStyle("-fx-background-color: RED");
-                    view.getThemeThree().setStyle("-fx-background-color: RED");
+                view.getThemeOne().setStyle("-fx-background-color: RED");
+                view.getThemeThree().setStyle("-fx-background-color: RED");
 
 
             }
@@ -80,8 +82,8 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-                view.getThemeThree().setStyle("-fx-background-color: GREEN");
 
+                view.getThemeThree().setStyle("-fx-background-color: GREEN");
                 view.getThemeTwo().setStyle("-fx-background-color: RED");
                 view.getThemeOne().setStyle("-fx-background-color: RED");
 
@@ -90,7 +92,11 @@ public class SettingsPresenter {
 
     }
 
+
     private void updateView() {
+
+
+
     }
 
 }

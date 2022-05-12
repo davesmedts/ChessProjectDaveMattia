@@ -17,8 +17,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        SettingsView view = new SettingsView();
-        SettingsPresenter presenter = new SettingsPresenter(model, view);
+        HomeView view = new HomeView();
+        HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
