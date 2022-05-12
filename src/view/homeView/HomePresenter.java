@@ -62,8 +62,6 @@ public class HomePresenter {
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
-                SettingsPresenter.colorOne = colorOne;
-                SettingsPresenter.colorTwo = colorTwo;
 
             }
 

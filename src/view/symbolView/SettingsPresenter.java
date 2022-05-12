@@ -15,6 +15,7 @@ import view.homeView.HomePresenter;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
+
 /**
  * @author Mattia Verreydt
  * @version 1.0 9-5-2022 14:51
@@ -45,10 +46,7 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-
-                view.getThemeOne().setStyle("-fx-background-color: GREEN");
-                view.getThemeTwo().setStyle("-fx-background-color: RED");
-                view.getThemeThree().setStyle("-fx-background-color: RED");
+                view.updateStyle(SettingsView.themeSetter =1);
 
             }
         });
@@ -63,12 +61,7 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-
-                view.getThemeTwo().setStyle("-fx-background-color: GREEN");
-                view.getThemeOne().setStyle("-fx-background-color: RED");
-                view.getThemeThree().setStyle("-fx-background-color: RED");
-
-
+                view.updateStyle(SettingsView.themeSetter =2);
             }
         });
 
@@ -82,20 +75,17 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-
-                view.getThemeThree().setStyle("-fx-background-color: GREEN");
-                view.getThemeTwo().setStyle("-fx-background-color: RED");
-                view.getThemeOne().setStyle("-fx-background-color: RED");
+                view.updateStyle(SettingsView.themeSetter =3);
 
             }
         });
+
+
 
     }
 
 
     private void updateView() {
-
-
 
     }
 

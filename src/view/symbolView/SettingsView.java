@@ -16,9 +16,10 @@ import javafx.stage.WindowEvent;
  */
 public class SettingsView extends GridPane {
 
-    private static ToggleButton themeOne;
-    private static ToggleButton themeTwo;
-    private static ToggleButton themeThree;
+    private ToggleButton themeOne;
+    private ToggleButton themeTwo;
+    private ToggleButton themeThree;
+    public static int themeSetter = 1; //moet dit public blijven staan?
     private HBox buttonContainer;
     private Label settingTitle;
 
@@ -38,11 +39,29 @@ public class SettingsView extends GridPane {
         this.buttonContainer = new HBox(15);
         this.settingTitle = new Label("Settings");
 
+        updateStyle(themeSetter);
 
-        themeOne.setStyle("-fx-background-color: GREEN");
-        themeTwo.setStyle("-fx-background-color: RED");
-        themeThree.setStyle("-fx-background-color: RED");
 
+    }
+
+    public void updateStyle(int themeSetter) {
+        if (themeSetter == 1) {
+            themeOne.setStyle("-fx-background-color: GREEN");
+            themeTwo.setStyle("-fx-background-color: RED");
+            themeThree.setStyle("-fx-background-color: RED");
+        }
+
+        if (themeSetter == 2) {
+            themeOne.setStyle("-fx-background-color: RED");
+            themeTwo.setStyle("-fx-background-color: GREEN");
+            themeThree.setStyle("-fx-background-color: RED");
+        }
+
+        if (themeSetter == 3) {
+            themeOne.setStyle("-fx-background-color: RED");
+            themeTwo.setStyle("-fx-background-color: RED");
+            themeThree.setStyle("-fx-background-color: GREEN");
+        }
 
     }
 
@@ -50,7 +69,7 @@ public class SettingsView extends GridPane {
     private void layoutNodes() {
         buttonContainer.getChildren().addAll(themeOne, themeTwo, themeThree);
 
-this.add(settingTitle,0,0);
+        this.add(settingTitle, 0, 0);
         this.add(buttonContainer, 1, 1);
 
         ColumnConstraints colConstraints = new ColumnConstraints();
@@ -59,11 +78,9 @@ this.add(settingTitle,0,0);
         this.setPadding(new Insets(15));
         this.setStyle("-fx-background-color: BLACK;");
 
-        settingTitle.setStyle(" -fx-font-weight: bold;" +"-fx-text-fill: WHITE");
+        settingTitle.setStyle(" -fx-font-weight: bold;" + "-fx-text-fill: WHITE");
 
     }
-
-
 
     public ToggleButton getThemeOne() {
         return themeOne;
@@ -76,17 +93,4 @@ this.add(settingTitle,0,0);
     public ToggleButton getThemeThree() {
         return themeThree;
     }
-
-    public void setThemeOne(ToggleButton themeOne) {
-        this.themeOne = themeOne;
-    }
-
-    public void setThemeTwo(ToggleButton themeTwo) {
-        this.themeTwo = themeTwo;
-    }
-
-    public void setThemeThree(ToggleButton themeThree) {
-        this.themeThree = themeThree;
-    }
-
 }
