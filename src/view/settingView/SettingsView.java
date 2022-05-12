@@ -1,14 +1,8 @@
-package view.symbolView;
+package view.settingView;
 
-import javafx.event.EventHandler;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.WindowEvent;
 
 /**
  * @author Mattia Verreydt
@@ -19,9 +13,10 @@ public class SettingsView extends GridPane {
     private ToggleButton themeOne;
     private ToggleButton themeTwo;
     private ToggleButton themeThree;
-    public static int themeSetter = 1; //moet dit public blijven staan?
+     static int themeSetter = 1; //moet dit public blijven staan?
     private HBox buttonContainer;
     private Label settingTitle;
+
 
 
     public SettingsView() {

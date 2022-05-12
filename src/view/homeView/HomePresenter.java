@@ -16,8 +16,8 @@ import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
-import view.symbolView.SettingsPresenter;
-import view.symbolView.SettingsView;
+import view.settingView.SettingsPresenter;
+import view.settingView.SettingsView;
 
 
 public class HomePresenter {

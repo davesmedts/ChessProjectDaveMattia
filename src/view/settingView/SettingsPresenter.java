@@ -1,18 +1,8 @@
-package view.symbolView;
+package view.settingView;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
-import javafx.stage.WindowEvent;
 import model.Game;
-import view.gameView.ChessBoardView;
-import view.gameView.GamePresenter;
-import view.gameView.GameView;
-import view.homeView.HomePresenter;
-import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
 
@@ -46,7 +36,9 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-                view.updateStyle(SettingsView.themeSetter =1);
+                int theme= 1;
+
+                view.updateStyle(SettingsView.themeSetter=1);
 
             }
         });
@@ -61,7 +53,7 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-                view.updateStyle(SettingsView.themeSetter =2);
+                view.updateStyle(SettingsView.themeSetter=2);
             }
         });
 
@@ -75,7 +67,7 @@ public class SettingsPresenter {
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
-                view.updateStyle(SettingsView.themeSetter =3);
+                view.updateStyle(SettingsView.themeSetter=3);
 
             }
         });
