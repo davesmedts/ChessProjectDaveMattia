@@ -1,8 +1,14 @@
 
 /* background General */
 #HomeView {
-
     -fx-background-image: url("/BackgroundImageHomePage.jpg");
+
+    -fx-background-size: stretch;
+}
+
+
+#SplashScreen {
+    -fx-background-image: url("/backgroundImageSettings.jpeg");
 
     -fx-background-size: stretch;
 }

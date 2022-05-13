@@ -68,4 +68,8 @@ public class SplashScreenView extends GridPane {
         this.setId("SplashScreen");
 
     }
+
+    public Button getHomeBtn() {
+        return homeBtn;
+    }
 }
