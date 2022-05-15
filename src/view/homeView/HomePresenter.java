@@ -34,7 +34,7 @@ public class HomePresenter {
         this.view = view;
         this.addEventHandlers();
         this.updateView();
-//        this.addWindowEventHandlers();
+        this.addWindowEventHandlers();
     }
 
 

@@ -17,8 +17,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        GameView view = new GameView("BLUE","RED");
-        GamePresenter presenter = new GamePresenter(model, view);
+        SplashScreenView view = new SplashScreenView();
+        SplashScreenPresenter presenter = new SplashScreenPresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

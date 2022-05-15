@@ -3,14 +3,11 @@ package view.splashScreenView;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 
 public class SplashScreenView extends GridPane {
-   private VBox mainContainer;
-    private VBox leftContainer;
+
 
     private Button homeBtn;
 
@@ -29,17 +26,13 @@ public class SplashScreenView extends GridPane {
 
     private void initialiseNodes() {
 
-//        mainContainerNodes
-        this.mainContainer = new VBox();
-
 
 //        menuNodes
         this.afsluiten = new MenuItem("afsluiten");
         this.spelregels = new MenuItem("spelregels");
         this.info = new MenuItem("info");
 
-//        left area nodes
-        this.leftContainer = new VBox();
+//       general nodes
         this.homeBtn = new Button("Home page");
         this.contentCreators = new Label("Program created by Deef and MattiMagic");
         this.version = new Label("version 1");
@@ -49,21 +42,34 @@ public class SplashScreenView extends GridPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu bestandMenu = new Menu("Bestand",null, this.afsluiten);
-        final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);
+        final Menu bestandMenu = new Menu("Bestand", null, this.afsluiten);
+        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
         final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.add(menuBar,0,0);
+        this.add(menuBar, 0, 0,2,1);
 
-//        MainContainerContent
-        mainContainer.getChildren().addAll(contentCreators);
-        mainContainer.setSpacing(20);
-        mainContainer.setAlignment(Pos.CENTER);
-        this.add(mainContainer,0,1);
+//        general content
+        this.add(homeBtn, 1, 1);
+        this.add(contentCreators, 1, 2);
 
+        this.setGridLinesVisible(true);
 
-//        leftArea
-        leftContainer.getChildren().addAll( homeBtn);
-        this.add(leftContainer,0,2);
+//        constraints & ID
+
+        ColumnConstraints colConstraint1 = new ColumnConstraints();
+        colConstraint1.setPercentWidth(50);
+
+        ColumnConstraints colConstraint2 = new ColumnConstraints();
+        colConstraint2.setPercentWidth(50);
+
+        RowConstraints rowConstraints1 = new RowConstraints();
+        rowConstraints1.setPercentHeight(25);
+        RowConstraints rowConstraints2 = new RowConstraints();
+        rowConstraints2.setPercentHeight(50);
+        RowConstraints rowConstraints3 = new RowConstraints();
+        rowConstraints3.setPercentHeight(25);
+
+        this.getColumnConstraints().addAll(colConstraint1,colConstraint2);
+        this.getRowConstraints().addAll(rowConstraints1,rowConstraints2,rowConstraints3);
 
         this.setId("SplashScreen");
 
