@@ -18,6 +18,7 @@ public class ChessBoardView extends GridPane {
     private List<ChessBoardSquare> gameSquares = new ArrayList<>();
 
 
+
     public List<ChessBoardSquare> getGameSquares() {
         return gameSquares;
     }
