@@ -34,9 +34,8 @@ public class Main extends Application {
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
-
         primaryStage.setScene(scene);
-//        presenter.addWindowEventHandlers();
+        presenter.addWindowEventHandlers();
         primaryStage.show();
     }
 

@@ -9,8 +9,6 @@ import javafx.scene.layout.*;
 public class SplashScreenView extends GridPane {
 
 
-    private Button homeBtn;
-
     private MenuItem afsluiten;
     private MenuItem spelregels;
     private MenuItem info;
@@ -33,7 +31,6 @@ public class SplashScreenView extends GridPane {
         this.info = new MenuItem("info");
 
 //       general nodes
-        this.homeBtn = new Button("Home page");
         this.contentCreators = new Label("Program created by Deef and MattiMagic");
         this.version = new Label("version 1");
 
@@ -48,8 +45,8 @@ public class SplashScreenView extends GridPane {
         this.add(menuBar, 0, 0,2,1);
 
 //        general content
-        this.add(homeBtn, 1, 1);
         this.add(contentCreators, 1, 2);
+        this.add(version, 1,2);
 
         this.setGridLinesVisible(true);
 
@@ -75,7 +72,4 @@ public class SplashScreenView extends GridPane {
 
     }
 
-    public Button getHomeBtn() {
-        return homeBtn;
-    }
 }
