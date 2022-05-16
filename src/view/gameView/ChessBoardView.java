@@ -18,12 +18,12 @@ public class ChessBoardView extends GridPane {
     private List<ChessBoardSquare> gameSquares = new ArrayList<>();
 
 
-
     public List<ChessBoardSquare> getGameSquares() {
         return gameSquares;
     }
 
     public GridPane drawBoard(String colorOne, String colorTwo) {
+
         int count = 0;
 
         for (int column = 8; column > 0; column--) {
@@ -85,6 +85,7 @@ public class ChessBoardView extends GridPane {
                 if (count % 2 == 0) {
 
                     gameSquare.setStyle("-fx-background-color:" + colorOne);
+                    gameSquare.setColorOne(colorOne);
 
                     this.add(gameSquare, column, row);
 
@@ -92,6 +93,7 @@ public class ChessBoardView extends GridPane {
                 } else {
 
                     gameSquare.setStyle("-fx-background-color:" + colorTwo);
+                    gameSquare.setColorOne(colorTwo);
 
                     this.add(gameSquare, column, row);
 

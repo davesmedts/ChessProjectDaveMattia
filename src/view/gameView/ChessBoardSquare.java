@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
  * @version 1.0 5-5-2022 20:22
  */
 public class ChessBoardSquare extends GridPane {
+    private String colorInitial;
 
     private final int rowNumber;
     private final char columnLetter;
@@ -22,6 +23,18 @@ public class ChessBoardSquare extends GridPane {
 //        return piece;
 //    }
 
+
+    public void setColorOne(String colorOne) {
+        colorInitial = colorOne;
+    }
+
+
+    public String getColorOneInitial() {
+        return colorInitial;
+    }
+
+
+
     public ImageView getImageView() {
         return imageView;
     }
@@ -31,6 +44,7 @@ public class ChessBoardSquare extends GridPane {
         this.columnLetter = columnLetter;
 
     }
+
 
 public void removePiece(){
         this.imageView = null;

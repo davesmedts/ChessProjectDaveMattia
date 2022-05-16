@@ -1,6 +1,7 @@
 package view.gameView;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -31,6 +32,7 @@ public class GamePresenter {
     private GameView view;
 
     private int selectCounter = 0;
+    private ChessBoardSquare deefSquare;
 
     public GamePresenter(Game model, GameView view) {
         this.model = model;
@@ -66,40 +68,46 @@ public class GamePresenter {
 //                System.out.println("ok");
 //            } else {
 
-                int finalI = i;
-                frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        List<Square> backendValidMoveSquares = new ArrayList<>();
-                        System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
+            int finalI = i;
 
-                        if (selectCounter == 0 || selectCounter % 2 == 0) {
-                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
-                            List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
-                            frontEndSquare.setStyle("-fx-background-color: BLUE");
-                            frontEndSquare.removePiece();
-                            updateView();
 
-                            for (Square backendSquare : backendValidMoveSquares) {
-                                for (ChessBoardSquare frontendSquare : frontendSquares) {
-                                    if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
-                                        frontendSquare.setStyle("-fx-background-color:GREEN");
-                                    }
+
+
+            frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    List<Square> backendValidMoveSquares = new ArrayList<>();
+                    System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
+
+                    if (selectCounter == 0 || selectCounter % 2 == 0) {
+
+                        backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+                        frontEndSquare.setStyle("-fx-background-color: BLUE");
+                        deefSquare = frontEndSquare;
+
+
+                        for (Square backendSquare : backendValidMoveSquares) {
+                            for (ChessBoardSquare frontendSquare : frontendSquares) {
+                                if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                                    frontendSquare.setStyle("-fx-background-color:GREEN");
                                 }
-
                             }
-                            selectCounter++;
-                        } else {
-                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
-                            System.out.println("movePieceMethod");
-                            ChessBoardView newBoard = new ChessBoardView();
-                            view.setGameChessBoardGrid(newBoard);
-                            view.setChessBoardSquares(view.getChessBoardSquares());
-                            updateView();
-                            selectCounter++;
                         }
+
+                        selectCounter++;
+
+                    } else {
+                        model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                        removeImage(deefSquare);
+
+                        System.out.println("movePieceMethod");
+
+                        selectCounter++;
                     }
-                });
+                }
+            });
 
 //                piece.setOnMouseReleased(new EventHandler<MouseEvent>() {
 //                    @Override
@@ -118,6 +126,22 @@ public class GamePresenter {
 //                }
 //            });
         }
+    }
+
+    private void removeImage(ChessBoardSquare frontendsquare){
+        ObservableList<Node> childrens = frontendsquare.getChildren();
+        for (Node node : childrens) {
+            if (node instanceof ImageView) {
+                frontendsquare.getChildren().remove(node);
+
+
+//                frontendsquare.setStyle("-fx-background-color: " + frontendsquare.getColorOneInitial());
+
+                break;
+            }
+
+        }
+        updateView();
     }
 
     private void draggable(Node node) {
@@ -155,16 +179,23 @@ public class GamePresenter {
     private void updateView() {
         Board backendBoard = model.getGameBoard();
 
+
+
         List<Square> backendSquares = backendBoard.getSquares();
         List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
 
         for (Square backendSquare : backendSquares) {
             for (ChessBoardSquare frontendSquare : frontendSquares) {
                 if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                    frontendSquare.setStyle("-fx-background-color: " + frontendSquare.getColorOneInitial());
                     if (backendSquare.getSquareContent() != null) {
                         String piece = backendSquare.getSquareContent().toString();
                         frontendSquare.setContent(piece);
+
+
                     }
+
+
                 }
             }
         }
