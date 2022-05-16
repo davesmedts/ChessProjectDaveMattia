@@ -4,12 +4,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import view.gameView.GamePresenter;
+import view.gameView.GameView;
 import view.loadGameView.LoadGamePresenter;
 import view.loadGameView.LoadGameView;
 import view.newGameView.NewGamePresenter;
@@ -18,6 +21,8 @@ import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
+
+import java.io.File;
 
 
 public class HomePresenter {
@@ -83,11 +88,45 @@ public class HomePresenter {
         // blijven op dezelfde Stage, spel hervatten
         view.getOpenenBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
+//            public void handle(ActionEvent event) {
+//                LoadGameView RankingView = new LoadGameView();
+//                LoadGamePresenter LoadGamePresenter = new LoadGamePresenter(model, RankingView);
+//                view.getScene().setRoot(RankingView);
+//                RankingView.getScene().getWindow().sizeToScene();
+//            }
             public void handle(ActionEvent event) {
-                LoadGameView RankingView = new LoadGameView();
-                LoadGamePresenter LoadGamePresenter = new LoadGamePresenter(model, RankingView);
-                view.getScene().setRoot(RankingView);
-                RankingView.getScene().getWindow().sizeToScene();
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File("resources/savedGames"));
+                fileChooser.setTitle("Load Data File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+                File selectedFile = fileChooser.showOpenDialog(
+                        view.getScene().getWindow());
+                if ((selectedFile != null)) {
+                    System.out.println(selectedFile.getName());
+                    String nameWithoutExtension = selectedFile.getName().split("\\.")[0];
+                    model.loadGame(nameWithoutExtension);
+
+                    GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
+                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+
+                }
+//                    (Files.isReadable(Paths.get(selectedFile.toURI())))) {
+//                        try {
+//                            List<String> input =
+//                                    Files.readAllLines(Paths.get(selectedFile.toURI()));
+//// implementeren ingelezen gegevens doorgeven aan model
+//                        } catch (IOException e) { /* exception behandelen*/}
+//                    } else{
+//                        Alert errorWindow = new Alert(Alert.AlertType.ERROR);
+//                        errorWindow.setHeaderText("Problem with selected file");
+//                        errorWindow.setContentText("File is not readable");
+//                        errorWindow.showAndWait();
+//                    }
+
             }
         });
 

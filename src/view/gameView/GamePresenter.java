@@ -1,10 +1,13 @@
 package view.gameView;
 
+import exceptions.IllegalMoveException;
+import exceptions.IllegalPieceSelectionException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -66,14 +69,16 @@ public class GamePresenter {
 //                System.out.println("ok");
 //            } else {
 
-                int finalI = i;
-                frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        List<Square> backendValidMoveSquares = new ArrayList<>();
-                        System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
+            int finalI = i;
+            frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    List<Square> backendValidMoveSquares = new ArrayList<>();
+                    System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
 
-                        if (selectCounter == 0 || selectCounter % 2 == 0) {
+                    if (selectCounter == 0 || selectCounter % 2 == 0) {
+                        try {
+
                             backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
                             List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                             frontEndSquare.setStyle("-fx-background-color: BLUE");
@@ -89,17 +94,30 @@ public class GamePresenter {
 
                             }
                             selectCounter++;
-                        } else {
+                        } catch (IllegalPieceSelectionException ex) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Selectie onmogelijk:");
+                            alert.setContentText(ex.getMessage());
+                            alert.showAndWait();
+
+                        }
+                    } else {
+                        try {
                             model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                             System.out.println("movePieceMethod");
-                            ChessBoardView newBoard = new ChessBoardView();
-                            view.setGameChessBoardGrid(newBoard);
-                            view.setChessBoardSquares(view.getChessBoardSquares());
                             updateView();
                             selectCounter++;
+
+                        } catch (IllegalMoveException ex) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("verplaatsing onmogelijk:");
+                            alert.setContentText(ex.getMessage());
+                            alert.showAndWait();
+
                         }
                     }
-                });
+                }
+            });
 
 //                piece.setOnMouseReleased(new EventHandler<MouseEvent>() {
 //                    @Override

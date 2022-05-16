@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.IllegalMoveException;
+import exceptions.IllegalPieceSelectionException;
 import model.chessPieces.Piece;
 
 import java.io.BufferedReader;
@@ -27,11 +29,7 @@ public class Game {
     //constructor
     public Game(Player playerOne, Player playerTwo, boolean isNewGame) {
         this.isNewGame = isNewGame;
-        if(isNewGame){
-            newGame(playerOne, playerTwo);
-        } else {
-            loadGame();
-        }
+        newGame(playerOne, playerTwo);
     }
 
     public void setWinner(Player winner) {
@@ -58,7 +56,7 @@ public class Game {
         return winner;
     }
 
-    public void newGame(Player playerOne, Player playerTwo){
+    public void newGame(Player playerOne, Player playerTwo) {
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
@@ -90,8 +88,8 @@ public class Game {
 
     }
 
-    public void loadGame(){
-        this.loader = new ChessGameLoader("checkMateTest");
+    public void loadGame(String fileName){
+        this.loader = new ChessGameLoader(fileName);
         this.blackPlayer = loader.getBlackPlayer();
         this.whitePlayer = loader.getWhitePlayer();
         this.startTime = loader.getStartTime();
@@ -134,30 +132,32 @@ public class Game {
         }
     }
 
-    public List<Square> selectWhitePiece(char selectedColumnLetter, int selectedRowNumber){
-        return whitePlayer.selectPiece(selectedColumnLetter, selectedRowNumber, whitePlayer,blackPlayer);
+    public List<Square> selectWhitePiece(char selectedColumnLetter, int selectedRowNumber) throws IllegalPieceSelectionException {
+        return whitePlayer.selectPiece(selectedColumnLetter, selectedRowNumber, whitePlayer, blackPlayer);
     }
-    public List<Square> selectBlackPiece(char selectedColumnLetter, int selectedRowNumber){
-        return blackPlayer.selectPiece(selectedColumnLetter, selectedRowNumber, blackPlayer,whitePlayer);
+
+    public List<Square> selectBlackPiece(char selectedColumnLetter, int selectedRowNumber) throws IllegalPieceSelectionException {
+        return blackPlayer.selectPiece(selectedColumnLetter, selectedRowNumber, blackPlayer, whitePlayer);
     }
-    public void moveWhitePiece(char selectedColumnLetter, int selectedRowNumber){
+
+    public void moveWhitePiece(char selectedColumnLetter, int selectedRowNumber) throws IllegalMoveException {
         whitePlayer.movePiece(selectedColumnLetter, selectedRowNumber, blackPlayer);
     }
-    public void moveBlackPiece(char selectedColumnLetter, int selectedRowNumber){
+
+    public void moveBlackPiece(char selectedColumnLetter, int selectedRowNumber) throws IllegalMoveException {
         blackPlayer.movePiece(selectedColumnLetter, selectedRowNumber, whitePlayer);
     }
 
 
-
-    public String log(){
+    public String log() {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("%d,%d,%d,%d,%d,%d;%s;%s;%s;%s", startTime.getDayOfMonth(), startTime.getMonthValue(), startTime.getYear(), startTime.getHour(), startTime.getMinute(), startTime.getSecond(), whitePlayer.log(), blackPlayer.log(), gameBoard.log(), this.turn));
         return builder.toString();
     }
 
-    public static List<String[]> getHistory(){
+    public static List<String[]> getHistory() {
         List<String[]> playedGames = new ArrayList<>();
-        Path historyFile =  Paths.get("/resources/history.txt");
+        Path historyFile = Paths.get("/resources/history.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(historyFile.toFile()));) {
             String regel = reader.readLine();
             while (regel != null) {

@@ -204,13 +204,13 @@ public class Player {
         this.gameBoard = gameBoard;
     }
 
-    public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) {
+    public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) throws IllegalPieceSelectionException, NullPointerException{
 //        Scanner keyboard = new Scanner(System.in);
 //        System.out.println(this.player + ": Voer de kolomletter en het rijnummer in van het stuk dat je wil verplaatsen:");
 //        String startSquare = keyboard.nextLine().toUpperCase();
 //
         validMoveSquares = new ArrayList<>();
-        try {
+//        try {
 //            char[] startSquareArray = startSquare.toCharArray();
 //            if (startSquareArray.length != 2) {
 //                throw new IllegalPieceSelectionException("Gelieve exact 2 characters in te voeren, eerst de kolomletter en nadien het rijnummer. Probeer opnieuw.");
@@ -220,6 +220,9 @@ public class Player {
             int rowNumber = selectedRowNumber;
 
             this.selectedPiece = gameBoard.lookupSquare(columnLetter, rowNumber).getSquareContent();
+            if(selectedPiece == null){
+                throw new IllegalPieceSelectionException("Er is geen stuk aanwezig op dit vak, probeer opnieuw.");
+            }
             if (selectedPiece.getColor() == color) {
                 validMoveSquares = selectedPiece.getValidMoves(gameBoard, opponent); // we put all the valid square values in a list
                 if (validMoveSquares.isEmpty()) {
@@ -232,17 +235,17 @@ public class Player {
             else {
                 throw new IllegalPieceSelectionException("niet de juiste kleur");
             }
-        } catch (IllegalPieceSelectionException ex) {
-            System.out.println(ex.getMessage());
-//            selectPiece(player, opponent);
-        } catch (NullPointerException ex) {
-            System.out.println("Kolom of rij staat niet op het bord of bevat geen eigen piece, Probeer opnieuw iets te selecteren");
-//            selectPiece(player, opponent);
-        }
-        return validMoveSquares;
+//        } catch (IllegalPieceSelectionException ex) {
+//            System.out.println(ex.getMessage());
+////            selectPiece(player, opponent);
+//        } catch (NullPointerException ex) {
+//            System.out.println("Kolom of rij staat niet op het bord of bevat geen eigen piece, Probeer opnieuw iets te selecteren");
+////            selectPiece(player, opponent);
+//        }
+//        return validMoveSquares;
     }
 
-    public void movePiece(char selectedColumnLetter, int selectedRowNumber, Player opponent) {
+    public void movePiece(char selectedColumnLetter, int selectedRowNumber, Player opponent) throws IllegalMoveException {
         System.out.println("hier start de movePiece method");
         Scanner keyboard = new Scanner(System.in);
 //        System.out.println(player + ": please enter column and row of where you want to move the piece:");
@@ -253,7 +256,7 @@ public class Player {
 //        int rowNumber = Character.getNumericValue(targetSquareArray[1]); // the getNumericValue method transforms the character to a numeric value.
 ////        Exception handling still to do! What if no piece is found. values must match the board
                 King king = null;
-        try {
+//        try {
             Square targetSquareObject = lookupSquare(selectedColumnLetter, selectedRowNumber);
             Piece targetSquareContent = targetSquareObject.getSquareContent();
 
@@ -306,10 +309,10 @@ public class Player {
             moves.add(targetSquareObject); // add move to moves list in the player
             selectedPiece.addMove(targetSquareObject); // add the move to the move list in piece
 
-        } catch (IllegalMoveException ime) {
-            System.out.println(ime.getMessage());
-//            selectPiece(this, opponent);
-        }
+//        } catch (IllegalMoveException ime) {
+//            System.out.println(ime.getMessage());
+////            selectPiece(this, opponent);
+//        }
 //        Exception handling still to do! What if no piece is found.
 //        isChecked - check
 //        King lookup
