@@ -1,13 +1,11 @@
 package view.gameView;
 
-import exceptions.IllegalMoveException;
-import exceptions.IllegalPieceSelectionException;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +32,7 @@ public class GamePresenter {
     private GameView view;
 
     private int selectCounter = 0;
+    private ChessBoardSquare deefSquare;
 
     public GamePresenter(Game model, GameView view) {
         this.model = model;
@@ -70,51 +69,42 @@ public class GamePresenter {
 //            } else {
 
             int finalI = i;
+
+
+
+
             frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+
                     List<Square> backendValidMoveSquares = new ArrayList<>();
                     System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
 
                     if (selectCounter == 0 || selectCounter % 2 == 0) {
-                        try {
 
-                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
-                            List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
-                            frontEndSquare.setStyle("-fx-background-color: BLUE");
-                            frontEndSquare.removePiece();
-                            updateView();
+                        backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+                        frontEndSquare.setStyle("-fx-background-color: BLUE");
+                        deefSquare = frontEndSquare;
 
-                            for (Square backendSquare : backendValidMoveSquares) {
-                                for (ChessBoardSquare frontendSquare : frontendSquares) {
-                                    if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
-                                        frontendSquare.setStyle("-fx-background-color:GREEN");
-                                    }
+
+                        for (Square backendSquare : backendValidMoveSquares) {
+                            for (ChessBoardSquare frontendSquare : frontendSquares) {
+                                if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                                    frontendSquare.setStyle("-fx-background-color:GREEN");
                                 }
-
                             }
-                            selectCounter++;
-                        } catch (IllegalPieceSelectionException ex) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Selectie onmogelijk:");
-                            alert.setContentText(ex.getMessage());
-                            alert.showAndWait();
-
                         }
+
+                        selectCounter++;
+
                     } else {
-                        try {
-                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
-                            System.out.println("movePieceMethod");
-                            updateView();
-                            selectCounter++;
+                        model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                        removeImage(deefSquare);
 
-                        } catch (IllegalMoveException ex) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("verplaatsing onmogelijk:");
-                            alert.setContentText(ex.getMessage());
-                            alert.showAndWait();
+                        System.out.println("movePieceMethod");
 
-                        }
+                        selectCounter++;
                     }
                 }
             });
@@ -136,6 +126,22 @@ public class GamePresenter {
 //                }
 //            });
         }
+    }
+
+    private void removeImage(ChessBoardSquare frontendsquare){
+        ObservableList<Node> childrens = frontendsquare.getChildren();
+        for (Node node : childrens) {
+            if (node instanceof ImageView) {
+                frontendsquare.getChildren().remove(node);
+
+
+//                frontendsquare.setStyle("-fx-background-color: " + frontendsquare.getColorOneInitial());
+
+                break;
+            }
+
+        }
+        updateView();
     }
 
     private void draggable(Node node) {
@@ -173,16 +179,23 @@ public class GamePresenter {
     private void updateView() {
         Board backendBoard = model.getGameBoard();
 
+
+
         List<Square> backendSquares = backendBoard.getSquares();
         List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
 
         for (Square backendSquare : backendSquares) {
             for (ChessBoardSquare frontendSquare : frontendSquares) {
                 if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                    frontendSquare.setStyle("-fx-background-color: " + frontendSquare.getColorOneInitial());
                     if (backendSquare.getSquareContent() != null) {
                         String piece = backendSquare.getSquareContent().toString();
                         frontendSquare.setContent(piece);
+
+
                     }
+
+
                 }
             }
         }

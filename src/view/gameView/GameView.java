@@ -42,9 +42,6 @@ public class GameView extends BorderPane {
         return gameChessBoardGrid;
     }
 
-    public void setGameChessBoardGrid(ChessBoardView gameChessBoardGrid) {
-        this.gameChessBoardGrid = gameChessBoardGrid;
-    }
 
     public GameView(String colorOne, String colorTwo) {
         this.initialiseNodes(colorOne,colorTwo);
