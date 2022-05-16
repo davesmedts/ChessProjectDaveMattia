@@ -1,18 +1,12 @@
-package view.symbolView;
+package view.help;
 
 import model.Game;
 
-/**
- * @author Mattia Verreydt
- * @version 1.0 9-5-2022 14:51
- */
-public class SettingsPresenter {
-
+public class HelpPresenter {
     private Game model;
-    private SettingsView view;
-
-    public SettingsPresenter(Game model,
-                             SettingsView view) {
+    private HelpView view;
+    public HelpPresenter(Game model,
+                             HelpView view) {
         this.model = model;
         this.view = view;
         this.addEventHandlers();
@@ -25,6 +19,7 @@ public class SettingsPresenter {
     }
 
     private void updateView() {
+
     }
 
 }

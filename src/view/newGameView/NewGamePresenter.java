@@ -38,7 +38,7 @@ public class NewGamePresenter {
         view.getStartSpel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GameView gameView = new GameView();
+                GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
                 GamePresenter homePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();

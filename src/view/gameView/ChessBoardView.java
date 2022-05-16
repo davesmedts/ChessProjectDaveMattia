@@ -4,6 +4,7 @@ package view.gameView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import model.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.List;
 public class ChessBoardView extends GridPane {
     private List<ChessBoardSquare> gameSquares = new ArrayList<>();
 
+
+
     public List<ChessBoardSquare> getGameSquares() {
         return gameSquares;
     }
 
-    public GridPane drawBoard() {
+    public GridPane drawBoard(String colorOne, String colorTwo) {
         int count = 0;
 
         for (int column = 8; column > 0; column--) {
@@ -81,14 +84,14 @@ public class ChessBoardView extends GridPane {
 
                 if (count % 2 == 0) {
 
-                    gameSquare.setStyle("-fx-background-color: #718d71;");
+                    gameSquare.setStyle("-fx-background-color:" + colorOne);
 
                     this.add(gameSquare, column, row);
 
 
                 } else {
 
-                    gameSquare.setStyle("-fx-background-color: #a2b4a2;");
+                    gameSquare.setStyle("-fx-background-color:" + colorTwo);
 
                     this.add(gameSquare, column, row);
 

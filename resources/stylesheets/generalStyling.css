@@ -1,11 +1,19 @@
 
 /* background General */
 #HomeView {
-
     -fx-background-image: url("/BackgroundImageHomePage.jpg");
 
     -fx-background-size: stretch;
 }
+
+
+#SplashScreen {
+    -fx-background-image: url("/backgroundImageSettings.jpeg");
+
+    -fx-background-size: stretch;
+}
+
+
 
 /* titel Home View*/
 
@@ -39,3 +47,17 @@
     -fx-background-color: #928043;
 
 }
+
+.toggle-button{
+    -fx-background-color: red;
+
+}
+
+.toggle-button .text{
+    -fx-fill:black;
+
+}
+
+
+
+
