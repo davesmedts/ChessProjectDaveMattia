@@ -13,9 +13,11 @@ public class Player {
     private Color color;
     private List<Piece> pieces;
     private Board gameBoard;
-    private MovesValidator movesValidator;
     private List<Square> moves;
     private boolean isWinner;
+
+    Piece selectedPiece = null;
+    List<Square> validMoveSquares;
 
     public Player(String player) {
         this.player = player;
@@ -40,10 +42,6 @@ public class Player {
         }
     }
 
-
-    public void setMovesValidator(MovesValidator movesValidator) {
-        this.movesValidator = movesValidator;
-    }
 
     public List<Piece> getPieces() {
         return pieces;
@@ -206,52 +204,57 @@ public class Player {
         this.gameBoard = gameBoard;
     }
 
-    public void selectPiece(Player player, Player opponent) {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println(this.player + ": Voer de kolomletter en het rijnummer in van het stuk dat je wil verplaatsen:");
-        String startSquare = keyboard.nextLine().toUpperCase();
-
+    public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) {
+//        Scanner keyboard = new Scanner(System.in);
+//        System.out.println(this.player + ": Voer de kolomletter en het rijnummer in van het stuk dat je wil verplaatsen:");
+//        String startSquare = keyboard.nextLine().toUpperCase();
+//
+        validMoveSquares = new ArrayList<>();
         try {
-            char[] startSquareArray = startSquare.toCharArray();
-            if (startSquareArray.length != 2) {
-                throw new IllegalPieceSelectionException("Gelieve exact 2 characters in te voeren, eerst de kolomletter en nadien het rijnummer. Probeer opnieuw.");
-            }
-            char columnLetter = startSquareArray[0];
-            int rowNumber = Character.getNumericValue(startSquareArray[1]);
+//            char[] startSquareArray = startSquare.toCharArray();
+//            if (startSquareArray.length != 2) {
+//                throw new IllegalPieceSelectionException("Gelieve exact 2 characters in te voeren, eerst de kolomletter en nadien het rijnummer. Probeer opnieuw.");
+//            }
 
-            Piece selectedPiece = gameBoard.lookupSquare(columnLetter, rowNumber).getSquareContent();
+            char columnLetter = selectedColumnLetter;
+            int rowNumber = selectedRowNumber;
+
+            this.selectedPiece = gameBoard.lookupSquare(columnLetter, rowNumber).getSquareContent();
             if (selectedPiece.getColor() == color) {
-                List<Square> validMoveSquares = selectedPiece.getValidMoves(gameBoard, opponent); // we put all the valid square values in a list
+                validMoveSquares = selectedPiece.getValidMoves(gameBoard, opponent); // we put all the valid square values in a list
                 if (validMoveSquares.isEmpty()) {
                     throw new IllegalPieceSelectionException("Er zijn geen mogelijke zetten beschikbaar, probeer opnieuw");
                 }
                 System.out.println(validMoveSquares);
-                movePiece(validMoveSquares, selectedPiece, opponent);
-//                }
-            } else {
+                return validMoveSquares;
+//                movePiece(validMoveSquares, selectedPiece, opponent);
+            }
+            else {
                 throw new IllegalPieceSelectionException("niet de juiste kleur");
             }
         } catch (IllegalPieceSelectionException ex) {
             System.out.println(ex.getMessage());
-            selectPiece(player, opponent);
+//            selectPiece(player, opponent);
         } catch (NullPointerException ex) {
             System.out.println("Kolom of rij staat niet op het bord of bevat geen eigen piece, Probeer opnieuw iets te selecteren");
-            selectPiece(player, opponent);
+//            selectPiece(player, opponent);
         }
+        return validMoveSquares;
     }
 
-    public void movePiece(List<Square> validMoveSquares, Piece selectedPiece, Player opponent) {
+    public void movePiece(char selectedColumnLetter, int selectedRowNumber, Player opponent) {
+        System.out.println("hier start de movePiece method");
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(player + ": please enter column and row of where you want to move the piece:");
-        String targetSquare = keyboard.nextLine().toUpperCase();
-        char[] targetSquareArray = targetSquare.toCharArray();
-        char columnLetter = targetSquareArray[0];
-//        Exception handling still to do! What if no piece is found. values must match board!
-        int rowNumber = Character.getNumericValue(targetSquareArray[1]); // the getNumericValue method transforms the character to a numeric value.
-//        Exception handling still to do! What if no piece is found. values must match the board
-        King king = null;
+//        System.out.println(player + ": please enter column and row of where you want to move the piece:");
+//        String targetSquare = keyboard.nextLine().toUpperCase();
+//        char[] targetSquareArray = targetSquare.toCharArray();
+//        char columnLetter = targetSquareArray[0];
+////        Exception handling still to do! What if no piece is found. values must match board!
+//        int rowNumber = Character.getNumericValue(targetSquareArray[1]); // the getNumericValue method transforms the character to a numeric value.
+////        Exception handling still to do! What if no piece is found. values must match the board
+                King king = null;
         try {
-            Square targetSquareObject = lookupSquare(columnLetter, rowNumber);
+            Square targetSquareObject = lookupSquare(selectedColumnLetter, selectedRowNumber);
             Piece targetSquareContent = targetSquareObject.getSquareContent();
 
             if (targetSquareObject == null) {
@@ -305,7 +308,7 @@ public class Player {
 
         } catch (IllegalMoveException ime) {
             System.out.println(ime.getMessage());
-            selectPiece(this, opponent);
+//            selectPiece(this, opponent);
         }
 //        Exception handling still to do! What if no piece is found.
 //        isChecked - check
@@ -345,6 +348,8 @@ public class Player {
             String desiredPiece = keyboard.nextLine().toUpperCase();
             ((Pawn) selectedPiece).promotePiece(desiredPiece, selectedPiece);
         }
+
+        selectedPiece = null;
     }
 
     public King kingLookup(Color playerColor) {

@@ -18,8 +18,6 @@ import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
-import view.splashScreenView.SplashScreenPresenter;
-import view.splashScreenView.SplashScreenView;
 
 
 public class HomePresenter {
@@ -36,6 +34,7 @@ public class HomePresenter {
         this.view = view;
         this.addEventHandlers();
         this.updateView();
+        this.addWindowEventHandlers();
     }
 
 
@@ -60,23 +59,6 @@ public class HomePresenter {
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
                 settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
-
-            }
-
-        });
-
-        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SplashScreenView splashScreenView = new SplashScreenView();
-                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView));
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
@@ -113,24 +95,26 @@ public class HomePresenter {
 
 
     public void addWindowEventHandlers() {
-            view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setHeaderText("Wilt u het spel verlaten?");
-                    alert.setContentText("Ben je zeker?");
-                    alert.setTitle("Opgelet!");
-                    alert.getButtonTypes().clear();
-                    ButtonType neen = new ButtonType("Neen");
-                    ButtonType ja = new ButtonType("Ja");
-                    alert.getButtonTypes().addAll(neen, ja);
-                    alert.showAndWait();
-                    if (alert.getResult() == null || alert.getResult().equals(neen)) {
-                        event.consume();
-                    }
-                }
-            });
+
+//            view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Alert alert = new Alert(Alert.AlertType.WARNING);
+//                    alert.setHeaderText("Wilt u het spel verlaten?");
+//                    alert.setContentText("Ben je zeker?");
+//                    alert.setTitle("Opgelet!");
+//                    alert.getButtonTypes().clear();
+//                    ButtonType neen = new ButtonType("Neen");
+//                    ButtonType ja = new ButtonType("Ja");
+//                    alert.getButtonTypes().addAll(neen, ja);
+//                    alert.showAndWait();
+//                    if (alert.getResult() == null || alert.getResult().equals(neen)) {
+//                        event.consume();
+//                    }
+//                }
+//            });
         }
+
 
 
 

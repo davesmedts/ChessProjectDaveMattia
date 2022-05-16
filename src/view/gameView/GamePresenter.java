@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -17,6 +18,7 @@ import model.chessPieces.Piece;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GamePresenter {
@@ -25,20 +27,17 @@ public class GamePresenter {
         double y;
     }
 
-
     private Game model;
     private GameView view;
 
+    private int selectCounter = 0;
 
-    public GamePresenter(Game model,
-                         GameView view) {
+    public GamePresenter(Game model, GameView view) {
         this.model = model;
         this.view = view;
         this.updateView();
         this.addEventHandlers();
-
     }
-
 
     private void addEventHandlers() {
 //        List<ChessBoardSquare> chessBoardSquares = view.getChessBoardSquares();
@@ -56,39 +55,70 @@ public class GamePresenter {
 //                    }
 //                });}
 
-
         List<ChessBoardSquare> iv = view.getChessBoardSquares();
-
 
         for (int i = 0; i < iv.size(); i++) {
 
             ImageView piece = iv.get(i).getImageView();
+            ChessBoardSquare frontEndSquare = iv.get(i);
 
-            if (piece == null) {
-                System.out.println("ok");
-            } else {
+//            if (piece == null) {
+//                System.out.println("ok");
+//            } else {
 
+                int finalI = i;
+                frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        List<Square> backendValidMoveSquares = new ArrayList<>();
+                        System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
 
-                piece.setOnMouseDragEntered(
-                        new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                System.out.printf("X: %3.0f,Y: %3.0f%n",
-                                        event.getX(),event.getY());
+                        if (selectCounter == 0 || selectCounter % 2 == 0) {
+                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+                            frontEndSquare.setStyle("-fx-background-color: BLUE");
+                            frontEndSquare.removePiece();
+                            updateView();
+
+                            for (Square backendSquare : backendValidMoveSquares) {
+                                for (ChessBoardSquare frontendSquare : frontendSquares) {
+                                    if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                                        frontendSquare.setStyle("-fx-background-color:GREEN");
+                                    }
+                                }
+
                             }
-                        });}
+                            selectCounter++;
+                        } else {
+                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                            System.out.println("movePieceMethod");
+                            ChessBoardView newBoard = new ChessBoardView();
+                            view.setGameChessBoardGrid(newBoard);
+                            view.setChessBoardSquares(view.getChessBoardSquares());
+                            updateView();
+                            selectCounter++;
+                        }
+                    }
+                });
 
+//                piece.setOnMouseReleased(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent mouseEvent) {
+//                        updateView();
+//                    }
+//                });
+//            }
 
-
-//            draggable(piece);
-//                piece.relocate(200, 200);
-
-
-
-            }
-
+//            int finalI1 = i;
+//            iv.get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    model.moveWhitePiece(iv.get(finalI1).getColumnLetter(), iv.get(finalI1).getRowNumber());
+//                    updateView();
+//                }
+//            });
         }
-
+    }
 
     private void draggable(Node node) {
         final Position pos = new Position();
@@ -119,8 +149,6 @@ public class GamePresenter {
             //After calculating X and y, relocate the node to the specified coordinate point (x, y)
             node.relocate(x, y);
         });
-
-
     }
 
 
@@ -136,17 +164,11 @@ public class GamePresenter {
                     if (backendSquare.getSquareContent() != null) {
                         String piece = backendSquare.getSquareContent().toString();
                         frontendSquare.setContent(piece);
-
-
                     }
-
                 }
-
             }
-
         }
-
-
     }
+
 
 }
