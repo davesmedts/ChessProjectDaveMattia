@@ -15,10 +15,22 @@ import java.awt.*;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
+//        Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
+//
+//        SplashScreenView view = new SplashScreenView();
+//        SplashScreenPresenter presenter = new SplashScreenPresenter(model, view);
+//        Scene scene = new Scene(view);
+//        scene.getStylesheets().add("/stylesheets/generalStyling.css");
+//
+//
+//        primaryStage.setScene(scene);
+////        presenter.addWindowEventHandlers();
+//        primaryStage.show();
+//    }
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        SplashScreenView view = new SplashScreenView();
-        SplashScreenPresenter presenter = new SplashScreenPresenter(model, view);
+        HomeView view = new HomeView();
+        HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

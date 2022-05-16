@@ -1,5 +1,7 @@
 package model;
 
+import model.chessPieces.Piece;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -105,7 +107,7 @@ public class Game {
         System.out.println(getGameBoard());
         while (!gameFinished) {
             if (turn == Color.WHITE) {
-                whitePlayer.selectPiece(whitePlayer, blackPlayer);
+//                whitePlayer.selectPiece(whitePlayer, blackPlayer);
                 turn = Color.BLACK;
                 saver.save();
 //                System.out.println(saver.logHistory());
@@ -117,7 +119,7 @@ public class Game {
                     System.out.printf("Game Over! %s wins!", whitePlayer);
                 }
             } else {
-                blackPlayer.selectPiece(blackPlayer, whitePlayer);
+//                blackPlayer.selectPiece(blackPlayer, whitePlayer);
                 turn = Color.WHITE;
                 saver.save();
 
@@ -131,6 +133,20 @@ public class Game {
             System.out.println(getGameBoard());
         }
     }
+
+    public List<Square> selectWhitePiece(char selectedColumnLetter, int selectedRowNumber){
+        return whitePlayer.selectPiece(selectedColumnLetter, selectedRowNumber, whitePlayer,blackPlayer);
+    }
+    public List<Square> selectBlackPiece(char selectedColumnLetter, int selectedRowNumber){
+        return blackPlayer.selectPiece(selectedColumnLetter, selectedRowNumber, blackPlayer,whitePlayer);
+    }
+    public void moveWhitePiece(char selectedColumnLetter, int selectedRowNumber){
+        whitePlayer.movePiece(selectedColumnLetter, selectedRowNumber, blackPlayer);
+    }
+    public void moveBlackPiece(char selectedColumnLetter, int selectedRowNumber){
+        blackPlayer.movePiece(selectedColumnLetter, selectedRowNumber, whitePlayer);
+    }
+
 
 
     public String log(){
