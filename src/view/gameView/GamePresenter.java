@@ -86,6 +86,7 @@ public class GamePresenter {
                                         frontendSquare.setStyle("-fx-background-color:GREEN");
                                     }
                                 }
+
                             }
                             selectCounter++;
                         } else {
