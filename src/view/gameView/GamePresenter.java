@@ -115,7 +115,7 @@ public class GamePresenter {
                     } else {
                         try {
                             model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
-                            ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard("GRAY", "BLUE");
+                            ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
                             view.setCenter(updatedView);
                             addEventHandlers();

@@ -21,6 +21,8 @@ import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
+import view.splashScreenView.SplashScreenPresenter;
+import view.splashScreenView.SplashScreenView;
 
 import java.io.File;
 
@@ -64,6 +66,23 @@ public class HomePresenter {
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
                 settingPresenter.setScene(new Scene(settingsView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
+
+            }
+
+        });
+
+        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SplashScreenView splashScreenView = new SplashScreenView();
+                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(splashScreenView));
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
