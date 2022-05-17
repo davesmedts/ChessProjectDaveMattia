@@ -96,7 +96,7 @@ public class HomePresenter {
 //            }
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialDirectory(new File("C:\\Users\\daves\\Documents\\Dave\\kdg\\javaProgramming1\\ChessCopy\\resources\\savedGames"));
+                fileChooser.setInitialDirectory(new File("resources/savedGames"));
                 fileChooser.setTitle("Load Data File");
                 fileChooser.getExtensionFilters().addAll(
                         new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
