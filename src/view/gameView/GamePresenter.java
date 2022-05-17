@@ -32,7 +32,9 @@ public class GamePresenter {
     private GameView view;
 
     private int selectCounter = 0;
-    private ChessBoardSquare deefSquare;
+    private char frontColumn;
+    private int frontRow;
+
 
     public GamePresenter(Game model, GameView view) {
         this.model = model;
@@ -71,11 +73,11 @@ public class GamePresenter {
             int finalI = i;
 
 
-
-
             frontEndSquare.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
                 @Override
                 public void handle(MouseEvent event) {
+
 
                     List<Square> backendValidMoveSquares = new ArrayList<>();
                     System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
@@ -85,13 +87,14 @@ public class GamePresenter {
                         backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
                         List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                         frontEndSquare.setStyle("-fx-background-color: BLUE");
-                        deefSquare = frontEndSquare;
-
+                        frontColumn = frontEndSquare.getColumnLetter();
+                        frontRow = frontEndSquare.getRowNumber();
 
                         for (Square backendSquare : backendValidMoveSquares) {
                             for (ChessBoardSquare frontendSquare : frontendSquares) {
                                 if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
                                     frontendSquare.setStyle("-fx-background-color:GREEN");
+
                                 }
                             }
                         }
@@ -99,8 +102,13 @@ public class GamePresenter {
                         selectCounter++;
 
                     } else {
+
                         model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
-                        removeImage(deefSquare);
+
+
+
+                        updateView();
+
 
                         System.out.println("movePieceMethod");
 
@@ -109,76 +117,33 @@ public class GamePresenter {
                 }
             });
 
-//                piece.setOnMouseReleased(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent mouseEvent) {
-//                        updateView();
-//                    }
-//                });
-//            }
 
-//            int finalI1 = i;
-//            iv.get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    model.moveWhitePiece(iv.get(finalI1).getColumnLetter(), iv.get(finalI1).getRowNumber());
-//                    updateView();
-//                }
-//            });
         }
     }
 
-    private void removeImage(ChessBoardSquare frontendsquare){
-        ObservableList<Node> childrens = frontendsquare.getChildren();
-        for (Node node : childrens) {
-            if (node instanceof ImageView) {
-                frontendsquare.getChildren().remove(node);
+    private void removeImage(ChessBoardSquare deefSquare) {
+                ObservableList<Node> childrens = deefSquare.getChildren();
+
+                for (Node node : childrens) {
+
+                    if (node instanceof ImageView) {
+                        deefSquare.getChildren().remove(node);
+                        break;
 
 
-//                frontendsquare.setStyle("-fx-background-color: " + frontendsquare.getColorOneInitial());
+                    }
+                }
 
-                break;
+
             }
 
-        }
-        updateView();
-    }
 
-    private void draggable(Node node) {
-        final Position pos = new Position();
 
-        //Prompt the user that the node can be clicked
-        node.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> node.setCursor(Cursor.HAND));
-        node.addEventHandler(MouseEvent.MOUSE_EXITED, event -> node.setCursor(Cursor.DEFAULT));
 
-        //Prompt the user that the node can be dragged
-        node.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-            node.setCursor(Cursor.MOVE);
-
-            //When a press event occurs, the location coordinates of the event are cached
-            pos.x = event.getX();
-            pos.y = event.getY();
-        });
-
-        node.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> node.setCursor(Cursor.DEFAULT));
-
-        //Realize drag and drop function
-        node.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-            double distanceX = event.getX() - pos.x;
-            double distanceY = event.getY() - pos.y;
-
-            double x = node.getLayoutX() + distanceX;
-            double y = node.getLayoutY() + distanceY;
-
-            //After calculating X and y, relocate the node to the specified coordinate point (x, y)
-            node.relocate(x, y);
-        });
-    }
 
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();
-
 
 
         List<Square> backendSquares = backendBoard.getSquares();
@@ -200,6 +165,39 @@ public class GamePresenter {
             }
         }
     }
+
+
+
+    //    private void draggable(Node node) {
+//        final Position pos = new Position();
+//
+//        //Prompt the user that the node can be clicked
+//        node.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> node.setCursor(Cursor.HAND));
+//        node.addEventHandler(MouseEvent.MOUSE_EXITED, event -> node.setCursor(Cursor.DEFAULT));
+//
+//        //Prompt the user that the node can be dragged
+//        node.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+//            node.setCursor(Cursor.MOVE);
+//
+//            //When a press event occurs, the location coordinates of the event are cached
+//            pos.x = event.getX();
+//            pos.y = event.getY();
+//        });
+//
+//        node.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> node.setCursor(Cursor.DEFAULT));
+//
+//        //Realize drag and drop function
+//        node.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+//            double distanceX = event.getX() - pos.x;
+//            double distanceY = event.getY() - pos.y;
+//
+//            double x = node.getLayoutX() + distanceX;
+//            double y = node.getLayoutY() + distanceY;
+//
+//            //After calculating X and y, relocate the node to the specified coordinate point (x, y)
+//            node.relocate(x, y);
+//        });
+//    }
 
 
 }
