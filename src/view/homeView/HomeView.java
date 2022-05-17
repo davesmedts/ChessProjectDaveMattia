@@ -31,7 +31,16 @@ public class HomeView extends GridPane {
 
     private Label statusBarText;
 
+    String colorOne = "#57271d";
+    String colorTwo = "#ecddc8";
 
+    public String getColorOne() {
+        return colorOne;
+    }
+
+    public String getColorTwo() {
+        return colorTwo;
+    }
 
     public HomeView() {
         this.initialiseNodes();
