@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import model.Board;
+import model.Color;
 import model.Game;
 import model.Square;
 import model.chessPieces.Piece;
@@ -90,7 +91,11 @@ public class GamePresenter {
                     if (selectCounter == 0 || selectCounter % 2 == 0) {
 
                         try {
-                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            if (model.getTurn() == Color.WHITE) {
+                                backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            } else {
+                                backendValidMoveSquares.addAll(model.selectBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            }
                             List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                             frontEndSquare.setStyle("-fx-background-color: BLUE");
                             selectionColumn = frontEndSquare.getColumnLetter();
@@ -114,7 +119,15 @@ public class GamePresenter {
 
                     } else {
                         try {
-                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                            if (model.getTurn() == Color.WHITE) {
+                                model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                model.setTurn(Color.BLACK);
+                                model.getSaver().save();
+                            } else {
+                                model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                model.setTurn(Color.WHITE);
+                                model.getSaver().save();
+                            }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
                             view.setCenter(updatedView);

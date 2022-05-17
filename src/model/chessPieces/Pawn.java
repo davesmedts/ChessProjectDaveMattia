@@ -201,7 +201,7 @@ public class Pawn extends Piece {
 
                 break;
             case "K":
-                promotedPiece = new King(promotedPieceColor, promotedPiecePosition);
+                promotedPiece = new Knight(promotedPieceColor, promotedPiecePosition);
                 promotedPiecePosition.setSquareContent(promotedPiece);
 
                 break;
