@@ -1,11 +1,14 @@
 package view.gameView;
 
+import exceptions.IllegalMoveException;
+import exceptions.IllegalPieceSelectionException;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -84,35 +87,46 @@ public class GamePresenter {
 
                     if (selectCounter == 0 || selectCounter % 2 == 0) {
 
-                        backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
-                        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
-                        frontEndSquare.setStyle("-fx-background-color: BLUE");
-                        frontColumn = frontEndSquare.getColumnLetter();
-                        frontRow = frontEndSquare.getRowNumber();
+                        try {
+                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+                            frontEndSquare.setStyle("-fx-background-color: BLUE");
+                            frontColumn = frontEndSquare.getColumnLetter();
+                            frontRow = frontEndSquare.getRowNumber();
 
-                        for (Square backendSquare : backendValidMoveSquares) {
-                            for (ChessBoardSquare frontendSquare : frontendSquares) {
-                                if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
-                                    frontendSquare.setStyle("-fx-background-color:GREEN");
+                            for (Square backendSquare : backendValidMoveSquares) {
+                                for (ChessBoardSquare frontendSquare : frontendSquares) {
+                                    if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
+                                        frontendSquare.setStyle("-fx-background-color:GREEN");
 
+                                    }
                                 }
                             }
-                        }
+                            selectCounter++;
 
-                        selectCounter++;
+                        } catch (IllegalPieceSelectionException e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Selectie niet mogelijk");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
+
+                        }
 
                     } else {
 
-                        model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                        try {
+                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                            updateView();
+                            System.out.println("movePieceMethod");
+                            selectCounter++;
 
+                        } catch (IllegalMoveException e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Zet niet mogelijk");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
+                        }
 
-
-                        updateView();
-
-
-                        System.out.println("movePieceMethod");
-
-                        selectCounter++;
                     }
                 }
             });
@@ -122,24 +136,16 @@ public class GamePresenter {
     }
 
     private void removeImage(ChessBoardSquare deefSquare) {
-                ObservableList<Node> childrens = deefSquare.getChildren();
+        ObservableList<Node> childrens = deefSquare.getChildren();
 
-                for (Node node : childrens) {
+        for (Node node : childrens) {
 
-                    if (node instanceof ImageView) {
-                        deefSquare.getChildren().remove(node);
-                        break;
-
-
-                    }
-                }
-
-
+            if (node instanceof ImageView) {
+                deefSquare.getChildren().remove(node);
+                break;
             }
-
-
-
-
+        }
+    }
 
 
     private void updateView() {
@@ -156,16 +162,11 @@ public class GamePresenter {
                     if (backendSquare.getSquareContent() != null) {
                         String piece = backendSquare.getSquareContent().toString();
                         frontendSquare.setContent(piece);
-
-
                     }
-
-
                 }
             }
         }
     }
-
 
 
     //    private void draggable(Node node) {
