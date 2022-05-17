@@ -28,27 +28,27 @@ public class ChessBoardSquare extends GridPane {
         colorInitial = colorOne;
     }
 
-
     public String getColorOneInitial() {
         return colorInitial;
     }
 
-
-
     public ImageView getImageView() {
         return imageView;
     }
+    public int getRowNumber() {
+        return rowNumber;
+    }
+
+    public char getColumnLetter() {
+        return columnLetter;
+    }
+
 
     public ChessBoardSquare(int rowNumber, char columnLetter) {
         this.rowNumber = rowNumber;
         this.columnLetter = columnLetter;
 
     }
-
-
-public void removePiece(){
-        this.imageView = null;
-}
 
     public void setContent(String piece) {
         switch (piece) {
@@ -106,14 +106,4 @@ public void removePiece(){
             GridPane.setHalignment(imageView, HPos.CENTER);
         }
     }
-
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public char getColumnLetter() {
-        return columnLetter;
-    }
-
 }

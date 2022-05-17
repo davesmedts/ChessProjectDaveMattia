@@ -22,7 +22,9 @@ import model.chessPieces.Piece;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GamePresenter {
@@ -35,8 +37,8 @@ public class GamePresenter {
     private GameView view;
 
     private int selectCounter = 0;
-    private char frontColumn;
-    private int frontRow;
+    private char selectionColumn;
+    private int selectionRow;
 
 
     public GamePresenter(Game model, GameView view) {
@@ -91,14 +93,13 @@ public class GamePresenter {
                             backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
                             List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                             frontEndSquare.setStyle("-fx-background-color: BLUE");
-                            frontColumn = frontEndSquare.getColumnLetter();
-                            frontRow = frontEndSquare.getRowNumber();
+                            selectionColumn = frontEndSquare.getColumnLetter();
+                            selectionRow = frontEndSquare.getRowNumber();
 
                             for (Square backendSquare : backendValidMoveSquares) {
                                 for (ChessBoardSquare frontendSquare : frontendSquares) {
                                     if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
                                         frontendSquare.setStyle("-fx-background-color:GREEN");
-
                                     }
                                 }
                             }
@@ -109,13 +110,15 @@ public class GamePresenter {
                             alert.setTitle("Selectie niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
-
                         }
 
                     } else {
-
                         try {
                             model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                            ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard("GRAY", "BLUE");
+                            view.setGameChessBoardGrid(updatedView);
+                            view.setCenter(updatedView);
+                            addEventHandlers();
                             updateView();
                             System.out.println("movePieceMethod");
                             selectCounter++;
@@ -126,7 +129,6 @@ public class GamePresenter {
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
                         }
-
                     }
                 }
             });
@@ -135,22 +137,21 @@ public class GamePresenter {
         }
     }
 
-    private void removeImage(ChessBoardSquare deefSquare) {
-        ObservableList<Node> childrens = deefSquare.getChildren();
-
-        for (Node node : childrens) {
-
-            if (node instanceof ImageView) {
-                deefSquare.getChildren().remove(node);
-                break;
-            }
-        }
-    }
+//    private void removeImage() {
+//        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
+//        for (int i = 0; i < frontendSquares.size(); i++) {
+//            if (frontendSquares.get(i).getColumnLetter() == selectionColumn && frontendSquares.get(i).getRowNumber() == selectionRow) {
+//                int index = i;
+//                ChessBoardSquare replacementSquare = new ChessBoardSquare(selectionRow, selectionColumn);
+//                frontendSquares.set(index, replacementSquare);
+//            }
+//        }
+//
+//    }
 
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();
-
 
         List<Square> backendSquares = backendBoard.getSquares();
         List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
