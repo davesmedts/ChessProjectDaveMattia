@@ -33,8 +33,8 @@ public class Pawn extends Piece {
                 Piece moveSquareContent = moveSquare.getSquareContent();
                 if (moveSquareContent == null) {
                     possibleSquares.add(moveSquare);
-                } else if (moveSquareContent.getColor() != super.getColor()) {
-                    possibleSquares.add(moveSquare);
+//                } else if (moveSquareContent.getColor() != super.getColor()) {
+//                    possibleSquares.add(moveSquare);
                 }
             }
 //        north-east + right enPassant
@@ -112,8 +112,8 @@ public class Pawn extends Piece {
                 Piece moveSquareContent = moveSquare.getSquareContent();
                 if (moveSquareContent == null) {
                     possibleSquares.add(moveSquare);
-                } else if (moveSquareContent.getColor() != super.getColor()) {
-                    possibleSquares.add(moveSquare);
+//                } else if (moveSquareContent.getColor() != super.getColor()) {
+//                    possibleSquares.add(moveSquare);
                 }
             }
 //        south-west
