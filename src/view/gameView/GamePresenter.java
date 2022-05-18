@@ -2,6 +2,7 @@ package view.gameView;
 
 import exceptions.IllegalMoveException;
 import exceptions.IllegalPieceSelectionException;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,9 @@ import model.Board;
 import model.Color;
 import model.Game;
 import model.Square;
+import view.homeView.HomePresenter;
+import view.homeView.HomeView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +40,18 @@ public class GamePresenter {
 
     private void addEventHandlers() {
 
+        view.getHomeBtn().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HomeView homeView = new HomeView();
+                HomePresenter homePresenter = new HomePresenter(model, homeView);
+                view.getScene().setRoot(homeView);
+                homeView.getScene().getWindow().sizeToScene();
+            }
+
+        });
+
+//      Following part is for adding eventhandles to the chessBoardSquares
         List<ChessBoardSquare> iv = view.getChessBoardSquares();
 
         for (int i = 0; i < iv.size(); i++) {
@@ -144,19 +160,6 @@ public class GamePresenter {
 
         }
     }
-
-//    private void removeImage() {
-//        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
-//        for (int i = 0; i < frontendSquares.size(); i++) {
-//            if (frontendSquares.get(i).getColumnLetter() == selectionColumn && frontendSquares.get(i).getRowNumber() == selectionRow) {
-//                int index = i;
-//                ChessBoardSquare replacementSquare = new ChessBoardSquare(selectionRow, selectionColumn);
-//                frontendSquares.set(index, replacementSquare);
-//            }
-//        }
-//
-//    }
-
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();

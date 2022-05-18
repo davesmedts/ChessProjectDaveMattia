@@ -34,7 +34,9 @@ public class GameView extends BorderPane {
     private List<ChessBoardSquare> chessBoardSquares;
 
 
-
+    public Button getHomeBtn() {
+        return homeBtn;
+    }
 
     public ImageView getChessLogo() {
         return chessLogo;
