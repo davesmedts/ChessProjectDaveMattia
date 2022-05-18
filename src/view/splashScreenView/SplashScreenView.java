@@ -1,7 +1,9 @@
 package view.splashScreenView;
 
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
@@ -33,6 +35,17 @@ public class SplashScreenView extends GridPane {
 //       general nodes
         this.contentCreators = new Label("Program created by Deef and MattiMagic");
         this.version = new Label("version 1");
+
+        this.setBackground(new Background(
+                new BackgroundImage(
+                        new Image("splashscreenImage.jpg"),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        new BackgroundPosition(
+                                Side.LEFT, 0.0, true, Side.BOTTOM, 0.0, true),
+                        new BackgroundSize(100,100,true,true,false,true)
+                )));
+
 
     }
 
