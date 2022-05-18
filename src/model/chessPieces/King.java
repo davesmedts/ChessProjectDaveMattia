@@ -37,7 +37,6 @@ public class King extends Piece {
     }
 
 
-
     public void setCheckmate(boolean checkmate) {
         isCheckmate = checkmate;
     }
@@ -50,7 +49,7 @@ public class King extends Piece {
     public List<Square> getValidMoves(Board gameBoard, Player opponent) {
         List<Square> possibleSquares = new ArrayList<>();
 
-        if(super.getPosition() == null){
+        if (super.getPosition() == null) {
             return possibleSquares;
         }
 
@@ -163,11 +162,11 @@ public class King extends Piece {
         return possibleSquares;
     }
 
-    public boolean defineCheckStatus(Board gameBoard, Player opponent){
+    public boolean defineCheckStatus(Board gameBoard, Player opponent) {
         boolean kingIsChecked = false;
         List<Square> allPossibleMoves = new ArrayList<>();
         for (Square square : gameBoard.getSquares()) {
-            if (square.getSquareContent() != null && square.getSquareContent().getColor() != getColor()){
+            if (square.getSquareContent() != null && square.getSquareContent().getColor() != getColor()) {
                 Piece opponentPiece = square.getSquareContent();
                 allPossibleMoves.addAll(opponentPiece.getValidMoves(gameBoard, opponent));
             }
@@ -186,7 +185,7 @@ public class King extends Piece {
         boolean checkMate = true;
         List<Piece> playerPieces = new ArrayList<>();
         for (Square square : gameBoard.getSquares()) {
-            if (square.getSquareContent() != null && square.getSquareContent().getColor() == getColor()){
+            if (square.getSquareContent() != null && square.getSquareContent().getColor() == getColor()) {
                 playerPieces.add(square.getSquareContent());
             }
         }
@@ -226,7 +225,7 @@ public class King extends Piece {
                     break;
                 }
             }
-            if(!checkMate){
+            if (!checkMate) {
                 break;
             }
         }
@@ -286,6 +285,57 @@ public class King extends Piece {
                     }
                 }
             }
+        } else { // for the black pieces
+            Square a8 = gameBoard.lookupSquare('A', 8);
+            Square b8 = gameBoard.lookupSquare('B', 8);
+            Square c8 = gameBoard.lookupSquare('C', 8);
+            Square d8 = gameBoard.lookupSquare('D', 8);
+            Square f8 = gameBoard.lookupSquare('F', 8);
+            Square g8 = gameBoard.lookupSquare('G', 8);
+            Square h8 = gameBoard.lookupSquare('H', 8);
+
+            if (a8.getSquareContent() instanceof Rook && a8.getSquareContent().getMoves().size() == 0) {
+                if (b8.getSquareContent() == null && c8.getSquareContent() == null && d8.getSquareContent() == null) {
+
+                    List<Square> leftCastleCheck = new ArrayList<>();
+                    leftCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
+                    leftCastleCheck.add(d8);
+                    leftCastleCheck.add(c8); // c1 add to the list
+
+                    boolean check = false;
+                    for (Square square : leftCastleCheck) {
+                        if (moveCheckSimulation(square, gameBoard, opponent)) {
+                            check = true; // if the boolean is changed to true, we never change it back within this loop
+                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
+                        }
+                    }
+                    if (!check) {
+                        castleMoves.add(gameBoard.lookupSquare('C', 8)); // left castling move: kings always moves to C1
+                    }
+                }
+            }
+
+            if (h8.getSquareContent() instanceof Rook && h8.getSquareContent().getMoves().size() == 0) {
+                if (f8.getSquareContent() == null && g8.getSquareContent() == null) {
+
+                    List<Square> rightCastleCheck = new ArrayList<>();
+                    rightCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
+                    rightCastleCheck.add(f8);
+                    rightCastleCheck.add(g8); // c1 add to the list
+                    boolean check = false;
+
+                    for (Square square : rightCastleCheck) {
+                        if (moveCheckSimulation(square, gameBoard, opponent)) {
+                            check = true; // if the boolean is changed to true, we never change it back within this loop
+                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
+                        }
+                    }
+                    if (!check) {
+                        castleMoves.add(gameBoard.lookupSquare('G', 8)); // left castling move: kings always moves to G1
+                    }
+                }
+            }
+
         }
         return castleMoves;
     }
@@ -300,7 +350,7 @@ public class King extends Piece {
         boolean isChecked = false;
         List<Piece> opponentPieces = new ArrayList<>();
         for (Square square : gameBoard.getSquares()) {
-            if (square.getSquareContent() != null && square.getSquareContent().getColor() != getColor()){
+            if (square.getSquareContent() != null && square.getSquareContent().getColor() != getColor()) {
                 opponentPieces.add(square.getSquareContent());
             }
         }
@@ -346,7 +396,7 @@ public class King extends Piece {
         return isChecked;
     }
 
-    public void castlingMove(Square targetSquare , Board gameBoard){
+    public void castlingMove(Square targetSquare, Board gameBoard) {
         if (targetSquare.equals(new Square(1, 'C'))) {
             Piece rook = gameBoard.lookupSquare('A', 1).getSquareContent();
             rook.getPosition().setSquareContent(null);

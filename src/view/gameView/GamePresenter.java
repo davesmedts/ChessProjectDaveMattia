@@ -2,29 +2,19 @@ package view.gameView;
 
 import exceptions.IllegalMoveException;
 import exceptions.IllegalPieceSelectionException;
-import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import model.Board;
+import model.Color;
 import model.Game;
 import model.Square;
-import model.chessPieces.Piece;
-import view.newGameView.NewGamePresenter;
-import view.newGameView.NewGameView;
+import view.homeView.HomePresenter;
+import view.homeView.HomeView;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GamePresenter {
@@ -49,21 +39,19 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-//        List<ChessBoardSquare> chessBoardSquares = view.getChessBoardSquares();
-//        ImageView piece;
-//
-//        for (ChessBoardSquare chessboardsquare : chessBoardSquares) {
-//            piece = chessboardsquare.getImageView();
-//
-//
-//        piece.setOnMouseClicked(
-//                new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        System.out.println("click click");
-//                    }
-//                });}
 
+        view.getHomeBtn().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HomeView homeView = new HomeView();
+                HomePresenter homePresenter = new HomePresenter(model, homeView);
+                view.getScene().setRoot(homeView);
+                homeView.getScene().getWindow().sizeToScene();
+            }
+
+        });
+
+//      Following part is for adding eventhandles to the chessBoardSquares
         List<ChessBoardSquare> iv = view.getChessBoardSquares();
 
         for (int i = 0; i < iv.size(); i++) {
@@ -90,7 +78,11 @@ public class GamePresenter {
                     if (selectCounter == 0 || selectCounter % 2 == 0) {
 
                         try {
-                            backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            if (model.getTurn() == Color.WHITE) {
+                                backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            } else {
+                                backendValidMoveSquares.addAll(model.selectBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                            }
                             List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                             frontEndSquare.setStyle("-fx-background-color: BLUE");
                             selectionColumn = frontEndSquare.getColumnLetter();
@@ -106,15 +98,48 @@ public class GamePresenter {
                             selectCounter++;
 
                         } catch (IllegalPieceSelectionException e) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
                             alert.setTitle("Selectie niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
+//                            selectCounter--;
                         }
 
                     } else {
                         try {
-                            model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                            if (model.getTurn() == Color.WHITE) {
+                                model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                model.setTurn(Color.BLACK);
+                                model.getSaver().save();
+
+                                if (model.getWhitePlayer().isWinner()) {
+                                    model.setGameFinished(true);
+                                    model.setWinner(model.getWhitePlayer());
+                                    model.getSaver().logHistory();
+
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Game over!");
+                                    alert.setContentText(model.getWhitePlayer().toString() + " wint");
+                                    alert.showAndWait();
+                                }
+
+
+                            } else {
+                                model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                model.setTurn(Color.WHITE);
+                                model.getSaver().save();
+
+                                if (model.getBlackPlayer().isWinner()) {
+                                    model.setGameFinished(true);
+                                    model.setWinner(model.getBlackPlayer());
+                                    model.getSaver().logHistory();
+
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Game over!");
+                                    alert.setContentText(model.getBlackPlayer().toString() + " wint");
+                                    alert.showAndWait();
+                                }
+                            }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
                             view.setCenter(updatedView);
@@ -128,6 +153,8 @@ public class GamePresenter {
                             alert.setTitle("Zet niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
+                            updateView();
+                            selectCounter--;
                         }
                     }
                 }
@@ -136,19 +163,6 @@ public class GamePresenter {
 
         }
     }
-
-//    private void removeImage() {
-//        List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
-//        for (int i = 0; i < frontendSquares.size(); i++) {
-//            if (frontendSquares.get(i).getColumnLetter() == selectionColumn && frontendSquares.get(i).getRowNumber() == selectionRow) {
-//                int index = i;
-//                ChessBoardSquare replacementSquare = new ChessBoardSquare(selectionRow, selectionColumn);
-//                frontendSquares.set(index, replacementSquare);
-//            }
-//        }
-//
-//    }
-
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();

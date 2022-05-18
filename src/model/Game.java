@@ -56,6 +56,28 @@ public class Game {
         return winner;
     }
 
+    public Color getTurn() {
+        return turn;
+    }
+
+    public ChessGameSaver getSaver() {
+        return saver;
+    }
+
+    public void setTurn(Color turn) {
+        this.turn = turn;
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        this.gameFinished = gameFinished;
+    }
+
+    public void setSaver(ChessGameSaver saver) {
+        this.saver = saver;
+    }
+
+
+
     public void newGame(Player playerOne, Player playerTwo) {
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);

@@ -114,7 +114,7 @@ public class Player {
 
         } else { // for the black Pieces we do the same as above.
             //        pawns
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 8; i++) {
                 int pawnRow = 7;
                 char pawnColumn = (char) (65 + i);
 //              Hier moeten we de juiste squares ophalen om positie van Piece te linken aan de juiste square op het bord.
