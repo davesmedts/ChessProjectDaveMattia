@@ -102,6 +102,7 @@ public class GamePresenter {
                             alert.setTitle("Selectie niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
+//                            selectCounter--;
                         }
 
                     } else {
@@ -152,6 +153,8 @@ public class GamePresenter {
                             alert.setTitle("Zet niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
+                            updateView();
+                            selectCounter--;
                         }
                     }
                 }
