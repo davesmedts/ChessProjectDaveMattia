@@ -11,6 +11,8 @@ public class GameView extends BorderPane {
     private VBox mainContainer;
     private HBox helpIconsContainer;
     private VBox leftContainer;
+    private HBox whiteCapturedPieces;
+    private HBox blackCapturedPieces;
 
     private Button homeBtn;
     private Button stopSpelBtn;
@@ -53,8 +55,10 @@ public class GameView extends BorderPane {
     public void setGameChessBoardGrid(ChessBoardView gameChessBoardGrid) {
         this.gameChessBoardGrid = gameChessBoardGrid;
         this.chessBoardSquares = gameChessBoardGrid.getGameSquares();
+        this.blackCapturedPieces = new HBox();
+        this.whiteCapturedPieces = new HBox();
         mainContainer.getChildren().clear();
-        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback);
+        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
 
     }
 
@@ -72,6 +76,8 @@ public class GameView extends BorderPane {
         blackPlayerName = new Label();
         whitePlayerFeedback = new Label();
         blackPlayerFeedback = new Label();
+        whiteCapturedPieces = new HBox();
+        blackCapturedPieces = new HBox();
 
 
         chessBoardSquares = gameChessBoardGrid.getGameSquares();
@@ -112,7 +118,7 @@ public class GameView extends BorderPane {
         this.setTop(menuBar);
 
 //        MainContainerContent
-        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback);
+        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
         this.setCenter(mainContainer);
 
 //        leftArea
@@ -154,6 +160,14 @@ public class GameView extends BorderPane {
 
     public VBox getMainContainer() {
         return mainContainer;
+    }
+
+    public HBox getWhiteCapturedPieces() {
+        return whiteCapturedPieces;
+    }
+
+    public HBox getBlackCapturedPieces() {
+        return blackCapturedPieces;
     }
 }
 

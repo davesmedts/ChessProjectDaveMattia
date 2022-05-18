@@ -11,6 +11,7 @@ import model.Board;
 import model.Color;
 import model.Game;
 import model.Square;
+import model.chessPieces.Piece;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 
@@ -176,7 +177,7 @@ public class GamePresenter {
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();
-        if(model.getTurn() == Color.WHITE){
+        if (model.getTurn() == Color.WHITE) {
             view.setWhitePlayerFeedback("Jij bent aan zet.");
             view.setBlackPlayerFeedback("");
         } else {
@@ -198,6 +199,70 @@ public class GamePresenter {
                 }
             }
         }
+
+        List<Piece> whitePieces = model.getWhitePlayer().getPieces();
+        view.getWhiteCapturedPieces().getChildren().clear();
+        for (Piece whitePiece : whitePieces) {
+            if (whitePiece.getPosition() == null) {
+                String pieceName = whitePiece.toString();
+                ImageView pieceImage = getPieceImage(pieceName);
+                view.getWhiteCapturedPieces().getChildren().add(pieceImage);
+
+            }
+        }
+        List<Piece> blackPieces = model.getBlackPlayer().getPieces();
+//        view.getBlackCapturedPieces().getChildren().clear();
+        for (Piece blackPiece : blackPieces) {
+            if (blackPiece.getPosition() == null) {
+                String pieceName = blackPiece.toString();
+                ImageView pieceImage = getPieceImage(pieceName);
+                view.getBlackCapturedPieces().getChildren().add(pieceImage);
+
+            }
+        }
+    }
+
+    private ImageView getPieceImage(String pieceName) {
+        ImageView image = null;
+        switch (pieceName) {
+            case "Knightblack":
+                image = new ImageView("/Knightblack.png");
+            break;
+            case "Kingblack":
+                image = new ImageView("/Kingblack.png");
+            break;
+            case "Queenblack":
+                image = new ImageView("/Queenblack.png");
+            break;
+            case "Pawnblack":
+                image = new ImageView("/Pawnblack.png");
+           break;
+            case "Rookblack":
+                image = new ImageView("/Rookblack.png");
+            break;
+            case "Bishopblack":
+                image = new ImageView("/BishopBlack.png");
+            break;
+            case "Knightwhite":
+                image = new ImageView("Knightwhite.png");
+            break;
+            case "Kingwhite":
+                image = new ImageView("Kingwhite.png");
+                break;
+            case "Queenwhite":
+                image = new ImageView("Queenwhite.png");
+                break;
+            case "Pawnwhite":
+                image = new ImageView("Pawnwhite.png");
+                break;
+            case "Rookwhite":
+                image = new ImageView("Rookwhite.png");
+                break;
+            case "Bishopwhite":
+                image = new ImageView("Bishopwhite.png");
+                break;
+        }
+        return image;
     }
 
 

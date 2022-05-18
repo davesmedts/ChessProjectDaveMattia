@@ -85,7 +85,7 @@ public class Pawn extends Piece {
             }
 
 //          only on the first move a pawn can move 2 squares
-            if (super.getMoves().size() == 0 && super.getPosition().getRowNumber() == 7) {
+            if (super.getMoves().size() == 0 && super.getPosition().getRowNumber() == 2) {
                 int newRow = row + 2;
                 char newColumn = column;
 

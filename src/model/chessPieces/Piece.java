@@ -52,6 +52,10 @@ public abstract class Piece {
         position = null; // value for captured pieces
     }
 
+    public boolean isCaptured() {
+        return isCaptured;
+    }
+
     public abstract String log();
 
 
