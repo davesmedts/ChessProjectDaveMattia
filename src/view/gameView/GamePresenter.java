@@ -111,7 +111,7 @@ public class GamePresenter {
                             selectCounter++;
 
                         } catch (IllegalPieceSelectionException e) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
                             alert.setTitle("Selectie niet mogelijk");
                             alert.setContentText(e.getMessage());
                             alert.showAndWait();
@@ -123,10 +123,34 @@ public class GamePresenter {
                                 model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.BLACK);
                                 model.getSaver().save();
+
+                                if (model.getWhitePlayer().isWinner()) {
+                                    model.setGameFinished(true);
+                                    model.setWinner(model.getWhitePlayer());
+                                    model.getSaver().logHistory();
+
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Game over!");
+                                    alert.setContentText(model.getWhitePlayer().toString() + " wint");
+                                    alert.showAndWait();
+                                }
+
+
                             } else {
                                 model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.WHITE);
                                 model.getSaver().save();
+
+                                if (model.getBlackPlayer().isWinner()) {
+                                    model.setGameFinished(true);
+                                    model.setWinner(model.getBlackPlayer());
+                                    model.getSaver().logHistory();
+
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Game over!");
+                                    alert.setContentText(model.getBlackPlayer().toString() + " wint");
+                                    alert.showAndWait();
+                                }
                             }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);

@@ -76,6 +76,8 @@ public class Game {
         this.saver = saver;
     }
 
+
+
     public void newGame(Player playerOne, Player playerTwo) {
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
