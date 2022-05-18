@@ -34,6 +34,8 @@ public class GamePresenter {
     public GamePresenter(Game model, GameView view) {
         this.model = model;
         this.view = view;
+        view.setBlackPlayerName(model.getBlackPlayer().toString());
+        view.setWhitePlayerName(model.getWhitePlayer().toString());
         this.updateView();
         this.addEventHandlers();
     }
@@ -98,11 +100,15 @@ public class GamePresenter {
                             selectCounter++;
 
                         } catch (IllegalPieceSelectionException e) {
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("Selectie niet mogelijk");
-                            alert.setContentText(e.getMessage());
-                            alert.showAndWait();
-//                            selectCounter--;
+                            if (model.getTurn() == Color.WHITE) {
+                                view.setWhitePlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
+                            } else {
+                                view.setBlackPlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
+                            }
+//                            Alert alert = new Alert(Alert.AlertType.WARNING);
+//                            alert.setTitle("Selectie niet mogelijk");
+//                            alert.setContentText(e.getMessage());
+//                            alert.showAndWait();
                         }
 
                     } else {
@@ -142,30 +148,41 @@ public class GamePresenter {
                             }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
-                            view.setCenter(updatedView);
+                            view.setCenter(view.getMainContainer());
                             addEventHandlers();
                             updateView();
                             System.out.println("movePieceMethod");
                             selectCounter++;
 
                         } catch (IllegalMoveException e) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Zet niet mogelijk");
-                            alert.setContentText(e.getMessage());
-                            alert.showAndWait();
-                            updateView();
+                            if (model.getTurn() == Color.WHITE) {
+                                view.setWhitePlayerFeedback("Zet niet mogelijk: " + e.getMessage());
+                            } else {
+                                view.setBlackPlayerFeedback("Zet niet mogelijk: " + e.getMessage());
+                            }
+
+//                            Alert alert = new Alert(Alert.AlertType.ERROR);
+//                            alert.setTitle("Zet niet mogelijk");
+//                            alert.setContentText(e.getMessage());
+//                            alert.showAndWait();
+//                            updateView();
                             selectCounter--;
                         }
                     }
                 }
             });
-
-
         }
     }
 
     private void updateView() {
         Board backendBoard = model.getGameBoard();
+        if(model.getTurn() == Color.WHITE){
+            view.setWhitePlayerFeedback("Jij bent aan zet.");
+            view.setBlackPlayerFeedback("");
+        } else {
+            view.setBlackPlayerFeedback("Jij bent aan zet.");
+            view.setWhitePlayerFeedback("");
+        }
 
         List<Square> backendSquares = backendBoard.getSquares();
         List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();

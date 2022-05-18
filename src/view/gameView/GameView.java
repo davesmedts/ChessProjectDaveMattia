@@ -29,6 +29,10 @@ public class GameView extends BorderPane {
     private ImageView settingsIcon;
 
     private Label statusBarText;
+    private Label whitePlayerName;
+    private Label blackPlayerName;
+    private Label whitePlayerFeedback;
+    private Label blackPlayerFeedback;
 
     private ChessBoardView gameChessBoardGrid;
     private List<ChessBoardSquare> chessBoardSquares;
@@ -49,6 +53,9 @@ public class GameView extends BorderPane {
     public void setGameChessBoardGrid(ChessBoardView gameChessBoardGrid) {
         this.gameChessBoardGrid = gameChessBoardGrid;
         this.chessBoardSquares = gameChessBoardGrid.getGameSquares();
+        mainContainer.getChildren().clear();
+        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback);
+
     }
 
     public GameView(String colorOne, String colorTwo) {
@@ -58,9 +65,14 @@ public class GameView extends BorderPane {
 
     public void initialiseNodes(String colorOne, String colorTwo) {
 //        mainContainerNodes
-
+        this.mainContainer = new VBox();
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
         gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard(colorOne, colorTwo);
+        whitePlayerName = new Label();
+        blackPlayerName = new Label();
+        whitePlayerFeedback = new Label();
+        blackPlayerFeedback = new Label();
+
 
         chessBoardSquares = gameChessBoardGrid.getGameSquares();
 
@@ -100,8 +112,8 @@ public class GameView extends BorderPane {
         this.setTop(menuBar);
 
 //        MainContainerContent
-
-        this.setCenter(gameChessBoardGrid);
+        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback);
+        this.setCenter(mainContainer);
 
 //        leftArea
         leftContainer.getChildren().addAll(chessLogo, homeBtn, opslaanBtn, stopSpelBtn);
@@ -122,6 +134,26 @@ public class GameView extends BorderPane {
 
     public void setChessBoardSquares(List<ChessBoardSquare> chessBoardSquares) {
         this.chessBoardSquares = chessBoardSquares;
+    }
+
+    public void setWhitePlayerName(String whitePlayerName) {
+        this.whitePlayerName.setText(whitePlayerName);
+    }
+
+    public void setBlackPlayerName(String blackPlayerName) {
+        this.blackPlayerName.setText(blackPlayerName);
+    }
+
+    public void setWhitePlayerFeedback(String feedback) {
+        this.whitePlayerFeedback.setText(feedback);
+    }
+
+    public void setBlackPlayerFeedback(String feedback) {
+        this.blackPlayerFeedback.setText(feedback);
+    }
+
+    public VBox getMainContainer() {
+        return mainContainer;
     }
 }
 
