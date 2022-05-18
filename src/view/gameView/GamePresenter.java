@@ -2,30 +2,15 @@ package view.gameView;
 
 import exceptions.IllegalMoveException;
 import exceptions.IllegalPieceSelectionException;
-import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import model.Board;
 import model.Color;
 import model.Game;
 import model.Square;
-import model.chessPieces.Piece;
-import view.newGameView.NewGamePresenter;
-import view.newGameView.NewGameView;
-
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GamePresenter {
@@ -50,20 +35,6 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-//        List<ChessBoardSquare> chessBoardSquares = view.getChessBoardSquares();
-//        ImageView piece;
-//
-//        for (ChessBoardSquare chessboardsquare : chessBoardSquares) {
-//            piece = chessboardsquare.getImageView();
-//
-//
-//        piece.setOnMouseClicked(
-//                new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        System.out.println("click click");
-//                    }
-//                });}
 
         List<ChessBoardSquare> iv = view.getChessBoardSquares();
 
