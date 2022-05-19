@@ -262,6 +262,9 @@ public class GamePresenter {
                 image = new ImageView("Bishopwhite.png");
                 break;
         }
+        image.setFitWidth(25);
+        image.setPreserveRatio(true);
+        image.setSmooth(true);
         return image;
     }
 

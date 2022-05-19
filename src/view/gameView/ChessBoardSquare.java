@@ -6,23 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-/**
- * @author Mattia Verreydt
- * @version 1.0 5-5-2022 20:22
- */
 public class ChessBoardSquare extends GridPane {
     private String colorInitial;
 
     private final int rowNumber;
     private final char columnLetter;
-//    private String piece;
 
     private ImageView imageView;
-
-//    public String getPiece() {
-//        return piece;
-//    }
-
 
     public void setColorOne(String colorOne) {
         colorInitial = colorOne;
@@ -54,51 +44,39 @@ public class ChessBoardSquare extends GridPane {
         switch (piece) {
             case "Knightblack":
                 this.imageView = new ImageView("/Knightblack.png");
-//                this.piece = piece;
                 break;
             case "Kingblack":
                 this.imageView = new ImageView("/Kingblack.png");
-//                this.piece = piece;
                 break;
             case "Queenblack":
                 this.imageView = new ImageView("/Queenblack.png");
-//                this.piece = piece;
                 break;
             case "Pawnblack":
                 this.imageView = new ImageView("/Pawnblack.png");
-//                this.piece = piece;
                 break;
             case "Rookblack":
                 this.imageView = new ImageView("/Rookblack.png");
-//                this.piece = piece;
                 break;
             case "Bishopblack":
                 this.imageView = new ImageView("/BishopBlack.png");
-//                this.piece = piece;
                 break;
             case"Knightwhite":
                 this.imageView = new ImageView("Knightwhite.png");
-//                this.piece = piece;
                 break;
             case"Kingwhite":
                 this.imageView = new ImageView("Kingwhite.png");
-//                this.piece = piece;
                 break;
             case"Queenwhite":
                 this.imageView = new ImageView("Queenwhite.png");
-//                this.piece = piece;
                 break;
             case"Pawnwhite":
                 this.imageView = new ImageView("Pawnwhite.png");
-//                this.piece = piece;
                 break;
             case"Rookwhite":
                 this.imageView = new ImageView("Rookwhite.png");
-//                this.piece = piece;
                 break;
             case"Bishopwhite":
                 this.imageView = new ImageView("Bishopwhite.png");
-//                this.piece = piece;
                 break;
         }
         if (imageView != null) {
