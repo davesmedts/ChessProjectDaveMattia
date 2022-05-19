@@ -178,7 +178,7 @@ public class Pawn extends Piece {
         return possibleSquares;
     }
 
-    public void enPassantCapture(Square targetSquare, Board gameBoard) {
+    public Piece enPassantCapture(Square targetSquare, Board gameBoard) {
         Piece enPassantPawn;
         if (this.getColor() == Color.WHITE) {
             enPassantPawn = gameBoard.lookupSquare(targetSquare.getColumnLetter(), targetSquare.getRowNumber() - 1).getSquareContent();
@@ -187,6 +187,7 @@ public class Pawn extends Piece {
         }
         enPassantPawn.getPosition().setSquareContent(null);
         enPassantPawn.capturePiece();
+        return enPassantPawn;
     }
 
     public void promotePiece(String desiredPieceLetter, Piece selectedPiece) {

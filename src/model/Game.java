@@ -118,7 +118,6 @@ public class Game {
         this.gameBoard = loader.getGameBoard();
         this.turn = loader.getTurn();
         this.saver = new ChessGameSaver(this);
-
     }
 
     public void play() {

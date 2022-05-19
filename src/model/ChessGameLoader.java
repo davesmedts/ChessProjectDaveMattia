@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChessGameLoader {
     Player whitePlayer;
@@ -17,6 +19,7 @@ public class ChessGameLoader {
     Board gameBoard;
     Color turn;
     ChessGameSaver saver;
+    List<String> capturedPieces;
 
     public Player getWhitePlayer() {
         return whitePlayer;
@@ -71,6 +74,11 @@ public class ChessGameLoader {
         whitePlayer.setColor(Color.WHITE);
         Square lastMove = whitePlayer.lookupSquare(whitePlayerData[1].charAt(0), whitePlayerData[1].charAt(0));
         whitePlayer.getMoves().add(lastMove);
+        if(whitePlayerData[2] != null){
+            capturedPieces = new ArrayList<>();
+            capturedPieces.addAll(List.of(whitePlayerData[2].split(":")));
+            whitePlayer.setCapturedPieces(capturedPieces);
+        }
 
         String[] blackPlayerData = savedGameData[2].split(",");
         this.blackPlayer = new Player(blackPlayerData[0]);
@@ -78,6 +86,11 @@ public class ChessGameLoader {
         blackPlayer.setColor(Color.BLACK);
         lastMove = blackPlayer.lookupSquare(blackPlayerData[1].charAt(0), blackPlayerData[1].charAt(0));
         blackPlayer.getMoves().add(lastMove);
+        if (blackPlayerData[2] != null) {
+            capturedPieces = new ArrayList<>();
+            capturedPieces.addAll(List.of(blackPlayerData[2].split(":")));
+            blackPlayer.setCapturedPieces(capturedPieces);
+        }
 
         String[] boardData = savedGameData[3].split(",");
         for (String boardSquareData : boardData) {

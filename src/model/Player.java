@@ -12,6 +12,7 @@ public class Player {
     private int losses;
     private Color color;
     private List<Piece> pieces;
+    private List<String> capturedPieces;
     private Board gameBoard;
     private List<Square> moves;
     private boolean isWinner;
@@ -22,6 +23,7 @@ public class Player {
     public Player(String player) {
         this.player = player;
         this.pieces = new ArrayList<>();
+        this.capturedPieces = new ArrayList<>();
         this.moves = new ArrayList<>();
         this.isWinner = false;
     }
@@ -46,7 +48,11 @@ public class Player {
     public List<Piece> getPieces() {
         return pieces;
     }
-//    private List<Piece> capturedPieces;
+
+    public List<String> getCapturedPieces() {
+        return capturedPieces;
+    }
+    //    private List<Piece> capturedPieces;
 
 
     public void initializePieces() {
@@ -204,6 +210,14 @@ public class Player {
         this.gameBoard = gameBoard;
     }
 
+    public void addCapturedPieces(Piece capturedPiece) {
+        capturedPieces.add(capturedPiece.toString());
+    }
+
+    public void setCapturedPieces(List<String> capturedPieces) {
+        this.capturedPieces = capturedPieces;
+    }
+
     public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) throws IllegalPieceSelectionException, NullPointerException{
 //        Scanner keyboard = new Scanner(System.in);
 //        System.out.println(this.player + ": Voer de kolomletter en het rijnummer in van het stuk dat je wil verplaatsen:");
@@ -271,6 +285,7 @@ public class Player {
                     isFound = true;
                     startPosition.setSquareContent(null);
                     if (targetSquareObject.getSquareContent() != null && targetSquareObject.getSquareContent().getColor() != selectedPiece.getColor()) {
+                        opponent.addCapturedPieces(targetSquareContent);
                         targetSquareObject.getSquareContent().capturePiece();
                     }
                     selectedPiece.setPosition(targetSquareObject); // assigns the new square to the piece
@@ -286,7 +301,8 @@ public class Player {
                     }
 
                     if (selectedPiece instanceof Pawn && targetSquareContent == null && targetSquareObject.getColumnLetter() != startPosition.getColumnLetter()) {
-                        ((Pawn) selectedPiece).enPassantCapture(targetSquareObject, gameBoard);
+                        Piece enPassantPawn = ((Pawn) selectedPiece).enPassantCapture(targetSquareObject, gameBoard);
+                        opponent.addCapturedPieces(enPassantPawn);
                     }
                 }
             }
@@ -372,8 +388,15 @@ public class Player {
 
     public String log(){
         StringBuilder builder = new StringBuilder();
+        StringBuilder capturedPiecesString = new StringBuilder();
+        for (int i = 0; i < capturedPieces.size(); i++) {
+            capturedPiecesString.append(capturedPieces.get(i).toString());
+            if (i <capturedPieces.size()-1){
+                capturedPiecesString.append(":");
+            }
+        }
 
-        builder.append(String.format("%s",player)).append(String.format(",%s", getLastMove()));
+        builder.append(String.format("%s,%s,%s",player, getLastMove(), capturedPiecesString));
         return builder.toString();
     }
 }
