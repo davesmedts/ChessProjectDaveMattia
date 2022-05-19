@@ -94,9 +94,9 @@ public class Pawn extends Piece {
                 Square moveSquare = gameBoard.lookupSquare(newColumn, newRow);
                 Piece rowPlusOneContent = rowPlusOneSquare.getSquareContent();
                 Piece moveSquareContent = moveSquare.getSquareContent();
-                if (moveSquareContent != null && moveSquareContent.getColor() != super.getColor() && rowPlusOneContent == null) {
-                    possibleSquares.add(moveSquare);
-                } else if (moveSquareContent == null && rowPlusOneContent == null) {
+//                if (moveSquareContent != null && moveSquareContent.getColor() != super.getColor() && rowPlusOneContent == null) {
+//                    possibleSquares.add(moveSquare);
+                if (moveSquareContent == null && rowPlusOneContent == null) {
                     possibleSquares.add(moveSquare);
                 }
             }
@@ -168,9 +168,9 @@ public class Pawn extends Piece {
                 Square moveSquare = gameBoard.lookupSquare(newColumn, newRow);
                 Piece rowPlusMinusOneContent = rowPlusMinusSquare.getSquareContent();
                 Piece moveSquareContent = moveSquare.getSquareContent();
-                if (moveSquareContent != null && moveSquareContent.getColor() != super.getColor() && rowPlusMinusOneContent == null) {
-                    possibleSquares.add(moveSquare);
-                } else if (moveSquareContent == null && rowPlusMinusOneContent == null) {
+//                if (moveSquareContent == null && moveSquareContent.getColor() != super.getColor() && rowPlusMinusOneContent == null) {
+//                    possibleSquares.add(moveSquare);
+                if (moveSquareContent == null && rowPlusMinusOneContent == null) {
                     possibleSquares.add(moveSquare);
                 }
             }
@@ -218,6 +218,7 @@ public class Pawn extends Piece {
                 break;
         }
     }
+
     @Override
     public String log() {
         return String.format("%s-%s", this.getClass().getSimpleName(), super.getColor());

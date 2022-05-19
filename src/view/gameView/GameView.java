@@ -33,8 +33,6 @@ public class GameView extends BorderPane {
     private Label statusBarText;
     private Label whitePlayerName;
     private Label blackPlayerName;
-    private Label whitePlayerFeedback;
-    private Label blackPlayerFeedback;
 
     private ChessBoardView gameChessBoardGrid;
     private List<ChessBoardSquare> chessBoardSquares;
@@ -52,6 +50,14 @@ public class GameView extends BorderPane {
         return gameChessBoardGrid;
     }
 
+    public Label getWhitePlayerName() {
+        return whitePlayerName;
+    }
+
+    public Label getBlackPlayerName() {
+        return blackPlayerName;
+    }
+
     public void setGameChessBoardGrid(ChessBoardView gameChessBoardGrid) {
         this.gameChessBoardGrid = gameChessBoardGrid;
         gameChessBoardGrid.setAlignment(Pos.CENTER);
@@ -61,7 +67,7 @@ public class GameView extends BorderPane {
         blackCapturedPieces.setAlignment(Pos.CENTER);
         whiteCapturedPieces.setAlignment(Pos.CENTER);
         mainContainer.getChildren().clear();
-        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
+        mainContainer.getChildren().addAll(blackPlayerName,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whiteCapturedPieces);
 
     }
 
@@ -77,15 +83,16 @@ public class GameView extends BorderPane {
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
         gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard(colorOne, colorTwo);
         whitePlayerName = new Label();
+        whitePlayerName.setId("playerNameGameView");
         blackPlayerName = new Label();
-        whitePlayerFeedback = new Label();
-        blackPlayerFeedback = new Label();
+        blackPlayerName.setId("playerNameGameView");
         whiteCapturedPieces = new HBox();
         blackCapturedPieces = new HBox();
 
 
         chessBoardSquares = gameChessBoardGrid.getGameSquares();
 
+        this.setId("gameView");
 
 
 //        menuNodes
@@ -123,7 +130,7 @@ public class GameView extends BorderPane {
         mainContainer.setAlignment(Pos.TOP_CENTER);
         mainContainer.setSpacing(10);
         mainContainer.setPadding(new Insets(10));
-        mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
+        mainContainer.getChildren().addAll(blackPlayerName,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whiteCapturedPieces);
         gameChessBoardGrid.setAlignment(Pos.CENTER);
         blackCapturedPieces.setAlignment(Pos.CENTER);
         whiteCapturedPieces.setAlignment(Pos.CENTER);
@@ -157,14 +164,6 @@ public class GameView extends BorderPane {
 
     public void setBlackPlayerName(String blackPlayerName) {
         this.blackPlayerName.setText(blackPlayerName);
-    }
-
-    public void setWhitePlayerFeedback(String feedback) {
-        this.whitePlayerFeedback.setText(feedback);
-    }
-
-    public void setBlackPlayerFeedback(String feedback) {
-        this.blackPlayerFeedback.setText(feedback);
     }
 
     public VBox getMainContainer() {

@@ -83,6 +83,7 @@ public class ChessBoardView extends GridPane {
                 Text SQUARENAME = new Text(squareName);
 
                 ChessBoardSquare gameSquare = new ChessBoardSquare(rowNumber, columnLetter);
+                gameSquare.setId("boardSquare");
                 gameSquares.add(gameSquare);
 
                 ImageView knight = new ImageView("/Knightblack.png");

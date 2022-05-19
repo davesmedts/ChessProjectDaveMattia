@@ -101,15 +101,15 @@ public class GamePresenter {
                             selectCounter++;
 
                         } catch (IllegalPieceSelectionException e) {
-                            if (model.getTurn() == Color.WHITE) {
-                                view.setWhitePlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
-                            } else {
-                                view.setBlackPlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
-                            }
-//                            Alert alert = new Alert(Alert.AlertType.WARNING);
-//                            alert.setTitle("Selectie niet mogelijk");
-//                            alert.setContentText(e.getMessage());
-//                            alert.showAndWait();
+//                            if (model.getTurn() == Color.WHITE) {
+//                                view.setWhitePlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
+//                            } else {
+//                                view.setBlackPlayerFeedback("Selectie niet mogelijk: " + e.getMessage());
+//                            }
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Selectie niet mogelijk");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
                         }
 
                     } else {
@@ -118,6 +118,13 @@ public class GamePresenter {
                                 model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.BLACK);
                                 model.getSaver().save();
+                                if(model.getBlackPlayer().kingLookup(Color.BLACK).isChecked()){
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("SCHAAK!");
+                                    alert.setContentText("Zwart staat schaak!");
+                                    alert.showAndWait();
+
+                                }
 
                                 if (model.getWhitePlayer().isWinner()) {
                                     model.setGameFinished(true);
@@ -135,6 +142,14 @@ public class GamePresenter {
                                 model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.WHITE);
                                 model.getSaver().save();
+                                if(model.getWhitePlayer().kingLookup(Color.BLACK).isChecked()){
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("SCHAAK!");
+                                    alert.setContentText("Wit staat schaak!");
+                                    alert.showAndWait();
+
+                                }
+
 
                                 if (model.getBlackPlayer().isWinner()) {
                                     model.setGameFinished(true);
@@ -156,17 +171,21 @@ public class GamePresenter {
                             selectCounter++;
 
                         } catch (IllegalMoveException e) {
-                            if (model.getTurn() == Color.WHITE) {
-                                view.setWhitePlayerFeedback("Zet niet mogelijk: " + e.getMessage());
-                            } else {
-                                view.setBlackPlayerFeedback("Zet niet mogelijk: " + e.getMessage());
-                            }
+//                            if (model.getTurn() == Color.WHITE) {
+//                                view.setWhitePlayerFeedback("Zet niet mogelijk: " + e.getMessage());
+//                            } else {
+//                                view.setBlackPlayerFeedback("Zet niet mogelijk: " + e.getMessage());
+//                            }
 
-//                            Alert alert = new Alert(Alert.AlertType.ERROR);
-//                            alert.setTitle("Zet niet mogelijk");
-//                            alert.setContentText(e.getMessage());
-//                            alert.showAndWait();
-//                            updateView();
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Zet niet mogelijk");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
+                            ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
+                            view.setGameChessBoardGrid(updatedView);
+                            view.setCenter(view.getMainContainer());
+                            addEventHandlers();
+                            updateView();
                             selectCounter--;
                         }
                     }
@@ -178,11 +197,12 @@ public class GamePresenter {
     private void updateView() {
         Board backendBoard = model.getGameBoard();
         if (model.getTurn() == Color.WHITE) {
-            view.setWhitePlayerFeedback("Jij bent aan zet.");
-            view.setBlackPlayerFeedback("");
+            view.getWhitePlayerName().setStyle("-fx-underline: true; -fx-text-fill: black; -fx-border-width: 3px;");
+            view.getBlackPlayerName().setStyle("-fx-underline: false; -fx-text-fill: #858383; -fx-border-width: 1px;");
         } else {
-            view.setBlackPlayerFeedback("Jij bent aan zet.");
-            view.setWhitePlayerFeedback("");
+            view.getBlackPlayerName().setStyle("-fx-underline: true; -fx-text-fill: black; -fx-border-width: 3px;");
+            view.getWhitePlayerName().setStyle("-fx-underline: false; -fx-text-fill: #858383; -fx-border-width: 1px;");
+
         }
 
         List<Square> backendSquares = backendBoard.getSquares();

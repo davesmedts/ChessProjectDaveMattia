@@ -74,7 +74,7 @@ public class ChessGameLoader {
         whitePlayer.setColor(Color.WHITE);
         Square lastMove = whitePlayer.lookupSquare(whitePlayerData[1].charAt(0), whitePlayerData[1].charAt(0));
         whitePlayer.getMoves().add(lastMove);
-        if(whitePlayerData[2] != null){
+        if(whitePlayerData.length > 2 && whitePlayerData[2] != null){
             capturedPieces = new ArrayList<>();
             capturedPieces.addAll(List.of(whitePlayerData[2].split(":")));
             whitePlayer.setCapturedPieces(capturedPieces);

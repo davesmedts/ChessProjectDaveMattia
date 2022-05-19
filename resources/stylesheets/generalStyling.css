@@ -1,4 +1,3 @@
-
 /* background General */
 #HomeView {
     -fx-background-image: url("/BackgroundImageHomePage.jpg");
@@ -14,16 +13,20 @@
 }
 
 
-
 /* titel Home View*/
 
-#TitelHomeView{
+#TitelHomeView {
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
-.label{
-    -fx-text-fill: red;
+#gameView {
+    -fx-background-color: #dedcd9;
+    -fx-background-size: stretch;
+}
+
+.label {
+    -fx-text-fill: #0051ff;
 }
 
 
@@ -32,32 +35,42 @@
     -fx-background-color: #928043;
 
 }
+
 .button .text {
-    -fx-fill:black;
+    -fx-fill: black;
 }
 
 .button:hover {
-    -fx-background-color: #f6f7f3 ;
+    -fx-background-color: #f6f7f3;
 
 }
 
 /* ButtonType */
 
-.ButtonType{
+.ButtonType {
     -fx-background-color: #928043;
 
 }
 
-.toggle-button{
+.toggle-button {
     -fx-background-color: red;
+}
+
+.toggle-button .text {
+    -fx-fill: black;
 
 }
 
-.toggle-button .text{
-    -fx-fill:black;
-
+#playerNameGameView {
+    -fx-font-weight: bold;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-alignment: CENTER;
+    -fx-border-style: solid;
+    -fx-border-color: #928043;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #858383;
 }
-
-
 
 
