@@ -200,25 +200,17 @@ public class GamePresenter {
             }
         }
 
-        List<Piece> whitePieces = model.getWhitePlayer().getPieces();
+        List<String> whiteCapturedPieces = model.getWhitePlayer().getCapturedPieces();
         view.getWhiteCapturedPieces().getChildren().clear();
-        for (Piece whitePiece : whitePieces) {
-            if (whitePiece.getPosition() == null) {
-                String pieceName = whitePiece.toString();
-                ImageView pieceImage = getPieceImage(pieceName);
+        for (String whitePiece : whiteCapturedPieces) {
+                ImageView pieceImage = getPieceImage(whitePiece);
                 view.getWhiteCapturedPieces().getChildren().add(pieceImage);
-
-            }
         }
-        List<Piece> blackPieces = model.getBlackPlayer().getPieces();
+        List<String> blackCapturedPieces = model.getBlackPlayer().getCapturedPieces();
 //        view.getBlackCapturedPieces().getChildren().clear();
-        for (Piece blackPiece : blackPieces) {
-            if (blackPiece.getPosition() == null) {
-                String pieceName = blackPiece.toString();
-                ImageView pieceImage = getPieceImage(pieceName);
+        for (String blackPiece : blackCapturedPieces) {
+                ImageView pieceImage = getPieceImage(blackPiece);
                 view.getBlackCapturedPieces().getChildren().add(pieceImage);
-
-            }
         }
     }
 
@@ -262,7 +254,7 @@ public class GamePresenter {
                 image = new ImageView("Bishopwhite.png");
                 break;
         }
-        image.setFitWidth(25);
+        image.setFitHeight(40);
         image.setPreserveRatio(true);
         image.setSmooth(true);
         return image;
