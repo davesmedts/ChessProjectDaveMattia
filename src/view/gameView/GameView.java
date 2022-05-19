@@ -1,5 +1,7 @@
 package view.gameView;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -15,8 +17,6 @@ public class GameView extends BorderPane {
     private HBox blackCapturedPieces;
 
     private Button homeBtn;
-    private Button stopSpelBtn;
-    private Button opslaanBtn;
 
     private MenuItem afsluiten;
     private MenuItem opslaan;
@@ -54,9 +54,12 @@ public class GameView extends BorderPane {
 
     public void setGameChessBoardGrid(ChessBoardView gameChessBoardGrid) {
         this.gameChessBoardGrid = gameChessBoardGrid;
+        gameChessBoardGrid.setAlignment(Pos.CENTER);
         this.chessBoardSquares = gameChessBoardGrid.getGameSquares();
         this.blackCapturedPieces = new HBox();
         this.whiteCapturedPieces = new HBox();
+        blackCapturedPieces.setAlignment(Pos.CENTER);
+        whiteCapturedPieces.setAlignment(Pos.CENTER);
         mainContainer.getChildren().clear();
         mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
 
@@ -68,6 +71,7 @@ public class GameView extends BorderPane {
     }
 
     public void initialiseNodes(String colorOne, String colorTwo) {
+
 //        mainContainerNodes
         this.mainContainer = new VBox();
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
@@ -94,8 +98,6 @@ public class GameView extends BorderPane {
 //        left area nodes
         this.leftContainer = new VBox();
         this.homeBtn = new Button("Home page");
-        this.opslaanBtn = new Button("opslaan");
-        this.stopSpelBtn = new Button("Stop spel");
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
@@ -118,11 +120,18 @@ public class GameView extends BorderPane {
         this.setTop(menuBar);
 
 //        MainContainerContent
+        mainContainer.setAlignment(Pos.TOP_CENTER);
+        mainContainer.setSpacing(10);
+        mainContainer.setPadding(new Insets(10));
         mainContainer.getChildren().addAll(blackPlayerName,blackPlayerFeedback,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whitePlayerFeedback,whiteCapturedPieces);
+        gameChessBoardGrid.setAlignment(Pos.CENTER);
+        blackCapturedPieces.setAlignment(Pos.CENTER);
+        whiteCapturedPieces.setAlignment(Pos.CENTER);
+
         this.setCenter(mainContainer);
 
 //        leftArea
-        leftContainer.getChildren().addAll(chessLogo, homeBtn, opslaanBtn, stopSpelBtn);
+        leftContainer.getChildren().addAll(chessLogo, homeBtn);
         this.setLeft(leftContainer);
 
 //      HelpIcons
