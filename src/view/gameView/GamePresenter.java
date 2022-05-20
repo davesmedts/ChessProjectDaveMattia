@@ -140,7 +140,7 @@ public class GamePresenter {
                                 model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.WHITE);
                                 model.getSaver().save();
-                                if(model.getWhitePlayer().kingLookup(Color.BLACK).isChecked()){
+                                if(model.getWhitePlayer().kingLookup(Color.WHITE).isChecked()){
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("SCHAAK!");
                                     alert.setContentText("Wit staat schaak!");

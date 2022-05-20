@@ -63,7 +63,7 @@
 
 #playerNameGameView {
     -fx-font-weight: bold;
-    -fx-pref-width: 100px;
+    -fx-pref-width: 200px;
     -fx-pref-height: 30px;
     -fx-alignment: CENTER;
     -fx-border-style: solid;
