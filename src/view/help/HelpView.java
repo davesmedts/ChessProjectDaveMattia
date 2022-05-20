@@ -1,5 +1,10 @@
 package view.help;
 
+import javafx.geometry.Orientation;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -15,8 +20,13 @@ import java.nio.file.Paths;
  * @author Dave Smedts
  * @version 1.0 10/05/2022 20:15
  */
-public class HelpView extends VBox {
-    private Text rules;
+public class HelpView extends BorderPane {
+    ScrollBar scrollBar;
+    private TextArea rules;
+
+    public ScrollBar getScrollBar() {
+        return scrollBar;
+    }
 
     public HelpView() {
         initialiseNodes();
@@ -24,16 +34,18 @@ public class HelpView extends VBox {
     }
 
     private void initialiseNodes(){
-        this.rules = new Text();
-        rules.setText(readRulesFile());
-        rules.setFont(new Font(15));
-        rules.setWrappingWidth(700);
-        rules.setTextAlignment(TextAlignment.JUSTIFY);
+        this.rules = new TextArea(readRulesFile());
+        rules.setId("rules");
+        rules.setPrefWidth(Double.MAX_VALUE);
+        rules.setPrefHeight(Double.MAX_VALUE);
+        rules.setWrapText(true);
+        rules.setFont(Font.font("Arial",12));
+        rules.setEditable(false);
     }
 
 
     private void layoutNodes() {
-        this.getChildren().add(rules);
+        this.setCenter(rules);
     }
 
 
