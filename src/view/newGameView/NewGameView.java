@@ -55,10 +55,23 @@ public class NewGameView extends BorderPane {
     }
 
 
+    public ImageView getHelpIcon() {
+        return helpIcon;
+    }
+
+    public ImageView getInfoIcon() {
+        return infoIcon;
+    }
+
+    public ImageView getSettingsIcon() {
+        return settingsIcon;
+    }
+
     public NewGameView() {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
 
     private void initialiseNodes() {
 //        mainContainerNodes
@@ -74,10 +87,8 @@ public class NewGameView extends BorderPane {
         this.applyPlayerTwo = new Button(("Save"));
         this.GridPane = new GridPane();
 
-        //hbox
+        //vbox
         this.saveContainer = new VBox(5);
-
-
 
 
 //        menuNodes
@@ -92,10 +103,10 @@ public class NewGameView extends BorderPane {
         this.homeBtn = new Button("Home page");
 
 //        Icons on the right part of the screen
-        this.helpIconsContainer = new HBox();
-        this.helpIcon = new ImageView("/questionIcon.png");
-        this.settingsIcon = new ImageView("/infoIcon.png");
-        this.infoIcon = new ImageView("/settingsIcon.png");
+        this.helpIconsContainer = new HBox(8);
+        this.helpIcon = new ImageView("/questionIconGold.png");
+        this.settingsIcon = new ImageView("/settingsIconGold.png");
+        this.infoIcon = new ImageView("/infoIconGold.png");
 
 
 //        statusbar
@@ -137,6 +148,8 @@ public class NewGameView extends BorderPane {
 
         //        statusbar
         this.setBottom(statusBarText);
+
+        this.setId("NewGameView");
 
     }
 

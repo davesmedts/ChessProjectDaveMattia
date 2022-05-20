@@ -17,11 +17,14 @@ public class HomeView extends GridPane {
     private Button openenBtn;
     private Button rangschikkingBtn;
 
-    private MenuItem afsluiten;
-    private MenuItem opslaan;
-    private MenuItem openen;
+
     private MenuItem spelregels;
     private MenuItem info;
+    private MenuItem instellingen;
+    private MenuItem newGame;
+    private MenuItem home;
+    private MenuItem rangschikking;
+    private MenuItem history;
 
     private Label titel;
 
@@ -58,11 +61,11 @@ public class HomeView extends GridPane {
         this.setId("HomeView");
 
 //        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.openen = new MenuItem("openen");
-        this.opslaan = new MenuItem("opslaan");
         this.spelregels = new MenuItem("spelregels");
         this.info = new MenuItem("info");
+        this.rangschikking = new MenuItem("rangschikking");
+        this.history = new MenuItem("Oude spellen");
+        this.home = new MenuItem("home");
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
@@ -78,9 +81,12 @@ public class HomeView extends GridPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu bestandMenu = new Menu("Bestand",null, this.openen, this.opslaan, this.afsluiten);
-        final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
+        final Menu home = new Menu("Home",null);
+        final Menu newGame = new Menu("Nieuw spel",null);
+        final Menu rangschikking = new Menu("rangschikking", null);
+        final Menu history = new Menu("History",null);
+        final Menu helpMenu = new Menu("Algemeen",null,this.instellingen, this.spelregels, this.info);
+        final MenuBar menuBar = new MenuBar(home, helpMenu);
 
         this.add(menuBar, 0 ,0,4,1);
 
@@ -98,12 +104,14 @@ public class HomeView extends GridPane {
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
-        helpIconsContainer.setAlignment(Pos.TOP_CENTER);
+        helpIconsContainer.setAlignment(Pos.TOP_RIGHT);
         this.add(helpIconsContainer, 3 ,1);
 
 //        statusbar
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
         this.add(statusBarText,1,3,2,1);
+
+
 
         // column constraints
         ColumnConstraints col1Constraints = new ColumnConstraints();

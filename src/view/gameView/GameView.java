@@ -108,9 +108,9 @@ public class GameView extends BorderPane {
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
-        this.helpIcon = new ImageView("/questionIcon.png");
-        this.settingsIcon = new ImageView("/infoIcon.png");
-        this.infoIcon = new ImageView("/settingsIcon.png");
+        this.helpIcon = new ImageView("/questionIconGold.png");
+        this.settingsIcon = new ImageView("/settingsIconGold.png");
+        this.infoIcon = new ImageView("/infoIconGold.png");
 
         //        statusbar
         this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
