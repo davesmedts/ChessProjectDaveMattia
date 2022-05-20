@@ -17,6 +17,8 @@ import java.util.Random;
 public class Game {
     private Player blackPlayer;
     private Player whitePlayer;
+    private String naamZwart;
+    private String naamWit;
     private Board gameBoard;
     private Color turn;
     private LocalDateTime startTime;
@@ -26,11 +28,16 @@ public class Game {
     private ChessGameLoader loader;
     boolean isNewGame;
 
+
     //constructor
-    public Game(Player playerOne, Player playerTwo, boolean isNewGame) {
+    public Game(String naamWit, String naamZwart, boolean isNewGame) {
         this.isNewGame = isNewGame;
-        newGame(playerOne, playerTwo);
+
+        this.naamWit = naamWit;
+        this.naamZwart = naamZwart;
+        newGame();
     }
+
 
     public void setWinner(Player winner) {
         this.winner = winner;
@@ -77,12 +84,15 @@ public class Game {
     }
 
 
-
-    public void newGame(Player playerOne, Player playerTwo) {
+    public void newGame() {
 
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
+
+        Player playerOne = new Player(naamWit);
+        Player playerTwo = new Player(naamZwart);
+
         Random rd = new Random();
         boolean playerOneIsBlack = rd.nextBoolean();
         if (playerOneIsBlack) {
@@ -111,7 +121,7 @@ public class Game {
 
     }
 
-    public void loadGame(String fileName){
+    public void loadGame(String fileName) {
         this.loader = new ChessGameLoader(fileName);
         this.blackPlayer = loader.getBlackPlayer();
         this.whitePlayer = loader.getWhitePlayer();

@@ -43,7 +43,11 @@ public class NewGamePresenter {
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
 
-//                view.getTekstPlayerWhite().get
+                String playerOne = view.getTekstPlayerWhite().getText();
+
+
+                String playerTwo = view.getTekstPlayerBlack().getText();
+               new Game(playerOne, playerTwo, true);
 
 
             }

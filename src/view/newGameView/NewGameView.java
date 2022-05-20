@@ -4,8 +4,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
 
 public class NewGameView extends BorderPane {
@@ -13,6 +15,7 @@ public class NewGameView extends BorderPane {
     private HBox helpIconsContainer;
     private VBox leftContainer;
     private VBox saveContainer;
+    private GridPane GridPane;
 
 
     private Button homeBtn;
@@ -71,6 +74,8 @@ public class NewGameView extends BorderPane {
         this.applyPlayerOne = new Button("Save");
         this.applyPlayerTwo = new Button(("Save"));
 
+        this.GridPane = new GridPane();
+
         //hbox
         this.saveContainer = new VBox(5);
 
@@ -114,15 +119,14 @@ public class NewGameView extends BorderPane {
 //        MainContainerContent
         this.tekstPlayerWhite.setMaxWidth(200);
         this.tekstPlayerBlack.setMaxWidth(200);
-        mainContainer.getChildren().addAll(description, naamPlayerWhite, tekstPlayerWhite, naamPlayerBlack, tekstPlayerBlack, startSpel);
-        mainContainer.setAlignment(Pos.CENTER_RIGHT);
+        mainContainer.getChildren().addAll(description, naamPlayerWhite, tekstPlayerWhite, naamPlayerBlack, tekstPlayerBlack, startSpel, saveContainer);
+        mainContainer.setAlignment(Pos.CENTER);
         mainContainer.setSpacing(25);
         this.setCenter(mainContainer);
 
-        // saveContainer
-        saveContainer.getChildren().addAll(applyPlayerOne, applyPlayerTwo);
-        saveContainer.setAlignment(Pos.CENTER_LEFT);
-        this.setCenter(saveContainer);
+
+
+
 
 //        leftArea
         leftContainer.getChildren().addAll(chessLogo, homeBtn);

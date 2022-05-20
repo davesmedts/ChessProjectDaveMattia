@@ -29,10 +29,12 @@ public class Main extends Application {
 ////        presenter.addWindowEventHandlers();
 //        primaryStage.show();
 //    }
-        Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        NewGameView view = new NewGameView();
-        NewGamePresenter presenter = new NewGamePresenter(model, view);
+
+        Game model = new Game();
+
+        HomeView view = new HomeView();
+        HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
