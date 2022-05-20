@@ -21,10 +21,12 @@ public class HomeView extends GridPane {
     private MenuItem spelregels;
     private MenuItem info;
     private MenuItem instellingen;
+    private MenuItem algemeen;
     private MenuItem newGame;
     private MenuItem home;
     private MenuItem rangschikking;
     private MenuItem history;
+
 
     private Label titel;
 
@@ -66,6 +68,14 @@ public class HomeView extends GridPane {
         this.rangschikking = new MenuItem("rangschikking");
         this.history = new MenuItem("Oude spellen");
         this.home = new MenuItem("home");
+        this.newGame = new MenuItem("nieuw spel");
+        this.instellingen = new MenuItem("instellingen");
+        this.algemeen = new MenuItem("algemeen");
+
+
+
+
+
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
@@ -84,9 +94,12 @@ public class HomeView extends GridPane {
         final Menu home = new Menu("Home",null);
         final Menu newGame = new Menu("Nieuw spel",null);
         final Menu rangschikking = new Menu("rangschikking", null);
-        final Menu history = new Menu("History",null);
-        final Menu helpMenu = new Menu("Algemeen",null,this.instellingen, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(home, helpMenu);
+        final Menu history = new Menu("history",null);
+        final Menu Algemeen = new Menu("Algemeen",null,this.instellingen, this.spelregels, this.info);
+        final MenuBar menuBar = new MenuBar(home,newGame,rangschikking,history, Algemeen);
+
+
+
 
         this.add(menuBar, 0 ,0,4,1);
 
@@ -171,7 +184,32 @@ public class HomeView extends GridPane {
         return infoIcon;
     }
 
-    public Label getStatusBarText() {
-        return statusBarText;
+
+    public MenuItem getSpelregels() {
+        return spelregels;
+    }
+
+    public MenuItem getInfo() {
+        return info;
+    }
+
+    public MenuItem getInstellingen() {
+        return instellingen;
+    }
+
+    public MenuItem getNewGame() {
+        return newGame;
+    }
+
+    public MenuItem getHome() {
+        return home;
+    }
+
+    public MenuItem getRangschikking() {
+        return rangschikking;
+    }
+
+    public MenuItem getHistory() {
+        return history;
     }
 }

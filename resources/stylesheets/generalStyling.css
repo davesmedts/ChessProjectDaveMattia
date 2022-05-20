@@ -85,14 +85,21 @@
 
 /* menu */
 
+.menu{
+    -fx-padding: 5 40 8 40;
+
+}
 
 .menu-bar {
     -fx-background-color: #928043 ;
     -fx-opacity: 0.5;
     -fx-border-width: 2.0;
+    -fx-alignment: center;
+
+
 
 }
-.menu-bar .label {
+.menu-bar {
     -fx-font-size: 14.0 pt;
     -fx-font-family: "Bookman Old Style";
     -fx-text-fill: white;
@@ -100,26 +107,32 @@
     -fx-padding: 10.0px;
 
 }
-.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+.menu-bar .menu-button:hover {
     -fx-background: black ;
     -fx-opacity: 0.5;
     -fx-text-fill: white;
 }
 
-.menu-item {
-    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
-    -fx-text-fill: black;
-    -fx-background: darkgray ;
+.menu-item{
+
+    -fx-fill-width: 200px;
+
 }
+
+/* submenu styling */
 .menu-item .label{
     -fx-font-size: 14.0 pt;
     -fx-text-fill: black;
 }
+
 .menu-item .label:hover{
     -fx-font-size: 14.0 pt;
     -fx-background: black ;
     -fx-text-fill: white;
+    -fx-text-alignment: center;
 }
+
+
 
 
 
