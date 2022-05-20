@@ -58,6 +58,14 @@
 
 }
 
+/* */
+
+#NewGameView {
+    -fx-background-image: url("/BackgroundImageHomePage.jpg");
+
+    -fx-background-size: stretch;
+}
+
 
 
 

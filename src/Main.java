@@ -8,10 +8,11 @@ import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
+import view.newGameView.NewGamePresenter;
+import view.newGameView.NewGameView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
 
-import java.awt.*;
 
 public class Main extends Application {
     @Override
@@ -30,8 +31,8 @@ public class Main extends Application {
 //    }
         Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        StartView view = new StartView();
-        SplashScreenPresenter presenter = new SplashScreenPresenter(model, view);
+        NewGameView view = new NewGameView();
+        NewGamePresenter presenter = new NewGamePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

@@ -79,6 +79,7 @@ public class Game {
 
 
     public void newGame(Player playerOne, Player playerTwo) {
+
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
