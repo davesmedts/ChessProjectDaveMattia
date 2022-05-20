@@ -17,8 +17,6 @@ import java.util.Random;
 public class Game {
     private Player blackPlayer;
     private Player whitePlayer;
-    private String naamZwart;
-    private String naamWit;
     private Board gameBoard;
     private Color turn;
     private LocalDateTime startTime;
@@ -30,13 +28,17 @@ public class Game {
 
 
     //constructor
-    public Game(String naamWit, String naamZwart, boolean isNewGame) {
-        this.isNewGame = isNewGame;
+    public Game(){
 
-        this.naamWit = naamWit;
-        this.naamZwart = naamZwart;
-        newGame();
     }
+
+//    public Game(String naamWit, String naamZwart, boolean isNewGame) {
+//        this.isNewGame = isNewGame;
+//
+//        this.naamWit = naamWit;
+//        this.naamZwart = naamZwart;
+//        newGame();
+//    }
 
 
     public void setWinner(Player winner) {
@@ -83,15 +85,38 @@ public class Game {
         this.saver = saver;
     }
 
+    public void setBlackPlayer(Player blackPlayer) {
+        this.blackPlayer = blackPlayer;
+    }
 
-    public void newGame() {
+    public void setWhitePlayer(Player whitePlayer) {
+        this.whitePlayer = whitePlayer;
+    }
+
+    public void setGameBoard(Board gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setLoader(ChessGameLoader loader) {
+        this.loader = loader;
+    }
+
+    public void setNewGame(boolean newGame) {
+        isNewGame = newGame;
+    }
+
+    public void newGame(String playerOneName, String playerTwoName) {
 
         this.startTime = LocalDateTime.now();
         this.saver = new ChessGameSaver(this);
         // creating Random boolean that can be used to randomly define who plays black or white
 
-        Player playerOne = new Player(naamWit);
-        Player playerTwo = new Player(naamZwart);
+        Player playerOne = new Player(playerOneName);
+        Player playerTwo = new Player(playerTwoName);
 
         Random rd = new Random();
         boolean playerOneIsBlack = rd.nextBoolean();

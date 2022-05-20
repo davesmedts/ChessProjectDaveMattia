@@ -35,8 +35,6 @@ public class GamePresenter {
     public GamePresenter(Game model, GameView view) {
         this.model = model;
         this.view = view;
-        view.setBlackPlayerName(model.getBlackPlayer().toString());
-        view.setWhitePlayerName(model.getWhitePlayer().toString());
         this.updateView();
         this.addEventHandlers();
     }

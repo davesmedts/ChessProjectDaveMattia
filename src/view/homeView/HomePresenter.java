@@ -132,6 +132,10 @@ public class HomePresenter {
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
 
+                    gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                    gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+
+
                 }
 //                    (Files.isReadable(Paths.get(selectedFile.toURI())))) {
 //                        try {

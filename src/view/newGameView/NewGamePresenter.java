@@ -38,17 +38,18 @@ public class NewGamePresenter {
         view.getStartSpel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                String playerOne = view.getTekstPlayerOne().getText();
+                String playerTwo = view.getTekstPlayerTwo().getText();
+                model.newGame(playerOne, playerTwo);
+
                 GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
                 GamePresenter homePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
 
-                String playerOne = view.getTekstPlayerWhite().getText();
-
-
-                String playerTwo = view.getTekstPlayerBlack().getText();
-               new Game(playerOne, playerTwo, true);
-
+                gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                gameView.setWhitePlayerName(model.getWhitePlayer().toString());
 
             }
         });

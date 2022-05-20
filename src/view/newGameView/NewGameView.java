@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.GridPane;
 
 
 public class NewGameView extends BorderPane {
@@ -41,8 +40,8 @@ public class NewGameView extends BorderPane {
     private Label naamPlayerWhite;
     private Label naamPlayerBlack;
 
-    private TextField tekstPlayerWhite;
-    private TextField tekstPlayerBlack;
+    private TextField tekstPlayerOne;
+    private TextField tekstPlayerTwo;
 
     public static String colorOne = "#57271d";
     public static String colorTwo = "#ecddc8";
@@ -66,14 +65,13 @@ public class NewGameView extends BorderPane {
         this.mainContainer = new VBox();
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
         this.description = new Label("Voer hier de naam van de spelers in");
-        this.naamPlayerWhite = new Label("Speler 1:");
-        this.naamPlayerBlack = new Label("Speler 2");
-        this.tekstPlayerWhite = new TextField();
-        this.tekstPlayerBlack = new TextField();
+        this.naamPlayerWhite = new Label("");
+        this.naamPlayerBlack = new Label("");
+        this.tekstPlayerOne = new TextField();
+        this.tekstPlayerTwo = new TextField();
         this.startSpel = new Button("Start spel");
         this.applyPlayerOne = new Button("Save");
         this.applyPlayerTwo = new Button(("Save"));
-
         this.GridPane = new GridPane();
 
         //hbox
@@ -117,9 +115,9 @@ public class NewGameView extends BorderPane {
         this.setTop(menuBar);
 
 //        MainContainerContent
-        this.tekstPlayerWhite.setMaxWidth(200);
-        this.tekstPlayerBlack.setMaxWidth(200);
-        mainContainer.getChildren().addAll(description, naamPlayerWhite, tekstPlayerWhite, naamPlayerBlack, tekstPlayerBlack, startSpel, saveContainer);
+        this.tekstPlayerOne.setMaxWidth(200);
+        this.tekstPlayerTwo.setMaxWidth(200);
+        mainContainer.getChildren().addAll(description, naamPlayerWhite, tekstPlayerOne, naamPlayerBlack, tekstPlayerTwo, startSpel, saveContainer);
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.setSpacing(25);
         this.setCenter(mainContainer);
@@ -158,11 +156,11 @@ public class NewGameView extends BorderPane {
         return applyPlayerTwo;
     }
 
-    public TextField getTekstPlayerWhite() {
-        return tekstPlayerWhite;
+    public TextField getTekstPlayerOne() {
+        return tekstPlayerOne;
     }
 
-    public TextField getTekstPlayerBlack() {
-        return tekstPlayerBlack;
+    public TextField getTekstPlayerTwo() {
+        return tekstPlayerTwo;
     }
 }
