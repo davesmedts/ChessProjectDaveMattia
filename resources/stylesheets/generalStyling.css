@@ -74,6 +74,12 @@
     -fx-text-fill: #858383;
 }
 
+.HelpView {
+    -fx-background-image: url("/BackgroundImageHomePage.jpg");
+    -fx-text-fill: white;
+    -fx-background-size: stretch;
+}
+
 
 #NewGameView {
     -fx-background-image: url("/BackgroundImageHomePage.jpg");

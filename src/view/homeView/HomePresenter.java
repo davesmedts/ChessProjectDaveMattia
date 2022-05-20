@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
+import view.help.HelpPresenter;
+import view.help.HelpView;
 import view.loadGameView.LoadGamePresenter;
 import view.loadGameView.LoadGameView;
 import view.newGameView.NewGamePresenter;
@@ -153,6 +155,23 @@ public class HomePresenter {
             }
         });
 
+        view.getHelpIcon().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(helpView);
+                Stage helpStage = new Stage();
+                helpStage.setTitle("Hoe speel je schaak?");
+                helpStage.initOwner(view.getScene().getWindow());
+                helpStage.initModality(Modality.APPLICATION_MODAL);
+                Scene scene = new Scene(helpView);
+//                scene.getStylesheets().add("stylesheets/style.css");
+                helpStage.setScene(scene);
+                helpStage.setX(view.getScene().getWindow().getX());
+                helpStage.setY(view.getScene().getWindow().getY() + 100);
+                helpStage.showAndWait();
+            }
+        });
     }
 
 

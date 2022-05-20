@@ -132,7 +132,7 @@ public class Pawn extends Piece {
                     possibleSquares.add(moveSquare);
                 } else if (enPassantPiece instanceof Pawn
                         && enPassantPiece.getColor() != super.getColor() // check if we are dealing with an enemy pawn
-                        && super.getPosition().getRowNumber() == 5 // for white pieces en passant can only occur on row 5
+                        && super.getPosition().getRowNumber() == 4 // for white pieces en passant can only occur on row 5
                         && lastMoveOpponent.equals(enPassantPiece.getPosition())) { // here we check if enPassant piece is the last move of the opponent, only then enPassant is valid.
                     possibleSquares.add(moveSquare);
                 }
@@ -153,7 +153,7 @@ public class Pawn extends Piece {
                     possibleSquares.add(moveSquare);
                 } else if (enPassantPiece instanceof Pawn
                         && enPassantPiece.getColor() != super.getColor() // check if we are dealing with an enemy pawn
-                        && super.getPosition().getRowNumber() == 5 // for white pieces en passant can only occur on row 5
+                        && super.getPosition().getRowNumber() == 4 // for white pieces en passant can only occur on row 5
                         && lastMoveOpponent.equals(enPassantPiece.getPosition())) { // here we check if enPassant piece is the last move of the opponent, only then enPassant is valid.
                     possibleSquares.add(moveSquare);
                 }
