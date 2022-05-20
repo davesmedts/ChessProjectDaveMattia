@@ -5,6 +5,7 @@ import exceptions.IllegalPieceSelectionException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.Board;
@@ -17,6 +18,7 @@ import view.homeView.HomeView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class GamePresenter {
     private static class Position {
@@ -116,7 +118,7 @@ public class GamePresenter {
                                 model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.BLACK);
                                 model.getSaver().save();
-                                if(model.getBlackPlayer().kingLookup(Color.BLACK).isChecked()){
+                                if (model.getBlackPlayer().kingLookup(Color.BLACK).isChecked() && !model.getWhitePlayer().isWinner()) {
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("SCHAAK!");
                                     alert.setContentText("Zwart staat schaak!");
@@ -133,6 +135,12 @@ public class GamePresenter {
                                     alert.setTitle("Game over!");
                                     alert.setContentText(model.getWhitePlayer().toString() + " wint");
                                     alert.showAndWait();
+
+                                    HomeView homeView = new HomeView();
+                                    HomePresenter homePresenter = new HomePresenter(model, homeView);
+                                    view.getScene().setRoot(homeView);
+                                    homeView.getScene().getWindow().sizeToScene();
+
                                 }
 
 
@@ -140,7 +148,7 @@ public class GamePresenter {
                                 model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 model.setTurn(Color.WHITE);
                                 model.getSaver().save();
-                                if(model.getWhitePlayer().kingLookup(Color.WHITE).isChecked()){
+                                if (model.getWhitePlayer().kingLookup(Color.WHITE).isChecked() && !model.getBlackPlayer().isWinner()) {
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("SCHAAK!");
                                     alert.setContentText("Wit staat schaak!");
@@ -158,6 +166,12 @@ public class GamePresenter {
                                     alert.setTitle("Game over!");
                                     alert.setContentText(model.getBlackPlayer().toString() + " wint");
                                     alert.showAndWait();
+
+                                    HomeView homeView = new HomeView();
+                                    HomePresenter homePresenter = new HomePresenter(model, homeView);
+                                    view.getScene().setRoot(homeView);
+                                    homeView.getScene().getWindow().sizeToScene();
+
                                 }
                             }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
@@ -221,14 +235,14 @@ public class GamePresenter {
         List<String> whiteCapturedPieces = model.getWhitePlayer().getCapturedPieces();
         view.getWhiteCapturedPieces().getChildren().clear();
         for (String whitePiece : whiteCapturedPieces) {
-                ImageView pieceImage = getPieceImage(whitePiece);
-                view.getWhiteCapturedPieces().getChildren().add(pieceImage);
+            ImageView pieceImage = getPieceImage(whitePiece);
+            view.getWhiteCapturedPieces().getChildren().add(pieceImage);
         }
         List<String> blackCapturedPieces = model.getBlackPlayer().getCapturedPieces();
 //        view.getBlackCapturedPieces().getChildren().clear();
         for (String blackPiece : blackCapturedPieces) {
-                ImageView pieceImage = getPieceImage(blackPiece);
-                view.getBlackCapturedPieces().getChildren().add(pieceImage);
+            ImageView pieceImage = getPieceImage(blackPiece);
+            view.getBlackCapturedPieces().getChildren().add(pieceImage);
         }
     }
 
@@ -237,25 +251,25 @@ public class GamePresenter {
         switch (pieceName) {
             case "Knightblack":
                 image = new ImageView("/Knightblack.png");
-            break;
+                break;
             case "Kingblack":
                 image = new ImageView("/Kingblack.png");
-            break;
+                break;
             case "Queenblack":
                 image = new ImageView("/Queenblack.png");
-            break;
+                break;
             case "Pawnblack":
                 image = new ImageView("/Pawnblack.png");
-           break;
+                break;
             case "Rookblack":
                 image = new ImageView("/Rookblack.png");
-            break;
+                break;
             case "Bishopblack":
                 image = new ImageView("/BishopBlack.png");
-            break;
+                break;
             case "Knightwhite":
                 image = new ImageView("Knightwhite.png");
-            break;
+                break;
             case "Kingwhite":
                 image = new ImageView("Kingwhite.png");
                 break;
