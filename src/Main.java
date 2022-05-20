@@ -8,10 +8,11 @@ import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
+import view.newGameView.NewGamePresenter;
+import view.newGameView.NewGameView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
 
-import java.awt.*;
 
 public class Main extends Application {
     @Override
@@ -28,10 +29,12 @@ public class Main extends Application {
 ////        presenter.addWindowEventHandlers();
 //        primaryStage.show();
 //    }
-        Game model = new Game(new Player("Deef"), new Player("Matti magic"), true);
 
-        StartView view = new StartView();
-        SplashScreenPresenter presenter = new SplashScreenPresenter(model, view);
+
+        Game model = new Game();
+
+        HomeView view = new HomeView();
+        HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

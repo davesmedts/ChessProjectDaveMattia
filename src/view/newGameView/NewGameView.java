@@ -4,17 +4,24 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
 
 public class NewGameView extends BorderPane {
     private VBox mainContainer;
     private HBox helpIconsContainer;
     private VBox leftContainer;
+    private VBox saveContainer;
+    private GridPane GridPane;
+
 
     private Button homeBtn;
     private Button startSpel;
+    private Button applyPlayerOne;
+    private Button applyPlayerTwo;
 
 
     private MenuItem afsluiten;
@@ -64,6 +71,16 @@ public class NewGameView extends BorderPane {
         this.tekstPlayerWhite = new TextField();
         this.tekstPlayerBlack = new TextField();
         this.startSpel = new Button("Start spel");
+        this.applyPlayerOne = new Button("Save");
+        this.applyPlayerTwo = new Button(("Save"));
+
+        this.GridPane = new GridPane();
+
+        //hbox
+        this.saveContainer = new VBox(5);
+
+
+
 
 //        menuNodes
         this.afsluiten = new MenuItem("afsluiten");
@@ -83,11 +100,10 @@ public class NewGameView extends BorderPane {
         this.infoIcon = new ImageView("/settingsIcon.png");
 
 
-
-
 //        statusbar
-        //        statusbar
         this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
+
+        this.setId("NewGameView");
 
     }
 
@@ -95,18 +111,22 @@ public class NewGameView extends BorderPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu bestandMenu = new Menu("Bestand",null, this.openen, this.opslaan, this.afsluiten);
-        final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);
+        final Menu bestandMenu = new Menu("Bestand", null, this.openen, this.opslaan, this.afsluiten);
+        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
         final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
         this.setTop(menuBar);
 
 //        MainContainerContent
-        this.tekstPlayerWhite.setMaxWidth(150);
-        this.tekstPlayerBlack.setMaxWidth(150);
-        mainContainer.getChildren().addAll(description,naamPlayerWhite,tekstPlayerWhite, naamPlayerBlack, tekstPlayerBlack, startSpel);
+        this.tekstPlayerWhite.setMaxWidth(200);
+        this.tekstPlayerBlack.setMaxWidth(200);
+        mainContainer.getChildren().addAll(description, naamPlayerWhite, tekstPlayerWhite, naamPlayerBlack, tekstPlayerBlack, startSpel, saveContainer);
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.setSpacing(25);
         this.setCenter(mainContainer);
+
+
+
+
 
 //        leftArea
         leftContainer.getChildren().addAll(chessLogo, homeBtn);
@@ -128,5 +148,21 @@ public class NewGameView extends BorderPane {
 
     public Button getStartSpel() {
         return startSpel;
+    }
+
+    public Button getApplyPlayerOne() {
+        return applyPlayerOne;
+    }
+
+    public Button getApplyPlayerTwo() {
+        return applyPlayerTwo;
+    }
+
+    public TextField getTekstPlayerWhite() {
+        return tekstPlayerWhite;
+    }
+
+    public TextField getTekstPlayerBlack() {
+        return tekstPlayerBlack;
     }
 }

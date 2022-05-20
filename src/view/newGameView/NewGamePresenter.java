@@ -42,8 +42,18 @@ public class NewGamePresenter {
                 GamePresenter homePresenter = new GamePresenter(model, gameView);
                 view.getScene().setRoot(gameView);
                 gameView.getScene().getWindow().sizeToScene();
+
+                String playerOne = view.getTekstPlayerWhite().getText();
+
+
+                String playerTwo = view.getTekstPlayerBlack().getText();
+               new Game(playerOne, playerTwo, true);
+
+
             }
         });
+
+
     }
 
 
