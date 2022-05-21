@@ -1,4 +1,4 @@
-package startView;
+package view.startView;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;

@@ -2,16 +2,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Game;
-import model.Player;
-import startView.StartView;
-import view.gameView.GamePresenter;
-import view.gameView.GameView;
+import model.Ranking;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
-import view.newGameView.NewGamePresenter;
-import view.newGameView.NewGameView;
-import view.splashScreenView.SplashScreenPresenter;
-import view.splashScreenView.SplashScreenView;
+import view.rankingView.RankingPresenter;
+import view.rankingView.RankingView;
 
 
 public class Main extends Application {
@@ -33,8 +28,8 @@ public class Main extends Application {
 
         Game model = new Game();
 
-        HomeView view = new HomeView();
-        HomePresenter presenter = new HomePresenter(model, view);
+        RankingView view = new RankingView();
+        RankingPresenter presenter = new RankingPresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

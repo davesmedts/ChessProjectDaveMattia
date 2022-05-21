@@ -13,8 +13,7 @@ public class RankingView extends BorderPane {
     private VBox leftContainer;
 
     private Button homeBtn;
-    private Button stopSpelBtn; // waarom zit dat erin? het zijn de rankings?
-    private Button opslaanBtn; // waarom zit dat erin? het zijn de rankings?
+
 
     private MenuItem afsluiten;
     private MenuItem opslaan;
@@ -29,10 +28,18 @@ public class RankingView extends BorderPane {
     private ImageView settingsIcon;
 
     private Label statusBarText;
-    private Label datum;
-    private Label playerWhite;
-    private Label playerBlack;
-    private Label winnaar;
+
+
+    private final TableView table = new TableView();
+
+
+
+    TableColumn datumCol;
+    TableColumn spelerWitCol;
+    TableColumn spelerZwartCol;
+    TableColumn winnaarCol;
+
+
 
 
     public RankingView() {
@@ -55,23 +62,24 @@ public class RankingView extends BorderPane {
 //        left area nodes
         this.leftContainer = new VBox();
         this.homeBtn = new Button("Home page");
-        this.opslaanBtn = new Button("opslaan");
-        this.stopSpelBtn = new Button("Stop spel");
 
 //        Icons on the right part of the screen
-        this.helpIconsContainer = new HBox();
-        this.helpIcon = new ImageView("/questionIcon.png");
-        this.settingsIcon = new ImageView("/infoIcon.png");
-        this.infoIcon = new ImageView("/settingsIcon.png");
+        this.helpIconsContainer = new HBox(8);
+        this.helpIcon = new ImageView("/questionIconGold.png");
+        this.settingsIcon = new ImageView("/settingsIconGold.png");
+        this.infoIcon = new ImageView("/infoIconGold.png");
 
-        // labels of the ranking
-        this.datum = new Label("datum");
-        this.playerWhite = new Label("Player White");
-        this.playerBlack = new Label("Player Black");
-        this.winnaar = new Label("Winnaar");
 
         //        statusbar
         this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
+
+
+        //columns
+        this.datumCol = new TableColumn("Datum");
+        this.spelerWitCol = new TableColumn("Player White");
+        this.spelerZwartCol = new TableColumn("Player Black");
+        this.winnaarCol = new TableColumn("Winnaar");
+
 
 
     }
@@ -85,12 +93,13 @@ public class RankingView extends BorderPane {
         this.setTop(menuBar);
 
 //        MainContainerContent
-        mainContainer.getChildren().addAll(datum,playerWhite,playerBlack,winnaar);
+        table.getColumns().addAll(datumCol, spelerWitCol, spelerZwartCol,winnaarCol);
+        mainContainer.getChildren().addAll(table);
         this.setCenter(mainContainer);
 
 
 //        leftArea
-        leftContainer.getChildren().addAll(chessLogo, homeBtn, opslaanBtn, stopSpelBtn);
+        leftContainer.getChildren().addAll(chessLogo, homeBtn);
         this.setLeft(leftContainer);
 
 //      HelpIcons

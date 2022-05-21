@@ -91,14 +91,12 @@ public class HomeView extends GridPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu home = new Menu("Home",null);
+        final Menu home = new Menu("Home");
         final Menu newGame = new Menu("Nieuw spel",null);
         final Menu rangschikking = new Menu("rangschikking", null);
         final Menu history = new Menu("history",null);
         final Menu Algemeen = new Menu("Algemeen",null,this.instellingen, this.spelregels, this.info);
         final MenuBar menuBar = new MenuBar(home,newGame,rangschikking,history, Algemeen);
-
-
 
 
         this.add(menuBar, 0 ,0,4,1);

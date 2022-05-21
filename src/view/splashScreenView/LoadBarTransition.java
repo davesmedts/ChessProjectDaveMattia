@@ -4,9 +4,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import startView.StartView;
-
-import javax.swing.text.View;
+import view.startView.StartView;
 
 /**
  * @author Mattia Verreydt

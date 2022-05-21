@@ -48,6 +48,9 @@ public class HomePresenter {
 
 
     private void addEventHandlers() {
+
+
+
         // blijven op dezelfde Stage, new Game starten
         view.getNewGameBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -104,6 +107,24 @@ public class HomePresenter {
                 RankingView.getScene().getWindow().sizeToScene();
             }
         });
+
+
+        // blijven op dezelfde Stage, rangschikking opvragen
+        view.getRangschikkingBtn().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                RankingView RankingView = new RankingView();
+                RankingPresenter loadGamePresenter = new RankingPresenter(model, RankingView);
+                view.getScene().setRoot(RankingView);
+                RankingView.getScene().getWindow().sizeToScene();
+            }
+        });
+
+
+
+
+
+
 
 
         // blijven op dezelfde Stage, spel hervatten
