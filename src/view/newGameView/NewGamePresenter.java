@@ -12,6 +12,8 @@ import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
+import view.rankingView.RankingPresenter;
+import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
@@ -31,6 +33,30 @@ public class NewGamePresenter {
     }
 
     private void addEventHandlers() {
+
+        view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                HomeView homeView = new HomeView();
+                HomePresenter homePresenter = new HomePresenter(model, homeView);
+                view.getScene().setRoot(homeView);
+                homeView.getScene().getWindow().sizeToScene();
+
+            }
+        });
+
+
+        view.getGeschiedenis().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                RankingView rankingView = new RankingView();
+                RankingPresenter presenter = new RankingPresenter(model, rankingView);
+                view.getScene().setRoot(rankingView);
+                rankingView.getScene().getWindow().sizeToScene();
+
+            }
+        });
+
         // Terug naar HomeScherm
         view.getHomeBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override

@@ -22,7 +22,7 @@ public class HomeView extends GridPane {
 
     private Button newGame;
     private Button home;
-    private Button oudeSpellen;
+    private Button hervatSpel;
     private Button geschiedenis;
 
 
@@ -63,7 +63,7 @@ public class HomeView extends GridPane {
 //        menuNodes
         this.menuContainer = new HBox(100);
 
-        this.oudeSpellen = new Button("Oude spellen");
+        this.hervatSpel = new Button("Oude spellen");
         this.home = new Button("home");
         this.newGame = new Button("nieuw spel");
         this.geschiedenis = new Button("geschiedenis");
@@ -76,14 +76,14 @@ public class HomeView extends GridPane {
         this.infoIcon = new ImageView("/infoIconGold.png");
 
 //        statusbar
-        this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
+        this.statusBarText = new Label("designed and build by Dave Smedts and Mattia Verreydt");
 
     }
 
     private void layoutNodes() {
 
 //        menu
-        menuContainer.getChildren().addAll(home, newGame, oudeSpellen, geschiedenis);
+        menuContainer.getChildren().addAll(home, newGame, hervatSpel, geschiedenis);
         menuContainer.setId("menuContainer");
 
         this.add(menuContainer, 0, 0, 4, 1);
@@ -189,7 +189,7 @@ public class HomeView extends GridPane {
     }
 
     public Button getOudeSpellen() {
-        return oudeSpellen;
+        return hervatSpel;
     }
 
     public Button getGeschiedenis() {

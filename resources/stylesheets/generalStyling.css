@@ -98,7 +98,7 @@
     -fx-font-family: "Bookman Old Style";
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    /*-fx-padding: 10.0px;*/
+    -fx-padding: 10.0px;
     -fx-background-color:#928043 ;
     -fx-opacity: 0.5;
     -fx-border-width: 2.0;
@@ -108,10 +108,8 @@
 }
 
 
-.menu-item{
-    -fx-fill-width: 200px;
 
-}
+
 
 
 

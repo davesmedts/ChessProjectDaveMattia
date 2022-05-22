@@ -22,12 +22,12 @@ public class NewGameView extends BorderPane {
     private Button applyPlayerOne;
     private Button applyPlayerTwo;
 
+    private HBox menuContainer;
 
-    private MenuItem afsluiten;
-    private MenuItem opslaan;
-    private MenuItem openen;
-    private MenuItem spelregels;
-    private MenuItem info;
+    private Button newGame;
+    private Button home;
+    private Button hervatSpel;
+    private Button geschiedenis;
 
     private ImageView chessLogo;
 
@@ -92,11 +92,10 @@ public class NewGameView extends BorderPane {
 
 
 //        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.openen = new MenuItem("openen");
-        this.opslaan = new MenuItem("opslaan");
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
+        this.hervatSpel = new Button("Oude spellen");
+        this.home = new Button("home");
+        this.newGame = new Button("nieuw spel");
+        this.geschiedenis = new Button("geschiedenis");
 
 //        left area nodes
         this.leftContainer = new VBox();
@@ -110,9 +109,12 @@ public class NewGameView extends BorderPane {
 
 
 //        statusbar
-        this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
+        this.statusBarText = new Label("designed and build by Dave Smedts and Mattia Verreydt");
 
         this.setId("NewGameView");
+
+
+        this.menuContainer = new HBox(100);
 
     }
 
@@ -120,10 +122,9 @@ public class NewGameView extends BorderPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu bestandMenu = new Menu("Bestand", null, this.openen, this.opslaan, this.afsluiten);
-        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.setTop(menuBar);
+        menuContainer.getChildren().addAll(home, newGame, hervatSpel, geschiedenis);
+        menuContainer.setId("menuContainer");
+        this.setTop(menuContainer);
 
 //        MainContainerContent
         this.tekstPlayerOne.setMaxWidth(200);
@@ -132,9 +133,6 @@ public class NewGameView extends BorderPane {
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.setSpacing(25);
         this.setCenter(mainContainer);
-
-
-
 
 
 //        leftArea
@@ -175,5 +173,22 @@ public class NewGameView extends BorderPane {
 
     public TextField getTekstPlayerTwo() {
         return tekstPlayerTwo;
+    }
+
+
+    public Button getNewGame() {
+        return newGame;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public Button getHervatSpel() {
+        return hervatSpel;
+    }
+
+    public Button getGeschiedenis() {
+        return geschiedenis;
     }
 }
