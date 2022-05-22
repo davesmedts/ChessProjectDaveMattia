@@ -167,4 +167,20 @@ public class RankingView extends GridPane {
     public TableView getTable() {
         return table;
     }
+
+    public TableColumn getDatumCol() {
+        return datumCol;
+    }
+
+    public TableColumn getSpelerWitCol() {
+        return spelerWitCol;
+    }
+
+    public TableColumn getSpelerZwartCol() {
+        return spelerZwartCol;
+    }
+
+    public TableColumn getWinnaarCol() {
+        return winnaarCol;
+    }
 }

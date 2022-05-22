@@ -25,11 +25,12 @@ public class Game {
     private ChessGameSaver saver;
     private ChessGameLoader loader;
     boolean isNewGame;
+    private History history;
 
 
     //constructor
     public Game(){
-
+        this.history = new History();
     }
 
 //    public Game(String naamWit, String naamZwart, boolean isNewGame) {
@@ -71,6 +72,10 @@ public class Game {
 
     public ChessGameSaver getSaver() {
         return saver;
+    }
+
+    public History getHistory() {
+        return history;
     }
 
     public void setTurn(Color turn) {
@@ -212,20 +217,20 @@ public class Game {
         return builder.toString();
     }
 
-    public static List<String[]> getHistory() {
-        List<String[]> playedGames = new ArrayList<>();
-        Path historyFile = Paths.get("/resources/history.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(historyFile.toFile()));) {
-            String regel = reader.readLine();
-            while (regel != null) {
-                String[] playedGame = regel.split(";");
-                playedGames.add(playedGame);
-                regel = reader.readLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return playedGames;
-    }
+//    public static List<String[]> getHistory() {
+//        List<String[]> playedGames = new ArrayList<>();
+//        Path historyFile = Paths.get("/resources/history.txt");
+//        try (BufferedReader reader = new BufferedReader(new FileReader(historyFile.toFile()));) {
+//            String regel = reader.readLine();
+//            while (regel != null) {
+//                String[] playedGame = regel.split(";");
+//                playedGames.add(playedGame);
+//                regel = reader.readLine();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return playedGames;
+//    }
 
 }
