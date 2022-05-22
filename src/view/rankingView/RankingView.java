@@ -157,9 +157,6 @@ public class RankingView extends GridPane {
         this.setConstraints(statusBarText,     1, 3, 1, 1,
                 HPos.CENTER,       VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
-
-
-
     }
 
     public Button getHomeBtn() {

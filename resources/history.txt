@@ -1,15 +1,8 @@
 01/05/2022;Dave;Mattia;Dave
 03/05/2022;Grote smurf; Smurfin; Smurfin
 05/05/2022;Samson;Gert;Samson
-07/05/2022;Master Yoda: Luke Skywalker; Master Yoda;
 09/05/2022;mattia;Dave;mattia
-09/05/2022;Tom;Jerry;Tom
-09/05/2022;Tom;Jerry;Tom
 09/05/2022;Tom;Jerry;Tom
 19/05/2022;Matti magic;Deef;Matti magic
 20/05/2022;check;mate;check
-20/05/2022;;;
 20/05/2022;CR7;KDB;CR7
-20/05/2022;CR7;KDB;CR7
-20/05/2022;;;
-20/05/2022;;;
