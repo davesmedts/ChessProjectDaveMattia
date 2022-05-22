@@ -7,6 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
+
 
 public class RankingView extends GridPane {
     private HBox mainContainer;
@@ -49,6 +52,10 @@ public class RankingView extends GridPane {
     }
 
     private void initialiseNodes() {
+        //add data
+
+
+
 //        mainContainerNodes
         this.mainContainer = new HBox();
         this.chessLogo = new ImageView("/applicationLogoSmall.png");
@@ -157,5 +164,10 @@ public class RankingView extends GridPane {
 
     public Button getHomeBtn() {
         return homeBtn;
+    }
+
+
+    public TableView getTable() {
+        return table;
     }
 }

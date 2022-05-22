@@ -31,9 +31,15 @@ public class RankingPresenter {
                 homeView.getScene().getWindow().sizeToScene();
             }
         });
+
+
+
     }
 
     private void updateView() {
+
+
+
     }
 
 }

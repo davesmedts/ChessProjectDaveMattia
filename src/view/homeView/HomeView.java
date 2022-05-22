@@ -17,15 +17,13 @@ public class HomeView extends GridPane {
     private Button openenBtn;
     private Button rangschikkingBtn;
 
+    private HBox menuContainer;
 
-    private MenuItem spelregels;
-    private MenuItem info;
-    private MenuItem instellingen;
-    private MenuItem algemeen;
-    private MenuItem newGame;
-    private MenuItem home;
-    private MenuItem rangschikking;
-    private MenuItem history;
+
+    private Button newGame;
+    private Button home;
+    private Button oudeSpellen;
+    private Button geschiedenis;
 
 
     private Label titel;
@@ -63,18 +61,12 @@ public class HomeView extends GridPane {
         this.setId("HomeView");
 
 //        menuNodes
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
-        this.rangschikking = new MenuItem("rangschikking");
-        this.history = new MenuItem("Oude spellen");
-        this.home = new MenuItem("home");
-        this.newGame = new MenuItem("nieuw spel");
-        this.instellingen = new MenuItem("instellingen");
-        this.algemeen = new MenuItem("algemeen");
+        this.menuContainer = new HBox(100);
 
-
-
-
+        this.oudeSpellen = new Button("Oude spellen");
+        this.home = new Button("home");
+        this.newGame = new Button("nieuw spel");
+        this.geschiedenis = new Button("geschiedenis");
 
 
 //        Icons on the right part of the screen
@@ -91,15 +83,10 @@ public class HomeView extends GridPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu home = new Menu("Home");
-        final Menu newGame = new Menu("Nieuw spel",null);
-        final Menu rangschikking = new Menu("rangschikking", null);
-        final Menu history = new Menu("history",null);
-        final Menu Algemeen = new Menu("Algemeen",null,this.instellingen, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(home,newGame,rangschikking,history, Algemeen);
+        menuContainer.getChildren().addAll(home, newGame, oudeSpellen, geschiedenis);
+        menuContainer.setId("menuContainer");
 
-
-        this.add(menuBar, 0 ,0,4,1);
+        this.add(menuContainer, 0, 0, 4, 1);
 
 
 //        MainContainerContent
@@ -110,18 +97,17 @@ public class HomeView extends GridPane {
         mainContainer.setPadding(new Insets(20));
         mainContainer.getChildren().addAll(titel, newGameBtn, openenBtn, rangschikkingBtn);
         mainContainer.setAlignment(Pos.TOP_RIGHT);
-        this.add(mainContainer, 2 ,2);
+        this.add(mainContainer, 2, 2);
 
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
         helpIconsContainer.setAlignment(Pos.TOP_RIGHT);
-        this.add(helpIconsContainer, 3 ,1);
+        this.add(helpIconsContainer, 3, 1);
 
 //        statusbar
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
-        this.add(statusBarText,1,3,2,1);
-
+        this.add(statusBarText, 1, 3, 2, 1);
 
 
         // column constraints
@@ -133,26 +119,37 @@ public class HomeView extends GridPane {
         col3Constraints.setPercentWidth(30);
         ColumnConstraints col4Constraints = new ColumnConstraints();
         col4Constraints.setPercentWidth(20);
-        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints,col4Constraints);
+        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints, col4Constraints);
+
+        RowConstraints rowConstraint1 = new RowConstraints();
+        rowConstraint1.setPercentHeight(5);
+        RowConstraints rowConstraint2 = new RowConstraints();
+        rowConstraint2.setPercentHeight(40);
+        RowConstraints rowConstraint3 = new RowConstraints();
+        rowConstraint3.setPercentHeight(40);
+        RowConstraints rowConstraint4 = new RowConstraints();
+        rowConstraint4.setPercentHeight(15);
+        this.getRowConstraints().addAll(rowConstraint1,rowConstraint2,rowConstraint3,rowConstraint4);
+
 
 
         // constraints Gridpane
-        this.setConstraints(menuBar,     0, 0, 4, 1,
-                HPos.CENTER,       VPos.TOP,
+        this.setConstraints(menuContainer, 0, 0, 4, 1,
+                HPos.CENTER, VPos.TOP,
                 Priority.ALWAYS, Priority.ALWAYS);
 
 
-        this.setConstraints(mainContainer,     2, 2, 1, 1,
-                HPos.LEFT,       VPos.CENTER,
+        this.setConstraints(mainContainer, 2, 2, 1, 1,
+                HPos.LEFT, VPos.CENTER,
                 Priority.ALWAYS, Priority.ALWAYS);
 
-        this.setConstraints(helpIconsContainer,     3, 1, 1, 1,
-                HPos.LEFT,       VPos.CENTER,
+        this.setConstraints(helpIconsContainer, 3, 1, 1, 1,
+                HPos.LEFT, VPos.CENTER,
                 Priority.ALWAYS, Priority.ALWAYS);
 
 
-        this.setConstraints(statusBarText,     1, 3, 2, 1,
-                HPos.CENTER,       VPos.BOTTOM,
+        this.setConstraints(statusBarText, 1, 3, 2, 1,
+                HPos.CENTER, VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
 
     }
@@ -183,31 +180,19 @@ public class HomeView extends GridPane {
     }
 
 
-    public MenuItem getSpelregels() {
-        return spelregels;
-    }
-
-    public MenuItem getInfo() {
-        return info;
-    }
-
-    public MenuItem getInstellingen() {
-        return instellingen;
-    }
-
-    public MenuItem getNewGame() {
+    public Button getNewGame() {
         return newGame;
     }
 
-    public MenuItem getHome() {
+    public Button getHome() {
         return home;
     }
 
-    public MenuItem getRangschikking() {
-        return rangschikking;
+    public Button getOudeSpellen() {
+        return oudeSpellen;
     }
 
-    public MenuItem getHistory() {
-        return history;
+    public Button getGeschiedenis() {
+        return geschiedenis;
     }
 }

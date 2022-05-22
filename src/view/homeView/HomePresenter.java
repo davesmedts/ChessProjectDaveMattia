@@ -49,6 +49,29 @@ public class HomePresenter {
 
     private void addEventHandlers() {
 
+      view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+              NewGameView newGameView = new NewGameView();
+              NewGamePresenter gamePresenter = new NewGamePresenter(model, newGameView);
+              view.getScene().setRoot(newGameView);
+              newGameView.getScene().getWindow().sizeToScene();
+
+          }
+      });
+
+
+        view.getGeschiedenis().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                RankingView rankingView = new RankingView();
+                RankingPresenter presenter = new RankingPresenter(model, rankingView);
+                view.getScene().setRoot(rankingView);
+                rankingView.getScene().getWindow().sizeToScene();
+
+            }
+        });
+
 
 
         // blijven op dezelfde Stage, new Game starten
