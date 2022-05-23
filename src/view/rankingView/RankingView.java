@@ -29,6 +29,7 @@ public class RankingView extends BorderPane {
     private ImageView settingsIcon;
 
     private Label statusBarText;
+    private Label titel;
 
     private final TableView table = new TableView();
 
@@ -69,6 +70,9 @@ public class RankingView extends BorderPane {
 
 //        left area nodes
         this.leftContainer = new VBox();
+        this.titel = new Label("Historiek");
+
+
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
@@ -111,6 +115,10 @@ public class RankingView extends BorderPane {
 
 ////        leftArea
 //        this.add(leftContainer, 0 ,1);
+        titel.setId("titel");
+        leftContainer.getChildren().addAll(titel);
+        this.setLeft(leftContainer);
+
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);

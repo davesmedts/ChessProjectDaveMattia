@@ -29,6 +29,8 @@ public class GameView extends BorderPane {
     private Label statusBarText;
     private Label whitePlayerName;
     private Label blackPlayerName;
+    private Label titel;
+
 
     public static String colorOne = "#57271d";
     public static String colorTwo = "#ecddc8";
@@ -98,6 +100,7 @@ public class GameView extends BorderPane {
 
 //        left area nodes
         this.leftContainer = new VBox();
+        this.titel = new Label("Schaakspel");
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
@@ -124,7 +127,8 @@ public class GameView extends BorderPane {
         this.setCenter(mainContainer);
 
 //        leftArea
-        leftContainer.getChildren().addAll();
+        leftContainer.getChildren().addAll(titel);
+        titel.setId("gameViewTitel");
         this.setLeft(leftContainer);
 
 //      HelpIcons
