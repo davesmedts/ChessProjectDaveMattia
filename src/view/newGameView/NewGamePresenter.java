@@ -21,6 +21,9 @@ import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class NewGamePresenter {
 
     private Game model;
@@ -59,17 +62,7 @@ public class NewGamePresenter {
             }
         });
 
-        // Terug naar HomeScherm
-        view.getHomeBtn().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                HomeView homeView = new HomeView();
-                HomePresenter homePresenter = new HomePresenter(model, homeView);
-                view.getScene().setRoot(homeView);
-                homeView.getScene().getWindow().sizeToScene();
-            }
 
-        });
 
         view.getStartSpel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -77,15 +70,30 @@ public class NewGamePresenter {
 
                 String playerOne = view.getTekstPlayerOne().getText();
                 String playerTwo = view.getTekstPlayerTwo().getText();
-                model.newGame(playerOne, playerTwo);
+//
+//                Pattern pattern = Pattern.compile("[a-zA-Z]", Pattern.CASE_INSENSITIVE);
+//                Matcher matcher = pattern.matcher(playerOne);
+//                boolean matchFoundPlayerOne = matcher.find();
+//
+//                Pattern pattern2 = Pattern.compile("[a-zA-Z]", Pattern.CASE_INSENSITIVE);
+//                Matcher matcher2 = pattern.matcher(playerTwo);
+//                boolean matchFoundPlayerTwo = matcher.find();
 
-                GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
-                GamePresenter homePresenter = new GamePresenter(model, gameView);
-                view.getScene().setRoot(gameView);
-                gameView.getScene().getWindow().sizeToScene();
 
-                gameView.setBlackPlayerName(model.getBlackPlayer().toString());
-                gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+//                if (matchFoundPlayerOne && matchFoundPlayerTwo) {
+
+                    model.newGame(playerOne, playerTwo);
+                    GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
+                    GamePresenter homePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+
+                    gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                    gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+
+
+//                }
+
 
             }
         });
@@ -147,5 +155,6 @@ public class NewGamePresenter {
 
     private void updateView() {
     }
+
 
 }

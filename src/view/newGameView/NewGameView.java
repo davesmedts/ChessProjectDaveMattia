@@ -16,8 +16,6 @@ public class NewGameView extends BorderPane {
     private VBox saveContainer;
     private GridPane GridPane;
 
-
-    private Button homeBtn;
     private Button startSpel;
     private Button applyPlayerOne;
     private Button applyPlayerTwo;
@@ -29,7 +27,7 @@ public class NewGameView extends BorderPane {
     private Button hervatSpel;
     private Button geschiedenis;
 
-    private ImageView chessLogo;
+    private Label titel;
 
     private ImageView helpIcon;
     private ImageView infoIcon;
@@ -76,7 +74,7 @@ public class NewGameView extends BorderPane {
     private void initialiseNodes() {
 //        mainContainerNodes
         this.mainContainer = new VBox();
-        this.chessLogo = new ImageView("/applicationLogoSmall.png");
+        this.titel = new Label("Nieuw spel");
         this.description = new Label("Voer hier de naam van de spelers in");
         this.naamPlayerWhite = new Label("");
         this.naamPlayerBlack = new Label("");
@@ -87,19 +85,23 @@ public class NewGameView extends BorderPane {
         this.applyPlayerTwo = new Button(("Save"));
         this.GridPane = new GridPane();
 
+        titel.setId("titel");
+
+
+
         //vbox
         this.saveContainer = new VBox(5);
 
 
 //        menuNodes
-        this.hervatSpel = new Button("Oude spellen");
-        this.home = new Button("home");
-        this.newGame = new Button("nieuw spel");
-        this.geschiedenis = new Button("geschiedenis");
+        this.hervatSpel = new Button("HERVAT SPEL");
+        this.home = new Button("HOME");
+        this.newGame = new Button("NIEUW SPEL");
+        this.geschiedenis = new Button("HISTORIEK");
 
 //        left area nodes
         this.leftContainer = new VBox();
-        this.homeBtn = new Button("Home page");
+
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
@@ -136,7 +138,7 @@ public class NewGameView extends BorderPane {
 
 
 //        leftArea
-        leftContainer.getChildren().addAll(chessLogo, homeBtn);
+        leftContainer.getChildren().addAll(titel);
         this.setLeft(leftContainer);
         leftContainer.setSpacing(25);
 
@@ -149,10 +151,6 @@ public class NewGameView extends BorderPane {
 
         this.setId("NewGameView");
 
-    }
-
-    public Button getHomeBtn() {
-        return homeBtn;
     }
 
     public Button getStartSpel() {

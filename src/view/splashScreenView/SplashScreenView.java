@@ -21,21 +21,16 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
-public class SplashScreenView extends GridPane {
-
-
-    private MenuItem afsluiten;
-    private MenuItem spelregels;
-    private MenuItem info;
+public class SplashScreenView extends BorderPane {
 
     private HBox hbox;
     private Label version;
     private Text program;
     private Text created;
     private Text by;
-    private Text deef;
+    private Text dave;
     private Text and;
-    private Text mattimagic;
+    private Text mattia;
 
 
     public SplashScreenView() {
@@ -47,33 +42,29 @@ public class SplashScreenView extends GridPane {
     private void initialiseNodes() {
 
 
-//        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
 
 //       general nodes
         this.hbox = new HBox();
         this.program = new Text("program ");
         this.by = new Text("by ");
         this.created = new Text("created ");
-        this.deef = new Text("Deef ");
+        this.dave = new Text("Dave ");
         this.and = new Text("and ");
-        this.mattimagic = new Text("MattiMagic");
+        this.mattia = new Text("Mattia");
         program.setFill(Color.WHITE);
         program.setFont(Font.font(null, FontWeight.BOLD, 20));
         by.setFill(Color.WHITE);
         by.setFont(Font.font(null, FontWeight.BOLD, 20));
         created.setFill(Color.WHITE);
         created.setFont(Font.font(null, FontWeight.BOLD, 20));
-        deef.setFill(Color.WHITE);
-        deef.setFont(Font.font(null, FontWeight.BOLD, 20));
+        dave.setFill(Color.WHITE);
+        dave.setFont(Font.font(null, FontWeight.BOLD, 20));
         and.setFill(Color.WHITE);
         and.setFont(Font.font(null, FontWeight.BOLD, 20));
-        mattimagic.setFill(Color.WHITE);
-        mattimagic.setFont(Font.font(null, FontWeight.BOLD, 20));
+        mattia.setFill(Color.WHITE);
+        mattia.setFont(Font.font(null, FontWeight.BOLD, 20));
 
-        hbox.getChildren().addAll(program, created, by, deef, and, mattimagic);
+        hbox.getChildren().addAll(program, created, by, dave, and, mattia);
 
 
         this.version = new Label("version 1");
@@ -86,7 +77,7 @@ public class SplashScreenView extends GridPane {
                         BackgroundRepeat.NO_REPEAT,
                         new BackgroundPosition(
                                 Side.LEFT, 0.0, true, Side.BOTTOM, 0.0, true),
-                        new BackgroundSize(100, 100, true, true, false, true)
+                        new BackgroundSize(50, 50, true, true, false, true)
                 )));
 
 
@@ -94,47 +85,39 @@ public class SplashScreenView extends GridPane {
 
     private void layoutNodes() {
 
-//        menu
-        final Menu bestandMenu = new Menu("Bestand", null, this.afsluiten);
-        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.add(menuBar, 0, 0, 3, 1);
 
 //        general content
-        this.add(hbox, 1, 1);
-        this.add(version, 2, 2);
 
-        this.setGridLinesVisible(true);
+        this.setCenter(hbox);
+        this.setBottom(version);
+
 
 //        constraints & ID
 
-        ColumnConstraints colConstraint1 = new ColumnConstraints();
-        colConstraint1.setPercentWidth(34);
+//        ColumnConstraints colConstraint1 = new ColumnConstraints();
+//        colConstraint1.setMinWidth(10);
+//
+//        ColumnConstraints colConstraint2 = new ColumnConstraints();
+//        colConstraint2.setMinWidth(10);
+//
+//        ColumnConstraints colConstraint3 = new ColumnConstraints();
+//        colConstraint3.setMinWidth(10);
+//
+//        RowConstraints rowConstraints1 = new RowConstraints();
+//        rowConstraints1.setMinHeight(10);
+//        RowConstraints rowConstraints2 = new RowConstraints();
+//        rowConstraints2.setMinHeight(10);
+//        RowConstraints rowConstraints3 = new RowConstraints();
+//        rowConstraints3.setMinHeight(10);
+//
+//        this.getColumnConstraints().addAll(colConstraint1, colConstraint2, colConstraint3);
+//        this.getRowConstraints().addAll(rowConstraints1, rowConstraints2, rowConstraints3);
 
-        ColumnConstraints colConstraint2 = new ColumnConstraints();
-        colConstraint2.setPercentWidth(33);
 
-        ColumnConstraints colConstraint3 = new ColumnConstraints();
-        colConstraint3.setPercentWidth(33);
-
-        RowConstraints rowConstraints1 = new RowConstraints();
-        rowConstraints1.setPercentHeight(25);
-        RowConstraints rowConstraints2 = new RowConstraints();
-        rowConstraints2.setPercentHeight(50);
-        RowConstraints rowConstraints3 = new RowConstraints();
-        rowConstraints3.setPercentHeight(25);
-
-        this.getColumnConstraints().addAll(colConstraint1, colConstraint2, colConstraint3);
-        this.getRowConstraints().addAll(rowConstraints1, rowConstraints2, rowConstraints3);
-
-
-        this.setConstraints(menuBar, 0, 0, 3, 1,
-                HPos.CENTER, VPos.TOP,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-        this.setConstraints(version, 2, 2, 3, 1,
-                HPos.LEFT, VPos.BOTTOM,
-                Priority.ALWAYS, Priority.ALWAYS);
+//
+//        this.setConstraints(version, 2, 2, 3, 1,
+//                HPos.LEFT, VPos.BOTTOM,
+//                Priority.ALWAYS, Priority.ALWAYS);
 
 
         hbox.setAlignment(Pos.CENTER);
@@ -168,7 +151,7 @@ public class SplashScreenView extends GridPane {
 
 
         //fade 4
-        FadeTransition fadeTransition4 = new FadeTransition(Duration.seconds(1), deef);
+        FadeTransition fadeTransition4 = new FadeTransition(Duration.seconds(1), dave);
         fadeTransition4.setFromValue(0.0);
         fadeTransition4.setToValue(1.0);
 
@@ -180,7 +163,7 @@ public class SplashScreenView extends GridPane {
 
 
         //fade 6
-        FadeTransition fadeTransition6 = new FadeTransition(Duration.seconds(1), mattimagic);
+        FadeTransition fadeTransition6 = new FadeTransition(Duration.seconds(1), mattia);
         fadeTransition6.setFromValue(0.0);
         fadeTransition6.setToValue(1.0);
 

@@ -112,6 +112,10 @@ public class GameView extends BorderPane {
     }
 
     private void layoutNodes() {
+
+
+
+
 //        menu
         this.setTop(menuContainer);
 

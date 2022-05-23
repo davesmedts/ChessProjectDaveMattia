@@ -88,7 +88,6 @@ public class SettingsView extends GridPane {
         uitlegContainer.getChildren().addAll(uitleg);
 
         uitleg.setFont(Font.font(17));
-        settingTitle.setFont(Font.font(20));
         uitleg.setStyle("-fx-text-fill: #E7DFBC;");
 
         this.add(settingTitle, 0, 0);
@@ -107,15 +106,13 @@ public class SettingsView extends GridPane {
         this.getColumnConstraints().addAll(columnConstraint1);
         this.getRowConstraints().addAll(rowConstraint1, rowConstraint2);
 
-//        this.setConstraints(buttonContainer, 1, 2, 1, 1,
-//                HPos.CENTER, VPos.TOP,
-//                Priority.ALWAYS, Priority.ALWAYS);
 
 
         this.setPadding(new Insets(15));
         this.setStyle("-fx-background-color: BLACK;");
 
         settingTitle.setStyle(" -fx-font-weight: bold;" + "-fx-text-fill: WHITE");
+        settingTitle.setFont(Font.font(20));
 
     }
 

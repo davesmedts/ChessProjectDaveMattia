@@ -25,6 +25,8 @@ public class HomeView extends GridPane {
     private Button historiek;
 
     private Label titel;
+    private Label welkom;
+
 
     private ImageView helpIcon;
     private ImageView infoIcon;
@@ -54,9 +56,12 @@ public class HomeView extends GridPane {
         this.newGameBtn = new Button("nieuw spel");
         this.openenBtn = new Button("hervat spel");
         this.rangschikkingBtn = new Button("Rangschikking");
-        this.titel = new Label("Welkom bij Chess");
-        titel.setId("TitelHomeView");
+        this.welkom = new Label("Welkom bij Chess");
+        welkom.setId("TitelHomeView");
         this.setId("HomeView");
+
+        this.titel = new Label("Home");
+        titel.setId("titel");
 
 //        menuNodes
         this.menuContainer = new HBox(100);
@@ -78,7 +83,7 @@ public class HomeView extends GridPane {
     }
 
     private void layoutNodes() {
-        this.setGridLinesVisible(true);
+        this.add(titel, 0,1);
 
 //        menu
         menuContainer.getChildren().addAll(home, newGame, hervatSpel, historiek);
@@ -93,7 +98,7 @@ public class HomeView extends GridPane {
         this.rangschikkingBtn.setPrefSize(150, 40);
         mainContainer.setSpacing(10);
         mainContainer.setPadding(new Insets(20));
-        mainContainer.getChildren().addAll(titel, newGameBtn, openenBtn, rangschikkingBtn);
+        mainContainer.getChildren().addAll(welkom, newGameBtn, openenBtn, rangschikkingBtn);
         mainContainer.setAlignment(Pos.TOP_RIGHT);
         this.add(mainContainer, 2, 2);
 
@@ -105,31 +110,37 @@ public class HomeView extends GridPane {
 
 //        statusbar
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
-        this.add(statusBarText, 1, 3, 2, 1);
+        this.add(statusBarText, 0, 4, 4, 1);
 
 
         // column constraints
         ColumnConstraints col1Constraints = new ColumnConstraints();
-        col1Constraints.setPercentWidth(30);
+        col1Constraints.setPercentWidth(40);
         ColumnConstraints col2Constraints = new ColumnConstraints();
-        col2Constraints.setPercentWidth(20);
+        col2Constraints.setPercentWidth(15);
         ColumnConstraints col3Constraints = new ColumnConstraints();
-        col3Constraints.setPercentWidth(30);
+        col3Constraints.setPercentWidth(25);
         ColumnConstraints col4Constraints = new ColumnConstraints();
         col4Constraints.setPercentWidth(20);
         this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints, col4Constraints);
 
         RowConstraints rowConstraint1 = new RowConstraints();
-        rowConstraint1.setPercentHeight(5);
+        rowConstraint1.setPercentHeight(7);
+        rowConstraint1.setMaxHeight(100);
         RowConstraints rowConstraint2 = new RowConstraints();
-        rowConstraint2.setPercentHeight(40);
+        rowConstraint2.setPercentHeight(35);
         RowConstraints rowConstraint3 = new RowConstraints();
-        rowConstraint3.setPercentHeight(40);
+        rowConstraint3.setPercentHeight(35);
         RowConstraints rowConstraint4 = new RowConstraints();
         rowConstraint4.setPercentHeight(15);
         this.getRowConstraints().addAll(rowConstraint1,rowConstraint2,rowConstraint3,rowConstraint4);
 
+
         // constraints Gridpane
+        this.setConstraints(titel, 0, 1, 1, 1,
+                HPos.LEFT, VPos.TOP,
+                Priority.ALWAYS, Priority.ALWAYS);
+
         this.setConstraints(menuContainer, 0, 0, 4, 1,
                 HPos.CENTER, VPos.TOP,
                 Priority.ALWAYS, Priority.ALWAYS);
@@ -140,12 +151,12 @@ public class HomeView extends GridPane {
                 Priority.ALWAYS, Priority.ALWAYS);
 
         this.setConstraints(helpIconsContainer, 3, 1, 1, 1,
-                HPos.LEFT, VPos.CENTER,
+                HPos.LEFT, VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
 
 
-        this.setConstraints(statusBarText, 1, 3, 2, 1,
-                HPos.CENTER, VPos.BOTTOM,
+        this.setConstraints(statusBarText, 0, 4, 4, 1,
+                HPos.LEFT, VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
     }
 

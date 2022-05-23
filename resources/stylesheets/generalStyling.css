@@ -23,7 +23,7 @@
     -fx-font-family: "Bookman Old Style";
 }
 
-.button{
+.button {
     -fx-font-family: "Bookman Old Style";
 }
 
@@ -78,15 +78,23 @@
 
 /* menu */
 #menuContainer {
-    -fx-font-size: 14.0 pt;
+    -fx-font-size: 10.0pt;
     -fx-font-family: "Bookman Old Style";
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 10.0px;
     -fx-background-color: rgb(146, 128, 67);
-    -fx-border-width: 2.0;
+    -fx-border-width: 1.0;
     -fx-alignment: center;
 
+}
+
+/* titel */
+
+#titel {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: WHITE;
 }
 
 #RankingView {
@@ -95,8 +103,7 @@
 }
 
 
-
-.table-view .column-header-background{
+.table-view .column-header-background {
     -fx-background-color: #928043;
 
 
