@@ -72,7 +72,7 @@ public class ChessGameLoader {
         this.whitePlayer = new Player(whitePlayerData[0]);
         whitePlayer.setGameBoard(this.gameBoard);
         whitePlayer.setColor(Color.WHITE);
-        Square lastMove = whitePlayer.lookupSquare(whitePlayerData[1].charAt(0), whitePlayerData[1].charAt(0));
+        Square lastMove = whitePlayer.lookupSquare(whitePlayerData[1].charAt(0), Integer.parseInt(String.valueOf(whitePlayerData[1].charAt(1))));
         whitePlayer.getMoves().add(lastMove);
         if(whitePlayerData.length > 2 && whitePlayerData[2] != null){
             capturedPieces = new ArrayList<>();
@@ -84,9 +84,9 @@ public class ChessGameLoader {
         this.blackPlayer = new Player(blackPlayerData[0]);
         blackPlayer.setGameBoard(gameBoard);
         blackPlayer.setColor(Color.BLACK);
-        lastMove = blackPlayer.lookupSquare(blackPlayerData[1].charAt(0), blackPlayerData[1].charAt(0));
+        lastMove = blackPlayer.lookupSquare(blackPlayerData[1].charAt(0), Integer.parseInt(String.valueOf(blackPlayerData[1].charAt(1))));
         blackPlayer.getMoves().add(lastMove);
-        if (blackPlayerData[2] != null) {
+        if (blackPlayerData.length > 2) {
             capturedPieces = new ArrayList<>();
             capturedPieces.addAll(List.of(blackPlayerData[2].split(":")));
             blackPlayer.setCapturedPieces(capturedPieces);
