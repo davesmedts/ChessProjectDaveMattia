@@ -7,6 +7,8 @@ import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
+import view.settingView.SettingsPresenter;
+import view.settingView.SettingsView;
 
 
 public class Main extends Application {
@@ -28,8 +30,8 @@ public class Main extends Application {
 
         Game model = new Game();
 
-        RankingView view = new RankingView();
-        RankingPresenter presenter = new RankingPresenter(model, view);
+        HomeView view = new HomeView();
+        HomePresenter presenter = new HomePresenter(model, view);
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

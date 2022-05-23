@@ -47,8 +47,8 @@ public class SettingsPresenter {
             @Override
             public void handle(ActionEvent event) {
 
-                String colorOne = "PINK";
-                String colorTwo = "YELLOW";
+                String colorOne = "#87CEEB";
+                String colorTwo = "#4682B4";
 
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
@@ -61,8 +61,8 @@ public class SettingsPresenter {
             @Override
             public void handle(ActionEvent event) {
 
-                String colorOne = "CORAL";
-                String colorTwo = "TEAL";
+                String colorOne = "#3C753CFF";
+                String colorTwo = "#87AB87FF";
 
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
