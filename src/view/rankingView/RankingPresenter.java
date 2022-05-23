@@ -9,18 +9,25 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Game;
 import model.HistoryRecord;
+import view.gameView.GamePresenter;
+import view.gameView.GameView;
 import view.help.HelpPresenter;
 import view.help.HelpView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
+import view.newGameView.NewGamePresenter;
+import view.newGameView.NewGameView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
+
+import java.io.File;
 
 public class RankingPresenter {
 
@@ -36,7 +43,7 @@ public class RankingPresenter {
     }
     private void addEventHandlers() {
         // Terug naar HomeScherm
-        view.getHomeBtn().setOnAction(new EventHandler<ActionEvent>() {
+        view.getHome().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 HomeView homeView = new HomeView();
@@ -45,6 +52,46 @@ public class RankingPresenter {
                 homeView.getScene().getWindow().sizeToScene();
             }
         });
+
+        view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                NewGameView newGameView = new NewGameView();
+                NewGamePresenter gamePresenter = new NewGamePresenter(model, newGameView);
+                view.getScene().setRoot(newGameView);
+                newGameView.getScene().getWindow().sizeToScene();
+
+            }
+        });
+
+        view.getHervatSpel().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File("resources/savedGames"));
+                fileChooser.setTitle("Load Data File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+                File selectedFile = fileChooser.showOpenDialog(
+                        view.getScene().getWindow());
+                if ((selectedFile != null)) {
+                    System.out.println(selectedFile.getName());
+                    String nameWithoutExtension = selectedFile.getName().split("\\.")[0];
+                    model.loadGame(nameWithoutExtension);
+
+                    GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
+                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+
+                    gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                    gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+                }
+            }
+        });
+
+
 
         view.getHelpIcon().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -95,6 +142,8 @@ public class RankingPresenter {
                 settingPresenter.showAndWait();
             }
         });
+
+
     }
 
     private void updateView() {

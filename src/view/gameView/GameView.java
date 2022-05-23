@@ -12,20 +12,16 @@ import java.util.List;
 public class GameView extends BorderPane {
     private VBox mainContainer;
     private HBox helpIconsContainer;
-    private HBox menuContainer;
     private VBox leftContainer;
     private HBox whiteCapturedPieces;
     private HBox blackCapturedPieces;
 
-    private Button homeBtn;
+    private HBox menuContainer;
 
-    private MenuItem afsluiten;
-    private MenuItem opslaan;
-    private MenuItem openen;
-    private MenuItem spelregels;
-    private MenuItem info;
-
-    private ImageView chessLogo;
+    private Button newGame;
+    private Button home;
+    private Button hervatSpel;
+    private Button historiek;
 
     private ImageView helpIcon;
     private ImageView infoIcon;
@@ -34,19 +30,13 @@ public class GameView extends BorderPane {
     private Label whitePlayerName;
     private Label blackPlayerName;
 
+    public static String colorOne = "#57271d";
+    public static String colorTwo = "#ecddc8";
+
+
     private ChessBoardView gameChessBoardGrid;
     private List<ChessBoardSquare> chessBoardSquares;
 
-
-
-
-    public Button getHomeBtn() {
-        return homeBtn;
-    }
-
-    public ImageView getChessLogo() {
-        return chessLogo;
-    }
 
     public ChessBoardView getGameChessBoardGrid() {
         return gameChessBoardGrid;
@@ -70,7 +60,6 @@ public class GameView extends BorderPane {
         whiteCapturedPieces.setAlignment(Pos.CENTER);
         mainContainer.getChildren().clear();
         mainContainer.getChildren().addAll(blackPlayerName,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whiteCapturedPieces);
-
     }
 
     public GameView(String colorOne, String colorTwo) {
@@ -82,7 +71,6 @@ public class GameView extends BorderPane {
 
 //        mainContainerNodes
         this.mainContainer = new VBox();
-        this.chessLogo = new ImageView("/applicationLogoSmall.png");
         gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard(colorOne, colorTwo);
         whitePlayerName = new Label();
         whitePlayerName.setId("playerNameGameView");
@@ -98,15 +86,18 @@ public class GameView extends BorderPane {
 
 
 //        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.openen = new MenuItem("openen");
-        this.opslaan = new MenuItem("opslaan");
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
+        this.menuContainer = new HBox(100);
+
+        this.hervatSpel = new Button("HERVAT SPEL");
+        this.home = new Button("HOME");
+        this.newGame = new Button("NIEUW SPEL");
+        this.historiek = new Button("HISTORIEK");
+
+        menuContainer.setId("menuContainer");
+        menuContainer.getChildren().addAll(home, newGame, hervatSpel, historiek);
 
 //        left area nodes
         this.leftContainer = new VBox();
-        this.homeBtn = new Button("Home page");
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
@@ -115,17 +106,11 @@ public class GameView extends BorderPane {
 
         //        statusbar
         this.statusBarText = new Label("designed and build with by Dave Smedts and Mattia Verreydt");
-
-
     }
 
     private void layoutNodes() {
-
 //        menu
-        final Menu bestandMenu = new Menu("Bestand", null, this.openen, this.opslaan, this.afsluiten);
-        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.setTop(menuBar);
+        this.setTop(menuContainer);
 
 //        MainContainerContent
         mainContainer.setAlignment(Pos.TOP_CENTER);
@@ -139,7 +124,7 @@ public class GameView extends BorderPane {
         this.setCenter(mainContainer);
 
 //        leftArea
-        leftContainer.getChildren().addAll(chessLogo, homeBtn);
+        leftContainer.getChildren().addAll();
         this.setLeft(leftContainer);
 
 //      HelpIcons
@@ -148,7 +133,6 @@ public class GameView extends BorderPane {
 
         //        statusbar
         this.setBottom(statusBarText);
-
     }
 
     public List<ChessBoardSquare> getChessBoardSquares() {
@@ -177,6 +161,38 @@ public class GameView extends BorderPane {
 
     public HBox getBlackCapturedPieces() {
         return blackCapturedPieces;
+    }
+
+    public Button getNewGame() {
+        return newGame;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public Button getHervatSpel() {
+        return hervatSpel;
+    }
+
+    public Button getHistoriek() {
+        return historiek;
+    }
+
+    public ImageView getHelpIcon() {
+        return helpIcon;
+    }
+
+    public ImageView getInfoIcon() {
+        return infoIcon;
+    }
+
+    public static String getColorOne() {
+        return colorOne;
+    }
+
+    public static String getColorTwo() {
+        return colorTwo;
     }
 }
 

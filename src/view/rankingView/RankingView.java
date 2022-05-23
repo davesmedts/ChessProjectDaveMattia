@@ -11,21 +11,18 @@ import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 
-public class RankingView extends GridPane {
+public class RankingView extends BorderPane {
     private HBox mainContainer;
     private HBox helpIconsContainer;
     private VBox leftContainer;
 
-    private Button homeBtn;
+    private HBox menuContainer;
 
+    private Button newGame;
+    private Button home;
+    private Button hervatSpel;
+    private Button historiek;
 
-    private MenuItem afsluiten;
-    private MenuItem opslaan;
-    private MenuItem openen;
-    private MenuItem spelregels;
-    private MenuItem info;
-
-    private ImageView chessLogo;
 
     private ImageView helpIcon;
     private ImageView infoIcon;
@@ -33,17 +30,15 @@ public class RankingView extends GridPane {
 
     private Label statusBarText;
 
-
     private final TableView table = new TableView();
-
-
 
     TableColumn datumCol;
     TableColumn spelerWitCol;
     TableColumn spelerZwartCol;
     TableColumn winnaarCol;
 
-
+    public static String colorOne = "#57271d";
+    public static String colorTwo = "#ecddc8";
 
 
     public RankingView() {
@@ -59,18 +54,21 @@ public class RankingView extends GridPane {
 
 //        mainContainerNodes
         this.mainContainer = new HBox();
-        this.chessLogo = new ImageView("/applicationLogoSmall.png");
 
 //        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.openen = new MenuItem("openen");
-        this.opslaan = new MenuItem("opslaan");
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
+        this.menuContainer = new HBox(100);
+
+        this.hervatSpel = new Button("HERVAT SPEL");
+        this.home = new Button("HOME");
+        this.newGame = new Button("NIEUW SPEL");
+        this.historiek = new Button("HISTORIEK");
+
+        menuContainer.setId("menuContainer");
+        menuContainer.getChildren().addAll(home, newGame, hervatSpel, historiek);
+
 
 //        left area nodes
         this.leftContainer = new VBox();
-        this.homeBtn = new Button("Home page");
 
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
@@ -96,73 +94,76 @@ public class RankingView extends GridPane {
     private void layoutNodes() {
 
 //        menu
-        final Menu bestandMenu = new Menu("Bestand",null, this.openen, this.opslaan, this.afsluiten);
-        final Menu helpMenu = new Menu("Help",null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.add(menuBar, 0 ,0,3,1);
+        this.setTop(menuContainer);
 
 //        MainContainerContent
         table.getColumns().addAll(datumCol, spelerWitCol, spelerZwartCol,winnaarCol);
         mainContainer.getChildren().addAll(table);
-        this.add(mainContainer, 1 ,2);
+        this.setCenter(mainContainer);
         datumCol.setPrefWidth(150);
         spelerWitCol.setPrefWidth(150);
         spelerZwartCol.setPrefWidth(150);
         winnaarCol.setPrefWidth(150);
+        mainContainer.setAlignment(Pos.CENTER);
+        mainContainer.setMaxWidth(600);
+        mainContainer.setMaxHeight(500);
 
 
-
-
-
-//        leftArea
-        leftContainer.getChildren().addAll(chessLogo, homeBtn);
-        this.add(leftContainer, 0 ,1);
+////        leftArea
+//        this.add(leftContainer, 0 ,1);
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
-        this.add(helpIconsContainer, 2 ,1);
+        this.setRight(helpIconsContainer);
 
         //        statusbar
-        this.add(statusBarText,1,3,1,1);
+        this.setBottom(statusBarText);
+        statusBarText.setAlignment(Pos.CENTER);
 
-        this.setGridLinesVisible(true);
-
-
-
-        // column constraints
-        ColumnConstraints col1Constraints = new ColumnConstraints();
-        col1Constraints.setPercentWidth(30);
-        ColumnConstraints col2Constraints = new ColumnConstraints();
-        col2Constraints.setPercentWidth(40);
-        ColumnConstraints col3Constraints = new ColumnConstraints();
-        col3Constraints.setPercentWidth(30);
-
-        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints);
+//        this.setGridLinesVisible(true);
 
 
-        // constraints Gridpane
-        this.setConstraints(menuBar,     0, 0, 3, 1,
-                HPos.CENTER,       VPos.TOP,
-                Priority.ALWAYS, Priority.ALWAYS);
 
-
-        this.setConstraints(mainContainer,     1, 2, 1, 1,
-                HPos.CENTER,       VPos.CENTER,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-        this.setConstraints(helpIconsContainer,     2, 1, 1, 1,
-                HPos.LEFT,       VPos.CENTER,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-
-        this.setConstraints(statusBarText,     1, 3, 1, 1,
-                HPos.CENTER,       VPos.BOTTOM,
-                Priority.ALWAYS, Priority.ALWAYS);
+//        // column constraints
+//        ColumnConstraints col1Constraints = new ColumnConstraints();
+//        col1Constraints.setPercentWidth(20);
+//        ColumnConstraints col2Constraints = new ColumnConstraints();
+//        col2Constraints.setPercentWidth(60);
+//        ColumnConstraints col3Constraints = new ColumnConstraints();
+//        col3Constraints.setPercentWidth(20);
+//
+//        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints);
+//
+//        RowConstraints rowConstraint1 = new RowConstraints();
+////        rowConstraint1.setPercentHeight(5);
+////        rowConstraint1.setMinHeight(100);
+//        rowConstraint1.setMaxHeight(100);
+//        RowConstraints rowConstraint2 = new RowConstraints();
+//        rowConstraint2.setPercentHeight(40);
+//        this.getRowConstraints().addAll(rowConstraint1,rowConstraint2);
+//
+//
+//
+//        // constraints Gridpane
+//        this.setConstraints(menuContainer,     0, 0, 3, 1,
+//                HPos.CENTER,       VPos.TOP,
+//                Priority.ALWAYS, Priority.ALWAYS);
+//
+//
+//        this.setConstraints(mainContainer,     1, 2, 1, 1,
+//                HPos.CENTER,       VPos.CENTER,
+//                Priority.ALWAYS, Priority.ALWAYS);
+//
+//        this.setConstraints(helpIconsContainer,     2, 1, 1, 1,
+//                HPos.RIGHT,       VPos.CENTER,
+//                Priority.ALWAYS, Priority.ALWAYS);
+//
+//
+//        this.setConstraints(statusBarText,     1, 3, 1, 1,
+//                HPos.CENTER,       VPos.BOTTOM,
+//                Priority.ALWAYS, Priority.ALWAYS);
     }
 
-    public Button getHomeBtn() {
-        return homeBtn;
-    }
 
 
     public TableView getTable() {
@@ -195,5 +196,29 @@ public class RankingView extends GridPane {
 
     public ImageView getSettingsIcon() {
         return settingsIcon;
+    }
+
+    public Button getNewGame() {
+        return newGame;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public Button getHervatSpel() {
+        return hervatSpel;
+    }
+
+    public Button getHistoriek() {
+        return historiek;
+    }
+
+    public static String getColorOne() {
+        return colorOne;
+    }
+
+    public static String getColorTwo() {
+        return colorTwo;
     }
 }
