@@ -12,6 +12,7 @@ import java.util.List;
 public class GameView extends BorderPane {
     private VBox mainContainer;
     private HBox helpIconsContainer;
+    private HBox menuContainer;
     private VBox leftContainer;
     private HBox whiteCapturedPieces;
     private HBox blackCapturedPieces;
@@ -28,7 +29,6 @@ public class GameView extends BorderPane {
 
     private ImageView helpIcon;
     private ImageView infoIcon;
-    private ImageView settingsIcon;
 
     private Label statusBarText;
     private Label whitePlayerName;
@@ -36,6 +36,8 @@ public class GameView extends BorderPane {
 
     private ChessBoardView gameChessBoardGrid;
     private List<ChessBoardSquare> chessBoardSquares;
+
+
 
 
     public Button getHomeBtn() {
@@ -109,7 +111,6 @@ public class GameView extends BorderPane {
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
         this.helpIcon = new ImageView("/questionIconGold.png");
-        this.settingsIcon = new ImageView("/settingsIconGold.png");
         this.infoIcon = new ImageView("/infoIconGold.png");
 
         //        statusbar
@@ -142,7 +143,7 @@ public class GameView extends BorderPane {
         this.setLeft(leftContainer);
 
 //      HelpIcons
-        helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
+        helpIconsContainer.getChildren().addAll(helpIcon, infoIcon);
         this.setRight(helpIconsContainer);
 
         //        statusbar

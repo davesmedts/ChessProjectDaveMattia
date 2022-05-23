@@ -109,6 +109,23 @@ public class NewGamePresenter {
             }
         });
 
+        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(settingsView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
+
+            }
+
+        });
+
         view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

@@ -19,13 +19,10 @@ public class HomeView extends GridPane {
 
     private HBox menuContainer;
 
-
     private Button newGame;
     private Button home;
     private Button hervatSpel;
     private Button historiek;
-
-
 
     private Label titel;
 
@@ -78,7 +75,6 @@ public class HomeView extends GridPane {
 
 //        statusbar
         this.statusBarText = new Label("designed and build by Dave Smedts and Mattia Verreydt");
-
     }
 
     private void layoutNodes() {
@@ -133,8 +129,6 @@ public class HomeView extends GridPane {
         rowConstraint4.setPercentHeight(15);
         this.getRowConstraints().addAll(rowConstraint1,rowConstraint2,rowConstraint3,rowConstraint4);
 
-
-
         // constraints Gridpane
         this.setConstraints(menuContainer, 0, 0, 4, 1,
                 HPos.CENTER, VPos.TOP,
@@ -167,7 +161,6 @@ public class HomeView extends GridPane {
         return openenBtn;
     }
 
-
     public ImageView getHelpIcon() {
         return helpIcon;
     }
@@ -179,7 +172,6 @@ public class HomeView extends GridPane {
     public ImageView getInfoIcon() {
         return infoIcon;
     }
-
 
     public Button getNewGame() {
         return newGame;
@@ -195,5 +187,9 @@ public class HomeView extends GridPane {
 
     public Button getGeschiedenis() {
         return historiek;
+    }
+
+    public Button getHervatSpel() {
+        return hervatSpel;
     }
 }

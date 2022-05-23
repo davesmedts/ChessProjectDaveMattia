@@ -72,6 +72,33 @@ public class HomePresenter {
             }
         });
 
+        view.getHervatSpel().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File("resources/savedGames"));
+                fileChooser.setTitle("Load Data File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+                File selectedFile = fileChooser.showOpenDialog(
+                        view.getScene().getWindow());
+                if ((selectedFile != null)) {
+                    System.out.println(selectedFile.getName());
+                    String nameWithoutExtension = selectedFile.getName().split("\\.")[0];
+                    model.loadGame(nameWithoutExtension);
+
+                    GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
+                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+
+                    gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                    gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+                }
+            }
+        });
+
 
 
         // blijven op dezelfde Stage, new Game starten
@@ -103,12 +130,6 @@ public class HomePresenter {
         // blijven op dezelfde Stage, spel hervatten
         view.getOpenenBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
-//            public void handle(ActionEvent event) {
-//                LoadGameView RankingView = new LoadGameView();
-//                LoadGamePresenter LoadGamePresenter = new LoadGamePresenter(model, RankingView);
-//                view.getScene().setRoot(RankingView);
-//                RankingView.getScene().getWindow().sizeToScene();
-//            }
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialDirectory(new File("resources/savedGames"));
@@ -133,19 +154,6 @@ public class HomePresenter {
 
 
                 }
-//                    (Files.isReadable(Paths.get(selectedFile.toURI())))) {
-//                        try {
-//                            List<String> input =
-//                                    Files.readAllLines(Paths.get(selectedFile.toURI()));
-//// implementeren ingelezen gegevens doorgeven aan model
-//                        } catch (IOException e) { /* exception behandelen*/}
-//                    } else{
-//                        Alert errorWindow = new Alert(Alert.AlertType.ERROR);
-//                        errorWindow.setHeaderText("Problem with selected file");
-//                        errorWindow.setContentText("File is not readable");
-//                        errorWindow.showAndWait();
-//                    }
-
             }
         });
 
@@ -205,25 +213,7 @@ public class HomePresenter {
 
 
     public void addWindowEventHandlers() {
-
-//            view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//                @Override
-//                public void handle(WindowEvent event) {
-//                    Alert alert = new Alert(Alert.AlertType.WARNING);
-//                    alert.setHeaderText("Wilt u het spel verlaten?");
-//                    alert.setContentText("Ben je zeker?");
-//                    alert.setTitle("Opgelet!");
-//                    alert.getButtonTypes().clear();
-//                    ButtonType neen = new ButtonType("Neen");
-//                    ButtonType ja = new ButtonType("Ja");
-//                    alert.getButtonTypes().addAll(neen, ja);
-//                    alert.showAndWait();
-//                    if (alert.getResult() == null || alert.getResult().equals(neen)) {
-//                        event.consume();
-//                    }
-//                }
-//            });
-        }
+     }
 
 
 
