@@ -1,6 +1,8 @@
 package view.settingView;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -25,6 +27,8 @@ public class SettingsView extends GridPane {
 
     private Label uitleg;
     private HBox uitlegContainer;
+
+    private int widthGrid;
 
 
     public SettingsView() {
@@ -83,26 +87,30 @@ public class SettingsView extends GridPane {
         buttonContainer.getChildren().addAll(themeOne, themeTwo, themeThree);
         uitlegContainer.getChildren().addAll(uitleg);
 
-        uitleg.setFont(Font.font( 17));
+        uitleg.setFont(Font.font(17));
         settingTitle.setFont(Font.font(20));
         uitleg.setStyle("-fx-text-fill: #E7DFBC;");
 
         this.add(settingTitle, 0, 0);
-        this.add(uitleg, 1, 1);
-        this.add(buttonContainer, 1, 2);
-
+        this.add(uitleg, 0, 1);
+        this.add(buttonContainer, 0, 2);
 
 
         RowConstraints rowConstraint1 = new RowConstraints();
-        rowConstraint1.setPercentHeight(15);
+        rowConstraint1.setMinHeight(15);
         RowConstraints rowConstraint2 = new RowConstraints();
-        rowConstraint2.setPercentHeight(8);
-        RowConstraints rowConstraint3 = new RowConstraints();
-        rowConstraint3.setPercentHeight(5);
-        RowConstraints rowConstraint4 = new RowConstraints();
-        rowConstraint4.setPercentHeight(5);
+        rowConstraint2.setMinHeight(8);
 
-        this.getRowConstraints().addAll(rowConstraint1, rowConstraint2, rowConstraint3, rowConstraint4);
+        ColumnConstraints columnConstraint1 = new ColumnConstraints();
+        columnConstraint1.setMinWidth(10);
+
+        this.getColumnConstraints().addAll(columnConstraint1);
+        this.getRowConstraints().addAll(rowConstraint1, rowConstraint2);
+
+//        this.setConstraints(buttonContainer, 1, 2, 1, 1,
+//                HPos.CENTER, VPos.TOP,
+//                Priority.ALWAYS, Priority.ALWAYS);
+
 
         this.setPadding(new Insets(15));
         this.setStyle("-fx-background-color: BLACK;");

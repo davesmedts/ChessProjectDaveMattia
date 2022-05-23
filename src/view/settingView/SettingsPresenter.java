@@ -15,6 +15,7 @@ public class SettingsPresenter {
     private Game model;
     private SettingsView view;
 
+
     public SettingsPresenter(Game model,
                              SettingsView view) {
         this.model = model;
@@ -25,6 +26,19 @@ public class SettingsPresenter {
 
 
     private void addEventHandlers() {
+
+//        this.widthProperty().addListener((observable, oldValue, newValue) -> {
+//            Breakpoint newBreakpoint = Breakpoint.XSMALL;
+//            if (newValue.doubleValue() > 576) newBreakpoint = Breakpoint.SMALL;
+//            if (newValue.doubleValue() > 768) newBreakpoint = Breakpoint.MEDIUM;
+//            if (newValue.doubleValue() > 992) newBreakpoint = Breakpoint.LARGE;
+//            if (newValue.doubleValue() > 1200) newBreakpoint = Breakpoint.XLARGE;
+//            if (newBreakpoint != currentWindowSize) {
+//                currentWindowSize = newBreakpoint;
+//                calculateNodePositions();
+//            }
+//        });
+
 
         view.getThemeOne().setOnAction(new EventHandler<ActionEvent>() {
             @Override
