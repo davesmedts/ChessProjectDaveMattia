@@ -23,7 +23,8 @@ public class HomeView extends GridPane {
     private Button newGame;
     private Button home;
     private Button hervatSpel;
-    private Button geschiedenis;
+    private Button historiek;
+
 
 
     private Label titel;
@@ -63,10 +64,10 @@ public class HomeView extends GridPane {
 //        menuNodes
         this.menuContainer = new HBox(100);
 
-        this.hervatSpel = new Button("Oude spellen");
-        this.home = new Button("home");
-        this.newGame = new Button("nieuw spel");
-        this.geschiedenis = new Button("geschiedenis");
+        this.hervatSpel = new Button("HERVAT SPEL");
+        this.home = new Button("HOME");
+        this.newGame = new Button("NIEUW SPEL");
+        this.historiek = new Button("HISTORIEK");
 
 
 //        Icons on the right part of the screen
@@ -81,9 +82,10 @@ public class HomeView extends GridPane {
     }
 
     private void layoutNodes() {
+        this.setGridLinesVisible(true);
 
 //        menu
-        menuContainer.getChildren().addAll(home, newGame, hervatSpel, geschiedenis);
+        menuContainer.getChildren().addAll(home, newGame, hervatSpel, historiek);
         menuContainer.setId("menuContainer");
 
         this.add(menuContainer, 0, 0, 4, 1);
@@ -151,7 +153,6 @@ public class HomeView extends GridPane {
         this.setConstraints(statusBarText, 1, 3, 2, 1,
                 HPos.CENTER, VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
-
     }
 
     public Button getNewGameBtn() {
@@ -193,6 +194,6 @@ public class HomeView extends GridPane {
     }
 
     public Button getGeschiedenis() {
-        return geschiedenis;
+        return historiek;
     }
 }

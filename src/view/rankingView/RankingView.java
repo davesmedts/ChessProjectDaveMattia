@@ -53,6 +53,7 @@ public class RankingView extends GridPane {
 
     private void initialiseNodes() {
         //add data
+        this.setId("RankingView");
 
 
 

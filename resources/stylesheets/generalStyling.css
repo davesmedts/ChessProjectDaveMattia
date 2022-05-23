@@ -49,7 +49,7 @@
 /* ButtonType */
 
 .ButtonType {
-    -fx-background-color: #928043;
+    -fx-background-color: #726230;
 
 }
 
@@ -68,25 +68,17 @@
     -fx-pref-height: 30px;
     -fx-alignment: CENTER;
     -fx-border-style: solid;
-    -fx-border-color: #928043;
+    -fx-background-color: #928043;
     -fx-border-width: 1px;
     -fx-border-radius: 15px;
     -fx-text-fill: #858383;
 }
 
-.HelpView {
-    -fx-background-image: url("/BackgroundImageHomePage.jpg");
-    -fx-text-fill: white;
-    -fx-background-size: stretch;
-}
 
 
 #NewGameView {
     -fx-background-image: url("/BackgroundImageHomePage.jpg");
-
     -fx-background-size: stretch;
-
-
 }
 
 /* menu */
@@ -99,22 +91,21 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 10.0px;
-    -fx-background-color:#928043 ;
-    -fx-opacity: 0.5;
+    -fx-background-color: rgb(146, 128, 67);
     -fx-border-width: 2.0;
     -fx-alignment: center;
 
+}
 
+#RankingView {
+    -fx-background-image: url("/BackgroundImageHomePage.jpg");
+    -fx-background-size: stretch;
 }
 
 
 
-
-
-
-
 .table-view .column-header-background{
-    -fx-background-color:#928043;
+    -fx-background-color: #928043;
 
 
 }
