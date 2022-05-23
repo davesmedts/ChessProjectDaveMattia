@@ -1,6 +1,7 @@
 package view.rankingView;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
@@ -128,48 +129,9 @@ public class RankingView extends BorderPane {
         this.setBottom(statusBarText);
         statusBarText.setAlignment(Pos.CENTER);
 
-//        this.setGridLinesVisible(true);
-
-
-
-//        // column constraints
-//        ColumnConstraints col1Constraints = new ColumnConstraints();
-//        col1Constraints.setPercentWidth(20);
-//        ColumnConstraints col2Constraints = new ColumnConstraints();
-//        col2Constraints.setPercentWidth(60);
-//        ColumnConstraints col3Constraints = new ColumnConstraints();
-//        col3Constraints.setPercentWidth(20);
-//
-//        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints);
-//
-//        RowConstraints rowConstraint1 = new RowConstraints();
-////        rowConstraint1.setPercentHeight(5);
-////        rowConstraint1.setMinHeight(100);
-//        rowConstraint1.setMaxHeight(100);
-//        RowConstraints rowConstraint2 = new RowConstraints();
-//        rowConstraint2.setPercentHeight(40);
-//        this.getRowConstraints().addAll(rowConstraint1,rowConstraint2);
-//
-//
-//
-//        // constraints Gridpane
-//        this.setConstraints(menuContainer,     0, 0, 3, 1,
-//                HPos.CENTER,       VPos.TOP,
-//                Priority.ALWAYS, Priority.ALWAYS);
-//
-//
-//        this.setConstraints(mainContainer,     1, 2, 1, 1,
-//                HPos.CENTER,       VPos.CENTER,
-//                Priority.ALWAYS, Priority.ALWAYS);
-//
-//        this.setConstraints(helpIconsContainer,     2, 1, 1, 1,
-//                HPos.RIGHT,       VPos.CENTER,
-//                Priority.ALWAYS, Priority.ALWAYS);
-//
-//
-//        this.setConstraints(statusBarText,     1, 3, 1, 1,
-//                HPos.CENTER,       VPos.BOTTOM,
-//                Priority.ALWAYS, Priority.ALWAYS);
+        // padding
+        helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
+        titel.setPadding(new Insets(10,50, 0, 50));
     }
 
 

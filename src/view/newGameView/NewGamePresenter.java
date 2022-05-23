@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Game;
@@ -21,6 +22,7 @@ import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +49,33 @@ public class NewGamePresenter {
                 view.getScene().setRoot(homeView);
                 homeView.getScene().getWindow().sizeToScene();
 
+            }
+        });
+
+        view.getHervatSpel().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File("resources/savedGames"));
+                fileChooser.setTitle("Load Data File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+                File selectedFile = fileChooser.showOpenDialog(
+                        view.getScene().getWindow());
+                if ((selectedFile != null)) {
+                    System.out.println(selectedFile.getName());
+                    String nameWithoutExtension = selectedFile.getName().split("\\.")[0];
+                    model.loadGame(nameWithoutExtension);
+
+                    GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
+                    GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    view.getScene().setRoot(gameView);
+                    gameView.getScene().getWindow().sizeToScene();
+
+                    gameView.setBlackPlayerName(model.getBlackPlayer().toString());
+                    gameView.setWhitePlayerName(model.getWhitePlayer().toString());
+                }
             }
         });
 
@@ -142,11 +171,15 @@ public class NewGamePresenter {
                 Stage settingPresenter = new Stage();
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView));
+                settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
+
+
+
             }
+
         });
 
 

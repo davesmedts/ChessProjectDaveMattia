@@ -1,5 +1,6 @@
 package view.newGameView;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,6 @@ public class NewGameView extends BorderPane {
     private HBox helpIconsContainer;
     private VBox leftContainer;
     private VBox saveContainer;
-    private GridPane GridPane;
 
     private Button startSpel;
     private Button applyPlayerOne;
@@ -83,7 +83,6 @@ public class NewGameView extends BorderPane {
         this.startSpel = new Button("Start spel");
         this.applyPlayerOne = new Button("Save");
         this.applyPlayerTwo = new Button(("Save"));
-        this.GridPane = new GridPane();
 
         titel.setId("titel");
 
@@ -151,18 +150,14 @@ public class NewGameView extends BorderPane {
 
         this.setId("NewGameView");
 
+        // padding
+        helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
+        titel.setPadding(new Insets(10,50, 0, 50));
+
     }
 
     public Button getStartSpel() {
         return startSpel;
-    }
-
-    public Button getApplyPlayerOne() {
-        return applyPlayerOne;
-    }
-
-    public Button getApplyPlayerTwo() {
-        return applyPlayerTwo;
     }
 
     public TextField getTekstPlayerOne() {
@@ -171,11 +166,6 @@ public class NewGameView extends BorderPane {
 
     public TextField getTekstPlayerTwo() {
         return tekstPlayerTwo;
-    }
-
-
-    public Button getNewGame() {
-        return newGame;
     }
 
     public Button getHome() {
@@ -189,4 +179,6 @@ public class NewGameView extends BorderPane {
     public Button getGeschiedenis() {
         return geschiedenis;
     }
+
+
 }

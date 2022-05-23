@@ -9,6 +9,8 @@ import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
+import view.splashScreenView.SplashScreenPresenter;
+import view.startView.StartView;
 
 
 public class Main extends Application {
@@ -30,13 +32,15 @@ public class Main extends Application {
 
         Game model = new Game();
 
-        HomeView view = new HomeView();
-        HomePresenter presenter = new HomePresenter(model, view);
-        Scene scene = new Scene(view, 1100, 700);
-        scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
-        primaryStage.setScene(scene);
-//        presenter.addWindowEventHandlers();
+
+        HomeView homeview = new HomeView();
+        HomePresenter homepresenter = new HomePresenter(model, homeview);
+        Scene homescene = new Scene(homeview, 1100, 700);
+        homescene.getStylesheets().add("/stylesheets/generalStyling.css");
+
+        primaryStage.setScene(homescene);
+//        homepresenter.addWindowEventHandlers();
         primaryStage.show();
     }
 

@@ -108,6 +108,7 @@ public class HomeView extends GridPane {
         helpIconsContainer.setAlignment(Pos.TOP_RIGHT);
         this.add(helpIconsContainer, 3, 1);
 
+
 //        statusbar
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
         this.add(statusBarText, 0, 4, 4, 1);
@@ -158,6 +159,10 @@ public class HomeView extends GridPane {
         this.setConstraints(statusBarText, 0, 4, 4, 1,
                 HPos.LEFT, VPos.BOTTOM,
                 Priority.ALWAYS, Priority.ALWAYS);
+
+        // padding
+        helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
+        titel.setPadding(new Insets(10,50, 0, 50));
     }
 
     public Button getNewGameBtn() {

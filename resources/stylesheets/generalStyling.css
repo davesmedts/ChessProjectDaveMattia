@@ -6,6 +6,11 @@
     -fx-background-size: stretch;
 }
 
+/* icons */
+#helpicon{
+    -fx-padding: 5;
+}
+
 /* titel Home View*/
 
 #TitelHomeView {
@@ -21,10 +26,12 @@
 .label {
     -fx-text-fill: #E7DFBC;
     -fx-font-family: "Bookman Old Style";
+    -fx-font-size: 16;
 }
 
 .button {
     -fx-font-family: "Bookman Old Style";
+    -fx-font-size: 14;
 }
 
 

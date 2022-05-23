@@ -63,21 +63,21 @@ public class SettingsView extends GridPane {
 
     public void updateStyle(int themeSetter) {
         if (themeSetter == 1) {
-            themeOne.setStyle("-fx-background-color: GREEN");
-            themeTwo.setStyle("-fx-background-color: RED");
-            themeThree.setStyle("-fx-background-color: RED");
+            themeOne.setStyle("-fx-background-color:  #f6f7f3");
+            themeTwo.setStyle("-fx-background-color: #928043");
+            themeThree.setStyle("-fx-background-color: #928043");
         }
 
         if (themeSetter == 2) {
-            themeOne.setStyle("-fx-background-color: RED");
-            themeTwo.setStyle("-fx-background-color: GREEN");
-            themeThree.setStyle("-fx-background-color: RED");
+            themeOne.setStyle("-fx-background-color: #928043");
+            themeTwo.setStyle("-fx-background-color: #f6f7f3");
+            themeThree.setStyle("-fx-background-color: #928043");
         }
 
         if (themeSetter == 3) {
-            themeOne.setStyle("-fx-background-color: RED");
-            themeTwo.setStyle("-fx-background-color: RED");
-            themeThree.setStyle("-fx-background-color: GREEN");
+            themeOne.setStyle("-fx-background-color: #928043");
+            themeTwo.setStyle("-fx-background-color: #928043");
+            themeThree.setStyle("-fx-background-color: #f6f7f3");
         }
 
     }

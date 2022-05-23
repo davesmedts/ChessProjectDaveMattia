@@ -102,6 +102,7 @@ public class GameView extends BorderPane {
         this.leftContainer = new VBox();
         this.titel = new Label("Schaakspel");
 
+
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox();
         this.helpIcon = new ImageView("/questionIconGold.png");
@@ -132,15 +133,21 @@ public class GameView extends BorderPane {
 
 //        leftArea
         leftContainer.getChildren().addAll(titel);
-        titel.setId("gameViewTitel");
+        titel.setId("titel");
         this.setLeft(leftContainer);
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(helpIcon, infoIcon);
         this.setRight(helpIconsContainer);
 
+
         //        statusbar
         this.setBottom(statusBarText);
+
+
+        // padding
+        helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
+        titel.setPadding(new Insets(10,50, 0, 50));
     }
 
     public List<ChessBoardSquare> getChessBoardSquares() {

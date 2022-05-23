@@ -119,9 +119,9 @@ public class RankingPresenter {
                 Stage settingPresenter = new Stage();
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(settingsView, 800, 500));
-//                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-//                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.setScene(new Scene(settingsView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
 
             }
@@ -136,11 +136,13 @@ public class RankingPresenter {
                 Stage settingPresenter = new Stage();
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView));
-//                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-//                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
+
             }
+
         });
 
 

@@ -122,11 +122,6 @@ public class SplashScreenView extends BorderPane {
 
         hbox.setAlignment(Pos.CENTER);
 
-        // refection
-        Reflection reflection = new Reflection();
-        reflection.setFraction(0.7);
-        hbox.setEffect(reflection);
-
 
     }
 

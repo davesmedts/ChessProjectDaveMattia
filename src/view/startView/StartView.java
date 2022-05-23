@@ -17,7 +17,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import view.splashScreenView.LoadBarTransition;
 
 /**
  * @author Mattia Verreydt
@@ -33,9 +32,9 @@ public class StartView extends GridPane {
     private Text program;
     private Text created;
     private Text by;
-    private Text deef;
+    private Text dave;
     private Text and;
-    private Text mattimagic;
+    private Text mattia;
 
     private ProgressBar loadBar;
 
@@ -67,23 +66,23 @@ public class StartView extends GridPane {
         this.program = new Text("program ");
         this.by = new Text("by ");
         this.created = new Text("created ");
-        this.deef = new Text("Deef ");
+        this.dave = new Text("Deef ");
         this.and = new Text("and ");
-        this.mattimagic = new Text("MattiMagic");
+        this.mattia = new Text("MattiMagic");
         program.setFill(Color.WHITE);
         program.setFont(Font.font(null, FontWeight.BOLD, 20));
         by.setFill(Color.WHITE);
         by.setFont(Font.font(null, FontWeight.BOLD, 20));
         created.setFill(Color.WHITE);
         created.setFont(Font.font(null, FontWeight.BOLD, 20));
-        deef.setFill(Color.WHITE);
-        deef.setFont(Font.font(null, FontWeight.BOLD, 20));
+        dave.setFill(Color.WHITE);
+        dave.setFont(Font.font(null, FontWeight.BOLD, 20));
         and.setFill(Color.WHITE);
         and.setFont(Font.font(null, FontWeight.BOLD, 20));
-        mattimagic.setFill(Color.WHITE);
-        mattimagic.setFont(Font.font(null, FontWeight.BOLD, 20));
+        mattia.setFill(Color.WHITE);
+        mattia.setFont(Font.font(null, FontWeight.BOLD, 20));
 
-        hbox.getChildren().addAll(program, created, by, deef, and, mattimagic);
+        hbox.getChildren().addAll(program, created, by, dave, and, mattia);
         vbox.getChildren().addAll(loading, loadBar);
 
 
@@ -187,7 +186,7 @@ public class StartView extends GridPane {
 
 
         //fade 4
-        FadeTransition fadeTransition4 = new FadeTransition(Duration.seconds(1), deef);
+        FadeTransition fadeTransition4 = new FadeTransition(Duration.seconds(1), dave);
         fadeTransition4.setFromValue(0.0);
         fadeTransition4.setToValue(1.0);
 
@@ -199,7 +198,7 @@ public class StartView extends GridPane {
 
 
         //fade 6
-        FadeTransition fadeTransition6 = new FadeTransition(Duration.seconds(1), mattimagic);
+        FadeTransition fadeTransition6 = new FadeTransition(Duration.seconds(1), mattia);
         fadeTransition6.setFromValue(0.0);
         fadeTransition6.setToValue(1.0);
 

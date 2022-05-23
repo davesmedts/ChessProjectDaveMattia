@@ -1,4 +1,4 @@
-package view.splashScreenView;
+package view.startView;
 
 import javafx.animation.Interpolator;
 import javafx.animation.Timeline;
