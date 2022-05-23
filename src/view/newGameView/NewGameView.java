@@ -33,7 +33,6 @@ public class NewGameView extends BorderPane {
 
     private ImageView helpIcon;
     private ImageView infoIcon;
-    private ImageView settingsIcon;
 
     private Label statusBarText;
     private Label description;
@@ -63,9 +62,6 @@ public class NewGameView extends BorderPane {
         return infoIcon;
     }
 
-    public ImageView getSettingsIcon() {
-        return settingsIcon;
-    }
 
     public NewGameView() {
         this.initialiseNodes();
@@ -104,7 +100,6 @@ public class NewGameView extends BorderPane {
 //        Icons on the right part of the screen
         this.helpIconsContainer = new HBox(8);
         this.helpIcon = new ImageView("/questionIconGold.png");
-        this.settingsIcon = new ImageView("/settingsIconGold.png");
         this.infoIcon = new ImageView("/infoIconGold.png");
 
 
@@ -141,7 +136,7 @@ public class NewGameView extends BorderPane {
         leftContainer.setSpacing(25);
 
 //      HelpIcons
-        helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
+        helpIconsContainer.getChildren().addAll(helpIcon, infoIcon);
         this.setRight(helpIconsContainer);
 
         //        statusbar

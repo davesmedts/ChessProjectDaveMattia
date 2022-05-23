@@ -85,39 +85,6 @@ public class HomePresenter {
             }
         });
 
-        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SettingsView settingsView = new SettingsView();
-                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
-
-            }
-
-        });
-
-        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SplashScreenView splashScreenView = new SplashScreenView();
-                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
-
-            }
-
-        });
 
 
         // blijven op dezelfde Stage, rangschikking opvragen
@@ -130,7 +97,7 @@ public class HomePresenter {
                 RankingView.getScene().getWindow().sizeToScene();
             }
         });
-        
+
 
 
         // blijven op dezelfde Stage, spel hervatten
@@ -199,6 +166,41 @@ public class HomePresenter {
                 helpStage.showAndWait();
             }
         });
+
+        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(settingsView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
+
+            }
+
+        });
+
+        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SplashScreenView splashScreenView = new SplashScreenView();
+                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(splashScreenView));
+                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
+
+            }
+
+        });
+
     }
 
 

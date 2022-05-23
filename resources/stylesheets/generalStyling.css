@@ -6,9 +6,6 @@
     -fx-background-size: stretch;
 }
 
-
-
-
 /* titel Home View*/
 
 #TitelHomeView {
@@ -68,13 +65,11 @@
     -fx-pref-height: 30px;
     -fx-alignment: CENTER;
     -fx-border-style: solid;
-    -fx-background-color: #928043;
     -fx-border-width: 1px;
     -fx-border-radius: 15px;
+    -fx-border-color: #726230;
     -fx-text-fill: #858383;
 }
-
-
 
 #NewGameView {
     -fx-background-image: url("/BackgroundImageHomePage.jpg");
@@ -82,9 +77,6 @@
 }
 
 /* menu */
-
-
-
 #menuContainer {
     -fx-font-size: 14.0 pt;
     -fx-font-family: "Bookman Old Style";

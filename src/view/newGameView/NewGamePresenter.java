@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import model.Game;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
+import view.help.HelpPresenter;
+import view.help.HelpView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 import view.rankingView.RankingPresenter;
@@ -89,21 +91,22 @@ public class NewGamePresenter {
         });
 
 
-        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+        view.getHelpIcon().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                SettingsView settingsView = new SettingsView();
-                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
-
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(helpView);
+                Stage helpStage = new Stage();
+                helpStage.setTitle("Hoe speel je schaak?");
+                helpStage.initOwner(view.getScene().getWindow());
+                helpStage.initModality(Modality.APPLICATION_MODAL);
+                Scene scene = new Scene(helpView);
+//                scene.getStylesheets().add("stylesheets/style.css");
+                helpStage.setScene(scene);
+                helpStage.setX(view.getScene().getWindow().getX());
+                helpStage.setY(view.getScene().getWindow().getY() + 100);
+                helpStage.showAndWait();
             }
-
         });
 
         view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
@@ -118,9 +121,7 @@ public class NewGamePresenter {
                 settingPresenter.setX(view.getScene().getWindow().getX() + 100);
                 settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
-
             }
-
         });
 
 

@@ -184,4 +184,16 @@ public class RankingView extends GridPane {
     public TableColumn getWinnaarCol() {
         return winnaarCol;
     }
+
+    public ImageView getHelpIcon() {
+        return helpIcon;
+    }
+
+    public ImageView getInfoIcon() {
+        return infoIcon;
+    }
+
+    public ImageView getSettingsIcon() {
+        return settingsIcon;
+    }
 }

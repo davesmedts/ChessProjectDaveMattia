@@ -6,11 +6,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Game;
 import model.HistoryRecord;
+import view.help.HelpPresenter;
+import view.help.HelpView;
 import view.homeView.HomePresenter;
 import view.homeView.HomeView;
+import view.settingView.SettingsPresenter;
+import view.settingView.SettingsView;
+import view.splashScreenView.SplashScreenPresenter;
+import view.splashScreenView.SplashScreenView;
 
 public class RankingPresenter {
 
@@ -36,8 +46,55 @@ public class RankingPresenter {
             }
         });
 
+        view.getHelpIcon().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(helpView);
+                Stage helpStage = new Stage();
+                helpStage.setTitle("Hoe speel je schaak?");
+                helpStage.initOwner(view.getScene().getWindow());
+                helpStage.initModality(Modality.APPLICATION_MODAL);
+                Scene scene = new Scene(helpView);
+//                scene.getStylesheets().add("stylesheets/style.css");
+                helpStage.setScene(scene);
+                helpStage.setX(view.getScene().getWindow().getX());
+                helpStage.setY(view.getScene().getWindow().getY() + 100);
+                helpStage.showAndWait();
+            }
+        });
 
+        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(settingsView, 800, 500));
+//                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+//                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
 
+            }
+
+        });
+
+        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SplashScreenView splashScreenView = new SplashScreenView();
+                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
+                Stage settingPresenter = new Stage();
+                settingPresenter.initOwner(view.getScene().getWindow());
+                settingPresenter.initModality(Modality.APPLICATION_MODAL);
+                settingPresenter.setScene(new Scene(splashScreenView));
+//                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+//                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+                settingPresenter.showAndWait();
+            }
+        });
     }
 
     private void updateView() {
