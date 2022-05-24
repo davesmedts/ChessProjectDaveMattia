@@ -103,6 +103,13 @@
     -fx-font-weight: bold;
     -fx-text-fill: WHITE;
 }
+#titelGameView {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: Black;
+}
+
+
 
 #RankingView {
     -fx-background-image: url("/BackgroundImageHomePage.jpg");

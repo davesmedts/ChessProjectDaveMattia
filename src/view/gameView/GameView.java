@@ -133,7 +133,7 @@ public class GameView extends BorderPane {
 
 //        leftArea
         leftContainer.getChildren().addAll(titel);
-        titel.setId("titel");
+        titel.setId("titelGameView");
         this.setLeft(leftContainer);
 
 //      HelpIcons
