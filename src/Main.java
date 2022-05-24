@@ -40,7 +40,7 @@ public class Main extends Application {
         homescene.getStylesheets().add("/stylesheets/generalStyling.css");
 
         primaryStage.setScene(homescene);
-//        homepresenter.addWindowEventHandlers();
+        homepresenter.addWindowEventHandlers();
         primaryStage.show();
     }
 

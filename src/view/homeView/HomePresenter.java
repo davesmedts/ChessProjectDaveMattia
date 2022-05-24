@@ -43,7 +43,6 @@ public class HomePresenter {
         this.view = view;
         this.addEventHandlers();
         this.updateView();
-        this.addWindowEventHandlers();
     }
 
 
@@ -167,7 +166,6 @@ public class HomePresenter {
                 helpStage.initOwner(view.getScene().getWindow());
                 helpStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(helpView);
-//                scene.getStylesheets().add("stylesheets/style.css");
                 helpStage.setScene(scene);
                 helpStage.setX(view.getScene().getWindow().getX());
                 helpStage.setY(view.getScene().getWindow().getY() + 100);
@@ -214,23 +212,24 @@ public class HomePresenter {
     }
 
     public void addWindowEventHandlers() {
-        //            view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
-//                @Override
-//                public void handle(WindowEvent event) {
-//                    Alert alert = new Alert(Alert.AlertType.WARNING);
-//                    alert.setHeaderText("Wilt u het spel verlaten?");
-//                    alert.setContentText("Ben je zeker?");
-//                    alert.setTitle("Opgelet!");
-//                    alert.getButtonTypes().clear();
-//                    ButtonType neen = new ButtonType("Neen");
-//                    ButtonType ja = new ButtonType("Ja");
-//                    alert.getButtonTypes().addAll(neen, ja);
-//                    alert.showAndWait();
-//                    if (alert.getResult() == null || alert.getResult().equals(neen)) {
-//                        event.consume();
-//                    }
-//                }
-//            });
+        view.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Hierdoor stopt het spel!");
+                alert.setContentText("Ben je zeker?");
+                alert.setTitle("Opgelet!");
+                alert.getButtonTypes().clear();
+                ButtonType neen = new ButtonType("Neen");
+                ButtonType ja = new ButtonType("Ja");
+                alert.getButtonTypes().addAll(neen, ja);
+                alert.showAndWait();
+                if (alert.getResult() == null || alert.getResult().equals(neen)) {
+                    event.consume();
+                }
+            }
+        });
+
     }
 
     private void updateView() {
