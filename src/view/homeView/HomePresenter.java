@@ -25,6 +25,7 @@ import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
+import view.startView.StartView;
 
 import java.io.File;
 
@@ -231,6 +232,7 @@ public class HomePresenter {
         });
 
     }
+
 
     private void updateView() {
     }

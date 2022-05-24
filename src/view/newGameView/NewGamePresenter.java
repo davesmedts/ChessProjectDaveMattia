@@ -4,6 +4,8 @@ package view.newGameView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -92,24 +94,15 @@ public class NewGamePresenter {
         });
 
 
-
         view.getStartSpel().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
                 String playerOne = view.getTekstPlayerOne().getText();
                 String playerTwo = view.getTekstPlayerTwo().getText();
-//
-//                Pattern pattern = Pattern.compile("[a-zA-Z]", Pattern.CASE_INSENSITIVE);
-//                Matcher matcher = pattern.matcher(playerOne);
-//                boolean matchFoundPlayerOne = matcher.find();
-//
-//                Pattern pattern2 = Pattern.compile("[a-zA-Z]", Pattern.CASE_INSENSITIVE);
-//                Matcher matcher2 = pattern.matcher(playerTwo);
-//                boolean matchFoundPlayerTwo = matcher.find();
 
 
-//                if (matchFoundPlayerOne && matchFoundPlayerTwo) {
+                if (!playerOne.isEmpty() && !playerTwo.isEmpty()) {
 
                     model.newGame(playerOne, playerTwo);
                     GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
@@ -121,69 +114,106 @@ public class NewGamePresenter {
                     gameView.setWhitePlayerName(model.getWhitePlayer().toString());
 
 
-//                }
+                }
+
+                if (playerOne.isEmpty()&& !playerTwo.isEmpty()) {
+                    view.getTekstPlayerOne().setStyle("-fx-text-box-border: red;");
+                    view.getTekstPlayerTwo().setStyle("-fx-text-box-border: black;");
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Naam speler 1");
+                    alert.setContentText("Vul aub een naam in voor speler 1");
+                    alert.showAndWait();
+
+                }
+
+                if (playerTwo.isEmpty() && !playerOne.isEmpty()) {
+                    view.getTekstPlayerTwo().setStyle("-fx-text-box-border: red;");
+                    view.getTekstPlayerOne().setStyle("-fx-text-box-border: black;");
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Naam speler 2");
+                    alert.setContentText("Vul aub een naam in voor speler 2");
+                    alert.showAndWait();
+                }
+
+                if (playerTwo.isEmpty() && playerOne.isEmpty()) {
+                    view.getTekstPlayerTwo().setStyle("-fx-text-box-border: red;");
+                    view.getTekstPlayerOne().setStyle("-fx-text-box-border: red;");
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Naam spelers");
+                    alert.setContentText("Vul aub een naam in voor beide spelers");
+                    alert.showAndWait();
 
 
-            }
-        });
+                }
+
+        }
+    });
 
 
-        view.getHelpIcon().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                HelpView helpView = new HelpView();
-                HelpPresenter helpPresenter = new HelpPresenter(helpView);
-                Stage helpStage = new Stage();
-                helpStage.setTitle("Hoe speel je schaak?");
-                helpStage.initOwner(view.getScene().getWindow());
-                helpStage.initModality(Modality.APPLICATION_MODAL);
-                Scene scene = new Scene(helpView);
+        view.getHelpIcon().
+
+    setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle (MouseEvent mouseEvent){
+            HelpView helpView = new HelpView();
+            HelpPresenter helpPresenter = new HelpPresenter(helpView);
+            Stage helpStage = new Stage();
+            helpStage.setTitle("Hoe speel je schaak?");
+            helpStage.initOwner(view.getScene().getWindow());
+            helpStage.initModality(Modality.APPLICATION_MODAL);
+            Scene scene = new Scene(helpView);
 //                scene.getStylesheets().add("stylesheets/style.css");
-                helpStage.setScene(scene);
-                helpStage.setX(view.getScene().getWindow().getX());
-                helpStage.setY(view.getScene().getWindow().getY() + 100);
-                helpStage.showAndWait();
-            }
-        });
+            helpStage.setScene(scene);
+            helpStage.setX(view.getScene().getWindow().getX());
+            helpStage.setY(view.getScene().getWindow().getY() + 100);
+            helpStage.showAndWait();
+        }
+    });
 
-        view.getSettingsIcon().setOnMouseClicked(new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SettingsView settingsView = new SettingsView();
-                SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
+        view.getSettingsIcon().
 
-            }
+    setOnMouseClicked(new EventHandler<>() {
+        @Override
+        public void handle (MouseEvent mouseEvent){
+            SettingsView settingsView = new SettingsView();
+            SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
+            Stage settingPresenter = new Stage();
+            settingPresenter.initOwner(view.getScene().getWindow());
+            settingPresenter.initModality(Modality.APPLICATION_MODAL);
+            settingPresenter.setScene(new Scene(settingsView));
+            settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+            settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+            settingPresenter.showAndWait();
 
-        });
+        }
 
-        view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                SplashScreenView splashScreenView = new SplashScreenView();
-                SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
+    });
 
+        view.getInfoIcon().
 
-
-            }
-
-        });
+    setOnMouseClicked(new EventHandler<>() {
+        @Override
+        public void handle (MouseEvent mouseEvent){
+            SplashScreenView splashScreenView = new SplashScreenView();
+            SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
+            Stage settingPresenter = new Stage();
+            settingPresenter.initOwner(view.getScene().getWindow());
+            settingPresenter.initModality(Modality.APPLICATION_MODAL);
+            settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
+            settingPresenter.setX(view.getScene().getWindow().getX() + 100);
+            settingPresenter.setY(view.getScene().getWindow().getY() + 100);
+            settingPresenter.showAndWait();
 
 
-    }
+        }
+
+    });
+
+
+}
 
 
     private void updateView() {

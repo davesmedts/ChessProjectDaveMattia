@@ -15,24 +15,19 @@ public class NewGameView extends BorderPane {
     private HBox helpIconsContainer;
     private VBox leftContainer;
     private VBox saveContainer;
-
-    private Button startSpel;
-    private Button applyPlayerOne;
-    private Button applyPlayerTwo;
-
     private HBox menuContainer;
 
+    private Button startSpel;
     private Button newGame;
     private Button home;
     private Button hervatSpel;
     private Button geschiedenis;
 
-    private Label titel;
-
     private ImageView helpIcon;
     private ImageView infoIcon;
     private ImageView settingsIcon;
 
+    private Label titel;
     private Label statusBarText;
     private Label description;
     private Label naamPlayerWhite;
@@ -81,8 +76,7 @@ public class NewGameView extends BorderPane {
         this.tekstPlayerOne = new TextField();
         this.tekstPlayerTwo = new TextField();
         this.startSpel = new Button("Start spel");
-        this.applyPlayerOne = new Button("Save");
-        this.applyPlayerTwo = new Button(("Save"));
+
 
         titel.setId("titel");
 
@@ -156,6 +150,8 @@ public class NewGameView extends BorderPane {
 
     }
 
+
+
     public Button getStartSpel() {
         return startSpel;
     }
@@ -179,6 +175,8 @@ public class NewGameView extends BorderPane {
     public Button getGeschiedenis() {
         return geschiedenis;
     }
+
+
 
 
 }

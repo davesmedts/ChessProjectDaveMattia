@@ -34,6 +34,7 @@ public class Main extends Application {
 
 
 
+
         HomeView homeview = new HomeView();
         HomePresenter homepresenter = new HomePresenter(model, homeview);
         Scene homescene = new Scene(homeview, 1100, 700);
