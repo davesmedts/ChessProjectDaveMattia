@@ -91,8 +91,6 @@ public class GamePresenter {
 
                 @Override
                 public void handle(MouseEvent event) {
-
-
                     List<Square> backendValidMoveSquares = new ArrayList<>();
                     System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
 
@@ -225,7 +223,7 @@ public class GamePresenter {
                             }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
-                            view.setCenter(view.getMainContainer());
+//                            view.setCenter(view.getMainContainer());
                             addEventHandlers();
                             updateView();
                             System.out.println("movePieceMethod");

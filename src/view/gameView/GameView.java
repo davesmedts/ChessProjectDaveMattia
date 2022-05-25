@@ -31,6 +31,8 @@ public class GameView extends BorderPane {
     private Label blackPlayerName;
     private Label titel;
 
+    GridPane gridpane = new GridPane();
+
 
     public static String colorOne = "#57271d";
     public static String colorTwo = "#ecddc8";
@@ -61,7 +63,18 @@ public class GameView extends BorderPane {
         blackCapturedPieces.setAlignment(Pos.CENTER);
         whiteCapturedPieces.setAlignment(Pos.CENTER);
         mainContainer.getChildren().clear();
-        mainContainer.getChildren().addAll(blackPlayerName,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whiteCapturedPieces);
+        mainContainer.getChildren().addAll(gameChessBoardGrid);
+
+        GridPane pane = new GridPane();
+
+        pane.add(whitePlayerName,1,1);
+        pane.add(blackCapturedPieces,1,1);
+        pane.add(mainContainer,1,2);
+        pane.add(blackPlayerName,1,3);
+        pane.add(whiteCapturedPieces,1,3);
+
+        this.setCenter(pane);
+        pane.setAlignment(Pos.CENTER);
     }
 
     public GameView(String colorOne, String colorTwo) {
@@ -124,12 +137,20 @@ public class GameView extends BorderPane {
         mainContainer.setAlignment(Pos.TOP_CENTER);
         mainContainer.setSpacing(10);
         mainContainer.setPadding(new Insets(10));
-        mainContainer.getChildren().addAll(blackPlayerName,blackCapturedPieces, gameChessBoardGrid, whitePlayerName, whiteCapturedPieces);
+        mainContainer.getChildren().addAll(blackCapturedPieces, gameChessBoardGrid, whiteCapturedPieces);
         gameChessBoardGrid.setAlignment(Pos.CENTER);
         blackCapturedPieces.setAlignment(Pos.CENTER);
         whiteCapturedPieces.setAlignment(Pos.CENTER);
 
-        this.setCenter(mainContainer);
+
+
+        gridpane.add(whitePlayerName,1,1);
+        gridpane.add(mainContainer,1,2);
+        gridpane.add(blackPlayerName,1,3);
+
+        this.setCenter(gridpane);
+        gridpane.setAlignment(Pos.CENTER);
+
 
 //        leftArea
         leftContainer.getChildren().addAll(titel);
