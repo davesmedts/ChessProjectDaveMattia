@@ -144,9 +144,9 @@ public class GameView extends BorderPane {
 
 
 
-        gridpane.add(whitePlayerName,1,1);
+        gridpane.add(blackPlayerName,1,1);
         gridpane.add(mainContainer,1,2);
-        gridpane.add(blackPlayerName,1,3);
+        gridpane.add(whitePlayerName,1,3);
 
         this.setCenter(gridpane);
         gridpane.setAlignment(Pos.CENTER);
