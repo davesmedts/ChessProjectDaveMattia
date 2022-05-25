@@ -23,9 +23,6 @@ import javafx.util.Duration;
  * @version 1.0 19-5-2022 20:56
  */
 public class StartView extends GridPane {
-    private MenuItem afsluiten;
-    private MenuItem spelregels;
-    private MenuItem info;
 
     private HBox hbox;
     private Label version;
@@ -52,12 +49,6 @@ public class StartView extends GridPane {
 
         //progress bar
         loadBar = new ProgressBar();
-
-
-//        menuNodes
-        this.afsluiten = new MenuItem("afsluiten");
-        this.spelregels = new MenuItem("spelregels");
-        this.info = new MenuItem("info");
 
 //       general nodes
         this.vbox = new VBox();
@@ -103,12 +94,6 @@ public class StartView extends GridPane {
 
     private void layoutNodes() {
 
-//        menu
-        final Menu bestandMenu = new Menu("Bestand", null, this.afsluiten);
-        final Menu helpMenu = new Menu("Help", null, this.spelregels, this.info);
-        final MenuBar menuBar = new MenuBar(bestandMenu, helpMenu);
-        this.add(menuBar, 0, 0, 3, 1);
-
 //        general content
         this.add(hbox, 1, 1);
         this.add(vbox, 1, 1);
@@ -138,9 +123,6 @@ public class StartView extends GridPane {
         this.getRowConstraints().addAll(rowConstraints1, rowConstraints2, rowConstraints3);
 
 
-        this.setConstraints(menuBar, 0, 0, 3, 1,
-                HPos.CENTER, VPos.TOP,
-                Priority.ALWAYS, Priority.ALWAYS);
 
         this.setConstraints(version, 2, 2, 3, 1,
                 HPos.LEFT, VPos.BOTTOM,
