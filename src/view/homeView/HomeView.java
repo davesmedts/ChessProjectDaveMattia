@@ -9,7 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 
-public class HomeView extends GridPane {
+public class HomeView extends BorderPane {
+    private GridPane GridPane;
     private VBox mainContainer;
     private HBox helpIconsContainer;
 
@@ -83,13 +84,13 @@ public class HomeView extends GridPane {
     }
 
     private void layoutNodes() {
-        this.add(titel, 0,1);
+        this.setLeft(titel);
 
 //        menu
         menuContainer.getChildren().addAll(home, newGame, hervatSpel, historiek);
         menuContainer.setId("menuContainer");
 
-        this.add(menuContainer, 0, 0, 4, 1);
+        this.setTop(menuContainer);
 
 
 //        MainContainerContent
@@ -100,30 +101,29 @@ public class HomeView extends GridPane {
         mainContainer.setPadding(new Insets(20));
         mainContainer.getChildren().addAll(welkom, newGameBtn, openenBtn, rangschikkingBtn);
         mainContainer.setAlignment(Pos.TOP_RIGHT);
-        this.add(mainContainer, 2, 2);
+        this.GridPane = new GridPane();
+        this.setCenter(GridPane);
+        GridPane.add(mainContainer,1,1);
+        GridPane.setGridLinesVisible(true);
 
 
 //      HelpIcons
         helpIconsContainer.getChildren().addAll(settingsIcon, helpIcon, infoIcon);
         helpIconsContainer.setAlignment(Pos.TOP_RIGHT);
-        this.add(helpIconsContainer, 3, 1);
+        this.setRight(helpIconsContainer);
 
 
 //        statusbar
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
-        this.add(statusBarText, 0, 4, 4, 1);
+        this.setBottom(statusBarText);
 
 
         // column constraints
         ColumnConstraints col1Constraints = new ColumnConstraints();
         col1Constraints.setPercentWidth(40);
-        ColumnConstraints col2Constraints = new ColumnConstraints();
-        col2Constraints.setPercentWidth(15);
-        ColumnConstraints col3Constraints = new ColumnConstraints();
-        col3Constraints.setPercentWidth(25);
         ColumnConstraints col4Constraints = new ColumnConstraints();
-        col4Constraints.setPercentWidth(20);
-        this.getColumnConstraints().addAll(col1Constraints, col2Constraints, col3Constraints, col4Constraints);
+        col4Constraints.setPercentWidth(60);
+        GridPane.getColumnConstraints().addAll(col1Constraints, col4Constraints);
 
         RowConstraints rowConstraint1 = new RowConstraints();
         rowConstraint1.setPercentHeight(7);
@@ -134,31 +134,14 @@ public class HomeView extends GridPane {
         rowConstraint3.setPercentHeight(35);
         RowConstraints rowConstraint4 = new RowConstraints();
         rowConstraint4.setPercentHeight(15);
-        this.getRowConstraints().addAll(rowConstraint1,rowConstraint2,rowConstraint3,rowConstraint4);
+        GridPane.getRowConstraints().addAll(rowConstraint1,rowConstraint2,rowConstraint3,rowConstraint4);
 
 
         // constraints Gridpane
-        this.setConstraints(titel, 0, 1, 1, 1,
-                HPos.LEFT, VPos.TOP,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-        this.setConstraints(menuContainer, 0, 0, 4, 1,
-                HPos.CENTER, VPos.TOP,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-
-        this.setConstraints(mainContainer, 2, 2, 1, 1,
+        GridPane.setConstraints(mainContainer, 1, 2, 1, 1,
                 HPos.LEFT, VPos.CENTER,
                 Priority.ALWAYS, Priority.ALWAYS);
 
-        this.setConstraints(helpIconsContainer, 3, 1, 1, 1,
-                HPos.LEFT, VPos.BOTTOM,
-                Priority.ALWAYS, Priority.ALWAYS);
-
-
-        this.setConstraints(statusBarText, 0, 4, 4, 1,
-                HPos.LEFT, VPos.BOTTOM,
-                Priority.ALWAYS, Priority.ALWAYS);
 
         // padding
         helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
