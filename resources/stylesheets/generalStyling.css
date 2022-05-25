@@ -116,6 +116,11 @@
     -fx-background-size: stretch;
 }
 
+#PromotionView{
+    -fx-background-color: Black;
+    -fx-alignment: Center;
+}
+
 
 .table-view .column-header-background {
     -fx-background-color: #928043;

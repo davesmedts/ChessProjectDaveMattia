@@ -190,10 +190,10 @@ public class Pawn extends Piece {
         return enPassantPawn;
     }
 
-    public void promotePiece(String desiredPieceLetter, Piece selectedPiece) {
-        Square promotedPiecePosition = selectedPiece.getPosition(); // set the pawn content to null because the piece is promoted
+    public void promotePiece(String desiredPieceLetter) {
+        Square promotedPiecePosition = this.getPosition(); // set the pawn content to null because the piece is promoted
         promotedPiecePosition.setSquareContent(null); // Welke value gaan we dit juist geven, want nu komt dat in de lijst met captured pieces wat niet de bedoeling is
-        Color promotedPieceColor = selectedPiece.getColor();
+        Color promotedPieceColor = this.getColor();
 
         switch (desiredPieceLetter) {
             case "Q":
