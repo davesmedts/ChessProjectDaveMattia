@@ -57,8 +57,6 @@ public class SettingsView extends GridPane {
 
 
         updateStyle(themeSetter);
-
-
     }
 
     public void updateStyle(int themeSetter) {

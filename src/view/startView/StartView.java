@@ -85,7 +85,6 @@ public class StartView extends GridPane {
         hbox.getChildren().addAll(program, created, by, dave, and, mattia);
         vbox.getChildren().addAll(loading, loadBar);
 
-
         this.version = new Label("version 1");
         version.setStyle("-fx-text-fill: white");
 

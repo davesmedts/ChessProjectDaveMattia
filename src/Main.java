@@ -28,7 +28,6 @@ public class Main extends Application {
 //        primaryStage.show();
 //    }
 
-
         Game model = new Game();
         StartView view = new StartView();
         SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, view);

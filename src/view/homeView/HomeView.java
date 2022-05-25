@@ -117,7 +117,6 @@ public class HomeView extends BorderPane {
         statusBarText.setAlignment(Pos.BOTTOM_CENTER);
         this.setBottom(statusBarText);
 
-
         // column constraints
         ColumnConstraints col1Constraints = new ColumnConstraints();
         col1Constraints.setPercentWidth(40);

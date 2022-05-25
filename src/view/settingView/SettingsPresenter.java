@@ -84,9 +84,6 @@ public class SettingsPresenter {
                 view.updateStyle(SettingsView.themeSetter=3);
             }
         });
-
-
-
     }
 
 

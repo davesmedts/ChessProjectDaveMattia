@@ -69,7 +69,6 @@ public class GamePresenter {
                 view.getScene().setRoot(homeView);
                 homeView.getScene().getWindow().sizeToScene();
             }
-
         });
 
 //      Following part is for adding eventhandles to the chessBoardSquares
