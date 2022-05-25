@@ -83,7 +83,6 @@ public class GameView extends BorderPane {
     }
 
     public void initialiseNodes(String colorOne, String colorTwo) {
-
 //        mainContainerNodes
         this.mainContainer = new VBox();
         gameChessBoardGrid = (ChessBoardView)new ChessBoardView().drawBoard(colorOne, colorTwo);
@@ -93,6 +92,7 @@ public class GameView extends BorderPane {
         blackPlayerName.setId("playerNameGameView");
         whiteCapturedPieces = new HBox();
         blackCapturedPieces = new HBox();
+
 
 
         chessBoardSquares = gameChessBoardGrid.getGameSquares();
@@ -127,9 +127,6 @@ public class GameView extends BorderPane {
 
     private void layoutNodes() {
 
-
-
-
 //        menu
         this.setTop(menuContainer);
 
@@ -137,13 +134,15 @@ public class GameView extends BorderPane {
         mainContainer.setAlignment(Pos.TOP_CENTER);
         mainContainer.setSpacing(10);
         mainContainer.setPadding(new Insets(10));
-        mainContainer.getChildren().addAll(blackCapturedPieces, gameChessBoardGrid, whiteCapturedPieces);
+        mainContainer.getChildren().addAll(gameChessBoardGrid);
         gameChessBoardGrid.setAlignment(Pos.CENTER);
         blackCapturedPieces.setAlignment(Pos.CENTER);
         whiteCapturedPieces.setAlignment(Pos.CENTER);
 
 
 
+        gridpane.add(whiteCapturedPieces,1,3);
+        gridpane.add(blackCapturedPieces,1,1);
         gridpane.add(blackPlayerName,1,1);
         gridpane.add(mainContainer,1,2);
         gridpane.add(whitePlayerName,1,3);
