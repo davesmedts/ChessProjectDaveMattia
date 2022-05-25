@@ -75,14 +75,13 @@ public class SettingsPresenter {
             @Override
             public void handle(ActionEvent event) {
 
-                String colorOne = "#3C753CFF";
-                String colorTwo = "#87AB87FF";
+                String colorOne = "#b57d57";
+                String colorTwo = "#b8632a";
 
                 NewGameView.colorOne = colorOne;
                 NewGameView.colorTwo = colorTwo;
 
                 view.updateStyle(SettingsView.themeSetter=3);
-
             }
         });
 

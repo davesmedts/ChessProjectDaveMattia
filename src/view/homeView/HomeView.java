@@ -56,7 +56,7 @@ public class HomeView extends BorderPane {
         this.mainContainer = new VBox();
         this.newGameBtn = new Button("nieuw spel");
         this.openenBtn = new Button("hervat spel");
-        this.rangschikkingBtn = new Button("Rangschikking");
+        this.rangschikkingBtn = new Button("historiek");
         this.welkom = new Label("Welkom bij Chess");
         welkom.setId("TitelHomeView");
         this.setId("HomeView");
@@ -104,7 +104,7 @@ public class HomeView extends BorderPane {
         this.GridPane = new GridPane();
         this.setCenter(GridPane);
         GridPane.add(mainContainer,1,1);
-        GridPane.setGridLinesVisible(true);
+//        GridPane.setGridLinesVisible(true);
 
 
 //      HelpIcons

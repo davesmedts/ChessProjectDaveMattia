@@ -66,9 +66,9 @@ public class StartView extends GridPane {
         this.program = new Text("program ");
         this.by = new Text("by ");
         this.created = new Text("created ");
-        this.dave = new Text("Deef ");
+        this.dave = new Text("Dave ");
         this.and = new Text("and ");
-        this.mattia = new Text("MattiMagic");
+        this.mattia = new Text("Mattia");
         program.setFill(Color.WHITE);
         program.setFont(Font.font(null, FontWeight.BOLD, 20));
         by.setFill(Color.WHITE);
@@ -115,7 +115,7 @@ public class StartView extends GridPane {
         this.add(vbox, 1, 1);
         this.add(version, 2, 2);
 
-        this.setGridLinesVisible(true);
+//        this.setGridLinesVisible(true);
 
 //        constraints & ID
 

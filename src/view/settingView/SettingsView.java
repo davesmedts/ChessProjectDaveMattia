@@ -42,7 +42,7 @@ public class SettingsView extends GridPane {
         this.setId("HomeView");
         themeOne = new ToggleButton("bruin-wit");
         themeTwo = new ToggleButton("blauw");
-        themeThree = new ToggleButton("groen");
+        themeThree = new ToggleButton("oranje");
         this.buttonContainer = new HBox(35);
         this.settingTitle = new Label("Settings");
 
