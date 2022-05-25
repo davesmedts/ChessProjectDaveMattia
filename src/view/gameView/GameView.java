@@ -67,10 +67,10 @@ public class GameView extends BorderPane {
 
         GridPane pane = new GridPane();
 
-        pane.add(whitePlayerName,1,1);
+        pane.add(blackPlayerName,1,1);
         pane.add(blackCapturedPieces,1,1);
         pane.add(mainContainer,1,2);
-        pane.add(blackPlayerName,1,3);
+        pane.add(whitePlayerName,1,3);
         pane.add(whiteCapturedPieces,1,3);
 
         this.setCenter(pane);
