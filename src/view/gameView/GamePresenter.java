@@ -135,7 +135,7 @@ public class GamePresenter {
                             if (model.getTurn() == Color.WHITE) {
                                 model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
                                 Square backendSquare = model.getWhitePlayer().lookupSquare(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
-                                if(backendSquare.getSquareContent() instanceof Pawn && backendSquare.getRowNumber() == 8){
+                                if (backendSquare.getSquareContent() instanceof Pawn && backendSquare.getRowNumber() == 8) {
 //                                    ((Pawn) backendSquare.getSquareContent()).promotePiece();
                                     PromotionView promotionView = new PromotionView();
                                     PromotionPresenter promotionPresenter = new PromotionPresenter(model, promotionView);
@@ -144,7 +144,8 @@ public class GamePresenter {
                                     stage.initOwner(view.getScene().getWindow());
                                     stage.initModality(Modality.APPLICATION_MODAL);
                                     Scene promotionScene = new Scene(promotionView, 600, 400);
-                                    promotionScene.getStylesheets().add("/stylesheets/generalStyling.css");                                    stage.setScene(promotionScene);
+                                    promotionScene.getStylesheets().add("/stylesheets/generalStyling.css");
+                                    stage.setScene(promotionScene);
                                     stage.showAndWait();
 
                                 }
@@ -178,6 +179,22 @@ public class GamePresenter {
 
                             } else {
                                 model.moveBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                Square backendSquare = model.getBlackPlayer().lookupSquare(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                if (backendSquare.getSquareContent() instanceof Pawn && backendSquare.getRowNumber() == 1) {
+//                                    ((Pawn) backendSquare.getSquareContent()).promotePiece();
+                                    PromotionView promotionView = new PromotionView();
+                                    PromotionPresenter promotionPresenter = new PromotionPresenter(model, promotionView);
+                                    promotionPresenter.setPawn((Pawn) backendSquare.getSquareContent());
+                                    Stage stage = new Stage();
+                                    stage.initOwner(view.getScene().getWindow());
+                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    Scene promotionScene = new Scene(promotionView, 600, 400);
+                                    promotionScene.getStylesheets().add("/stylesheets/generalStyling.css");
+                                    stage.setScene(promotionScene);
+                                    stage.showAndWait();
+
+                                }
+
                                 model.setTurn(Color.WHITE);
                                 model.getSaver().save();
                                 if (model.getWhitePlayer().kingLookup(Color.WHITE).isChecked() && !model.getBlackPlayer().isWinner()) {
