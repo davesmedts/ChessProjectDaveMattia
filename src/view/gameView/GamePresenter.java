@@ -16,6 +16,7 @@ import model.Board;
 import model.Color;
 import model.Game;
 import model.Square;
+import model.chessPieces.Pawn;
 import model.chessPieces.Piece;
 import view.help.HelpPresenter;
 import view.help.HelpView;
@@ -23,6 +24,8 @@ import view.homeView.HomePresenter;
 import view.homeView.HomeView;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
+import view.promotionView.PromotionPresenter;
+import view.promotionView.PromotionView;
 import view.rankingView.RankingPresenter;
 import view.rankingView.RankingView;
 import view.settingView.SettingsPresenter;
@@ -131,6 +134,20 @@ public class GamePresenter {
                         try {
                             if (model.getTurn() == Color.WHITE) {
                                 model.moveWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                Square backendSquare = model.getWhitePlayer().lookupSquare(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber());
+                                if(backendSquare.getSquareContent() instanceof Pawn && backendSquare.getRowNumber() == 8){
+//                                    ((Pawn) backendSquare.getSquareContent()).promotePiece();
+                                    PromotionView promotionView = new PromotionView();
+                                    PromotionPresenter promotionPresenter = new PromotionPresenter(model, promotionView);
+                                    promotionPresenter.setPawn((Pawn) backendSquare.getSquareContent());
+                                    Stage stage = new Stage();
+                                    stage.initOwner(view.getScene().getWindow());
+                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    Scene promotionScene = new Scene(promotionView, 600, 400);
+                                    promotionScene.getStylesheets().add("/stylesheets/generalStyling.css");                                    stage.setScene(promotionScene);
+                                    stage.showAndWait();
+
+                                }
                                 model.setTurn(Color.BLACK);
                                 model.getSaver().save();
                                 if (model.getBlackPlayer().kingLookup(Color.BLACK).isChecked() && !model.getWhitePlayer().isWinner()) {
