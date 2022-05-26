@@ -285,7 +285,7 @@ public class King extends Piece {
                     }
                 }
             }
-        } else { // for the black pieces
+        } else if (getColor() == Color.BLACK) { // for the black pieces
             Square a8 = gameBoard.lookupSquare('A', 8);
             Square b8 = gameBoard.lookupSquare('B', 8);
             Square c8 = gameBoard.lookupSquare('C', 8);
@@ -414,11 +414,11 @@ public class King extends Piece {
         if (targetSquare.equals(new Square(8, 'C'))) {
             Piece rook = gameBoard.lookupSquare('A', 8).getSquareContent();
             rook.getPosition().setSquareContent(null);
-            rook.setPosition(gameBoard.lookupSquare('C', 8));
-            gameBoard.lookupSquare('C', 8).setSquareContent(rook);
+            rook.setPosition(gameBoard.lookupSquare('D', 8));
+            gameBoard.lookupSquare('D', 8).setSquareContent(rook);
         }
 
-        if (targetSquare.equals(new Square(8, 'F'))) {
+        if (targetSquare.equals(new Square(8, 'G'))) {
             Piece rook = gameBoard.lookupSquare('H', 8).getSquareContent();
             rook.getPosition().setSquareContent(null);
             rook.setPosition(gameBoard.lookupSquare('F', 8));

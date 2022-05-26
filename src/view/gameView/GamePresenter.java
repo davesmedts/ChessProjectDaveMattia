@@ -90,6 +90,7 @@ public class GamePresenter {
 
                 @Override
                 public void handle(MouseEvent event) {
+                    model.getSaver().save();
                     List<Square> backendValidMoveSquares = new ArrayList<>();
                     System.out.printf("X: %3.0f,Y: %3.0f%n", event.getX(), event.getY());
 
@@ -147,7 +148,7 @@ public class GamePresenter {
 
                                 }
                                 model.setTurn(Color.BLACK);
-                                model.getSaver().save();
+//                                model.getSaver().save();
                                 if (model.getBlackPlayer().kingLookup(Color.BLACK).isChecked() && !model.getWhitePlayer().isWinner()) {
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("SCHAAK!");
@@ -193,7 +194,7 @@ public class GamePresenter {
                                 }
 
                                 model.setTurn(Color.WHITE);
-                                model.getSaver().save();
+//                                model.getSaver().save();
                                 if (model.getWhitePlayer().kingLookup(Color.WHITE).isChecked() && !model.getBlackPlayer().isWinner()) {
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("SCHAAK!");
