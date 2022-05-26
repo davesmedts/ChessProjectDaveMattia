@@ -290,15 +290,19 @@ public class Player {
                     }
                     selectedPiece.setPosition(targetSquareObject); // assigns the new square to the piece
                     targetSquareObject.setSquareContent(selectedPiece); // assigns piece to the new square
+                    System.out.println("voor castling move:" + targetSquareObject.getSquareContent());
 
                     if (selectedPiece instanceof King
                             && selectedPiece.getMoves().size() == 0
                             && (targetSquareObject.equals(new Square(1, 'C'))
                             || targetSquareObject.equals(new Square(1, 'G'))
                             || targetSquareObject.equals(new Square(8, 'C'))
-                            || targetSquareObject.equals(new Square(8, 'G')))) {
+                            || targetSquareObject.equals(new Square(8, 'G')))
+                            && !((King) selectedPiece).getCastlingCheckStatus(gameBoard, targetSquareObject, opponent)) {
+
                         ((King) selectedPiece).castlingMove(targetSquareObject, gameBoard);
                     }
+                    System.out.println("na castlingmove" + targetSquareObject.getSquareContent());
 
                     if (selectedPiece instanceof Pawn && targetSquareContent == null && targetSquareObject.getColumnLetter() != startPosition.getColumnLetter()) {
                         Piece enPassantPawn = ((Pawn) selectedPiece).enPassantCapture(targetSquareObject, gameBoard);
@@ -311,6 +315,7 @@ public class Player {
             }
             king = kingLookup(color);
             boolean kingIsChecked = king.defineCheckStatus(gameBoard, opponent);
+
             if (kingIsChecked) {
                 selectedPiece.setPosition(startPosition);
                 startPosition.setSquareContent(selectedPiece);
