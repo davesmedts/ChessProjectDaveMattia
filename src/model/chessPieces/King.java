@@ -360,60 +360,18 @@ public class King extends Piece {
 
         setPosition(targetSquare); // assigns the new square to the piece
         targetSquare.setSquareContent(this); // assigns piece to the new square
-//                    System.out.println(selectedPiece.getPosition());
-        boolean isChecked = false;
-        List<Piece> opponentPieces = new ArrayList<>();
-        for (Square square : gameBoard.getSquares()) {
-            if (square.getSquareContent() != null && square.getSquareContent().getColor() != getColor()) {
-                opponentPieces.add(square.getSquareContent());
-            }
-        }
 
-        for (Piece opponentPiece : opponentPieces) {
-            List<Square> validMovesPiece;
-            Square originalPosition = opponentPiece.getPosition();
-            validMovesPiece = opponentPiece.getValidMoves(gameBoard, opponent);
+        boolean isChecked = defineCheckStatus(gameBoard, opponent);
 
-            for (Square validMove : validMovesPiece) {
-                if (validMove.getSquareContent() == null) {
-                    opponentPiece.setPosition(validMove);
-                    validMove.setSquareContent(opponentPiece);
-
-                    isChecked = defineCheckStatus(gameBoard, opponent);
-
-                    opponentPiece.setPosition(originalPosition);
-                    validMove.setSquareContent(null);
-
-                } else {
-                    Piece originalContent = validMove.getSquareContent();
-                    opponentPiece.setPosition(validMove);
-                    validMove.setSquareContent(opponentPiece);
-                    originalContent.setPosition(null);
-
-                    isChecked = defineCheckStatus(gameBoard, opponent);
-
-                    validMove.setSquareContent(originalContent);
-                    originalContent.setPosition(validMove);
-                    opponentPiece.setPosition(originalPosition);
-                    originalPosition.setSquareContent(opponentPiece);
-                }
-
-                if (isChecked) {
-                    break;
-                }
-            }
-        }
-        System.out.println("movechecksimulation before set squareContent:" + this.getPosition().getSquareContent());
         startPosition.setSquareContent(this);
         this.setPosition(startPosition);
+
         if (!targetSquare.equals(gameBoard.lookupSquare('G', 1))
                 || !targetSquare.equals(gameBoard.lookupSquare('C', 1))
                 || !targetSquare.equals(gameBoard.lookupSquare('G', 8))
                 || !targetSquare.equals(gameBoard.lookupSquare('C', 8))) {
-
             targetSquare.setSquareContent(null);
         }
-        System.out.println("movechecksimulation after set squareContent:" + this.getPosition().getSquareContent());
 
         return isChecked;
     }

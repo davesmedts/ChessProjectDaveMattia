@@ -1,15 +1,14 @@
-
-
-CHECK BUG
-Rokkeren zwart bug
-
-
-ZWART ROKEREN
-
-
+CHECK BUG -> Done
+Rokkeren zwart bug -> Done
 LOAD BAR VIEW MOET VOOR HOME VIEW KOMEN -> Done
 LAY-OUT CHESSBOARDVIEW --> PLAYERNAME EN CAPTURED PIECES MOETEN NAAST ELKAAR KOMEN --> DONE
 PROMOVEREN --> DONE
 LAY-OUT HOME PAGE --> NAAR BORDERPANE VERANDEREN --> DONE
 INPUT VALIDATIE --> DONE
 WINDOW EVENT HANDLERS TERUG TOEVOEGEN --> DONE
+
+Nice to have's
+
+- Rood oplichten van een stuk dat aangevallen kan worden
+- Drag & drop functionaliteit
+- opgeslagen spellen vanuit de GUI laden, inclusief een overzicht van de gegevens van het opgeslagen spel in een tabel.
