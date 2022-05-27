@@ -223,7 +223,6 @@ public class GamePresenter {
                             }
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
-//                            view.setCenter(view.getMainContainer());
                             addEventHandlers();
                             updateView();
                             System.out.println("movePieceMethod");
@@ -242,7 +241,6 @@ public class GamePresenter {
                             alert.showAndWait();
                             ChessBoardView updatedView = (ChessBoardView) new ChessBoardView().drawBoard(view.getGameChessBoardGrid().getColorOne(), view.getGameChessBoardGrid().getColorTwo());
                             view.setGameChessBoardGrid(updatedView);
-                            view.setCenter(view.getMainContainer());
                             addEventHandlers();
                             updateView();
                             selectCounter--;

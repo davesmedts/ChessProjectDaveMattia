@@ -247,42 +247,14 @@ public class King extends Piece {
             if (a1.getSquareContent() instanceof Rook && a1.getSquareContent().getMoves().size() == 0) {
                 if (b1.getSquareContent() == null && c1.getSquareContent() == null && d1.getSquareContent() == null) {
 
-//                    List<Square> leftCastleCheck = new ArrayList<>();
-//                    leftCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
-//                    leftCastleCheck.add(d1);
-//                    leftCastleCheck.add(c1); // c1 add to the list
-//
-//                    boolean check = false;
-//                    for (Square square : leftCastleCheck) {
-//                        if (moveCheckSimulation(square, gameBoard, opponent)) {
-//                            check = true; // if the boolean is changed to true, we never change it back within this loop
-//                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
-//                        }
-//                    }
-//                    if (!check) {
                     castleMoves.add(gameBoard.lookupSquare('C', 1)); // left castling move: kings always moves to C1
-//                    }
                 }
             }
 
             if (h1.getSquareContent() instanceof Rook && h1.getSquareContent().getMoves().size() == 0) {
                 if (f1.getSquareContent() == null && g1.getSquareContent() == null) {
 
-//                    List<Square> rightCastleCheck = new ArrayList<>();
-//                    rightCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
-//                    rightCastleCheck.add(f1);
-//                    rightCastleCheck.add(g1); // c1 add to the list
-//                    boolean check = false;
-//
-//                    for (Square square : rightCastleCheck) {
-//                        if (moveCheckSimulation(square, gameBoard, opponent)) {
-//                            check = true; // if the boolean is changed to true, we never change it back within this loop
-//                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
-//                        }
-//                    }
-//                    if (!check) {
                     castleMoves.add(gameBoard.lookupSquare('G', 1)); // left castling move: kings always moves to G1
-//                    }
                 }
             }
         } else if (getColor() == Color.BLACK) { // for the black pieces
@@ -297,42 +269,14 @@ public class King extends Piece {
             if (a8.getSquareContent() instanceof Rook && a8.getSquareContent().getMoves().size() == 0) {
                 if (b8.getSquareContent() == null && c8.getSquareContent() == null && d8.getSquareContent() == null) {
 
-//                    List<Square> leftCastleCheck = new ArrayList<>();
-//                    leftCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
-//                    leftCastleCheck.add(d8);
-//                    leftCastleCheck.add(c8); // c1 add to the list
-//
-//                    boolean check = false;
-//                    for (Square square : leftCastleCheck) {
-//                        if (moveCheckSimulation(square, gameBoard, opponent)) {
-//                            check = true; // if the boolean is changed to true, we never change it back within this loop
-//                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
-//                        }
-//                    }
-//                    if (!check) {
                     castleMoves.add(gameBoard.lookupSquare('C', 8)); // left castling move: kings always moves to C1
-//                    }
                 }
             }
 
             if (h8.getSquareContent() instanceof Rook && h8.getSquareContent().getMoves().size() == 0) {
                 if (f8.getSquareContent() == null && g8.getSquareContent() == null) {
 
-//                    List<Square> rightCastleCheck = new ArrayList<>();
-//                    rightCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
-//                    rightCastleCheck.add(f8);
-//                    rightCastleCheck.add(g8); // c1 add to the list
-//                    boolean check = false;
-//
-//                    for (Square square : rightCastleCheck) {
-//                        if (moveCheckSimulation(square, gameBoard, opponent)) {
-//                            check = true; // if the boolean is changed to true, we never change it back within this loop
-//                            break; // if the king is in check on one of the squares then we break out of this loop and go to the next statement
-//                        }
-//                    }
-//                    if (!check) {
                     castleMoves.add(gameBoard.lookupSquare('G', 8)); // left castling move: kings always moves to G1
-//                    }
                 }
             }
 
@@ -347,6 +291,7 @@ public class King extends Piece {
         Square b1 = gameBoard.lookupSquare('B', 1);
         Square c1 = gameBoard.lookupSquare('C', 1);
         Square d1 = gameBoard.lookupSquare('D', 1);
+        Square e1 = gameBoard.lookupSquare('E', 1);
         Square f1 = gameBoard.lookupSquare('F', 1);
         Square g1 = gameBoard.lookupSquare('G', 1);
         Square h1 = gameBoard.lookupSquare('H', 1);
@@ -354,6 +299,7 @@ public class King extends Piece {
         Square b8 = gameBoard.lookupSquare('B', 8);
         Square c8 = gameBoard.lookupSquare('C', 8);
         Square d8 = gameBoard.lookupSquare('D', 8);
+        Square e8 = gameBoard.lookupSquare('E', 8);
         Square f8 = gameBoard.lookupSquare('F', 8);
         Square g8 = gameBoard.lookupSquare('G', 8);
         Square h8 = gameBoard.lookupSquare('H', 8);
@@ -362,7 +308,7 @@ public class King extends Piece {
             List<Square> rightCastleCheck = new ArrayList<>();
             rightCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
             rightCastleCheck.add(f1);
-            rightCastleCheck.add(g1); // c1 add to the list
+            rightCastleCheck.add(e1); // c1 add to the list
 
             for (Square square : rightCastleCheck) {
                 if (moveCheckSimulation(square, gameBoard, opponent)) {
@@ -374,7 +320,7 @@ public class King extends Piece {
             List<Square> leftCastleCheck = new ArrayList<>();
             leftCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
             leftCastleCheck.add(d1);
-            leftCastleCheck.add(c1); // c1 add to the list
+            leftCastleCheck.add(e1); // c1 add to the list
 
             for (Square square : leftCastleCheck) {
                 if (moveCheckSimulation(square, gameBoard, opponent)) {
@@ -385,7 +331,7 @@ public class King extends Piece {
             List<Square> leftCastleCheck = new ArrayList<>();
             leftCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
             leftCastleCheck.add(d8);
-            leftCastleCheck.add(c8); // c1 add to the list
+            leftCastleCheck.add(e8); // c1 add to the list
 
             for (Square square : leftCastleCheck) {
                 if (moveCheckSimulation(square, gameBoard, opponent)) {
@@ -396,7 +342,7 @@ public class King extends Piece {
             List<Square> rightCastleCheck = new ArrayList<>();
             rightCastleCheck.add(getPosition()); // we moeten selectedPiece dan ook gaan meegeven
             rightCastleCheck.add(f8);
-            rightCastleCheck.add(g8); // c1 add to the list
+            rightCastleCheck.add(e8); // c1 add to the list
 
             for (Square square : rightCastleCheck) {
                 if (moveCheckSimulation(square, gameBoard, opponent)) {
@@ -460,7 +406,13 @@ public class King extends Piece {
         System.out.println("movechecksimulation before set squareContent:" + this.getPosition().getSquareContent());
         startPosition.setSquareContent(this);
         this.setPosition(startPosition);
-        targetSquare.setSquareContent(null);
+        if (!targetSquare.equals(gameBoard.lookupSquare('G', 1))
+                || !targetSquare.equals(gameBoard.lookupSquare('C', 1))
+                || !targetSquare.equals(gameBoard.lookupSquare('G', 8))
+                || !targetSquare.equals(gameBoard.lookupSquare('C', 8))) {
+
+            targetSquare.setSquareContent(null);
+        }
         System.out.println("movechecksimulation after set squareContent:" + this.getPosition().getSquareContent());
 
         return isChecked;

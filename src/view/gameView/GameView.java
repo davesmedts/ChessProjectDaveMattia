@@ -60,8 +60,8 @@ public class GameView extends BorderPane {
         this.chessBoardSquares = gameChessBoardGrid.getGameSquares();
         this.blackCapturedPieces = new HBox();
         this.whiteCapturedPieces = new HBox();
-        blackCapturedPieces.setAlignment(Pos.CENTER);
-        whiteCapturedPieces.setAlignment(Pos.CENTER);
+        blackCapturedPieces.setAlignment(Pos.TOP_RIGHT);
+        whiteCapturedPieces.setAlignment(Pos.TOP_RIGHT);
         mainContainer.getChildren().clear();
         mainContainer.getChildren().addAll(gameChessBoardGrid);
 
@@ -136,8 +136,8 @@ public class GameView extends BorderPane {
         mainContainer.setPadding(new Insets(10));
         mainContainer.getChildren().addAll(gameChessBoardGrid);
         gameChessBoardGrid.setAlignment(Pos.CENTER);
-        blackCapturedPieces.setAlignment(Pos.CENTER);
-        whiteCapturedPieces.setAlignment(Pos.CENTER);
+        blackCapturedPieces.setAlignment(Pos.TOP_RIGHT);
+        whiteCapturedPieces.setAlignment(Pos.TOP_RIGHT);
 
 
 

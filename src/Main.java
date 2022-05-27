@@ -35,7 +35,7 @@ public class Main extends Application {
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
         Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(7800),
+                Duration.millis(100),
                 ae -> openHome(model, scene)));
         timeline.play();
 

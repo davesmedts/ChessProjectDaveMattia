@@ -218,7 +218,7 @@ public class Player {
         this.capturedPieces = capturedPieces;
     }
 
-    public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) throws IllegalPieceSelectionException, NullPointerException{
+    public List<Square> selectPiece(char selectedColumnLetter, int selectedRowNumber, Player player, Player opponent) throws IllegalPieceSelectionException, NullPointerException {
 //        Scanner keyboard = new Scanner(System.in);
 //        System.out.println(this.player + ": Voer de kolomletter en het rijnummer in van het stuk dat je wil verplaatsen:");
 //        String startSquare = keyboard.nextLine().toUpperCase();
@@ -230,25 +230,24 @@ public class Player {
 //                throw new IllegalPieceSelectionException("Gelieve exact 2 characters in te voeren, eerst de kolomletter en nadien het rijnummer. Probeer opnieuw.");
 //            }
 
-            char columnLetter = selectedColumnLetter;
-            int rowNumber = selectedRowNumber;
+        char columnLetter = selectedColumnLetter;
+        int rowNumber = selectedRowNumber;
 
-            this.selectedPiece = gameBoard.lookupSquare(columnLetter, rowNumber).getSquareContent();
-            if(selectedPiece == null){
-                throw new IllegalPieceSelectionException("Er is geen stuk aanwezig op dit vak, probeer opnieuw.");
+        this.selectedPiece = gameBoard.lookupSquare(columnLetter, rowNumber).getSquareContent();
+        if (selectedPiece == null) {
+            throw new IllegalPieceSelectionException("Er is geen stuk aanwezig op dit vak, probeer opnieuw.");
+        }
+        if (selectedPiece.getColor() == color) {
+            validMoveSquares = selectedPiece.getValidMoves(gameBoard, opponent); // we put all the valid square values in a list
+            if (validMoveSquares.isEmpty()) {
+                throw new IllegalPieceSelectionException("Er zijn geen mogelijke zetten beschikbaar, probeer opnieuw");
             }
-            if (selectedPiece.getColor() == color) {
-                validMoveSquares = selectedPiece.getValidMoves(gameBoard, opponent); // we put all the valid square values in a list
-                if (validMoveSquares.isEmpty()) {
-                    throw new IllegalPieceSelectionException("Er zijn geen mogelijke zetten beschikbaar, probeer opnieuw");
-                }
-                System.out.println(validMoveSquares);
-                return validMoveSquares;
+            System.out.println(validMoveSquares);
+            return validMoveSquares;
 //                movePiece(validMoveSquares, selectedPiece, opponent);
-            }
-            else {
-                throw new IllegalPieceSelectionException("niet de juiste kleur");
-            }
+        } else {
+            throw new IllegalPieceSelectionException("niet de juiste kleur");
+        }
 //        } catch (IllegalPieceSelectionException ex) {
 //            System.out.println(ex.getMessage());
 ////            selectPiece(player, opponent);
@@ -269,66 +268,74 @@ public class Player {
 ////        Exception handling still to do! What if no piece is found. values must match board!
 //        int rowNumber = Character.getNumericValue(targetSquareArray[1]); // the getNumericValue method transforms the character to a numeric value.
 ////        Exception handling still to do! What if no piece is found. values must match the board
-                King king = null;
+        King king = null;
 //        try {
-            Square targetSquareObject = lookupSquare(selectedColumnLetter, selectedRowNumber);
-            Piece targetSquareContent = targetSquareObject.getSquareContent();
+        Square targetSquareObject = lookupSquare(selectedColumnLetter, selectedRowNumber);
+        Piece targetSquareContent = targetSquareObject.getSquareContent();
 
-            if (targetSquareObject == null) {
-                throw new IllegalMoveException("Invoer niet gevonden op het bord, probeer opnieuw: ");
-            }
+        if (targetSquareObject == null) {
+            throw new IllegalMoveException("Invoer niet gevonden op het bord, probeer opnieuw: ");
+        }
 
-            boolean isFound = false;
-            Square startPosition = selectedPiece.getPosition(); // set the previous content to null because the piece is moved
-            for (Square validMoveSquare : validMoveSquares) {
-                if (validMoveSquare == targetSquareObject) {
-                    isFound = true;
-                    startPosition.setSquareContent(null);
-                    if (targetSquareObject.getSquareContent() != null && targetSquareObject.getSquareContent().getColor() != selectedPiece.getColor()) {
-                        opponent.addCapturedPieces(targetSquareContent);
-                        targetSquareObject.getSquareContent().capturePiece();
-                    }
-                    selectedPiece.setPosition(targetSquareObject); // assigns the new square to the piece
-                    targetSquareObject.setSquareContent(selectedPiece); // assigns piece to the new square
-                    System.out.println("voor castling move:" + targetSquareObject.getSquareContent());
+        boolean isFound = false;
+        Square startPosition = selectedPiece.getPosition(); // set the previous content to null because the piece is moved
+        for (Square validMoveSquare : validMoveSquares) {
+            if (validMoveSquare == targetSquareObject) {
+                isFound = true;
+                startPosition.setSquareContent(null);
+                if (targetSquareObject.getSquareContent() != null && targetSquareObject.getSquareContent().getColor() != selectedPiece.getColor()) {
+                    opponent.addCapturedPieces(targetSquareContent);
+                    targetSquareObject.getSquareContent().capturePiece();
+                }
+                selectedPiece.setPosition(targetSquareObject); // assigns the new square to the piece
+                targetSquareObject.setSquareContent(selectedPiece); // assigns piece to the new square
+                System.out.println("voor castling move:" + targetSquareObject.getSquareContent());
 
-                    if (selectedPiece instanceof King
-                            && selectedPiece.getMoves().size() == 0
-                            && (targetSquareObject.equals(new Square(1, 'C'))
-                            || targetSquareObject.equals(new Square(1, 'G'))
-                            || targetSquareObject.equals(new Square(8, 'C'))
-                            || targetSquareObject.equals(new Square(8, 'G')))
-                            && !((King) selectedPiece).getCastlingCheckStatus(gameBoard, targetSquareObject, opponent)) {
+                if (selectedPiece instanceof King
+                        && selectedPiece.getMoves().size() == 0
+                        && (targetSquareObject.equals(new Square(1, 'C'))
+                        || targetSquareObject.equals(new Square(1, 'G'))
+                        || targetSquareObject.equals(new Square(8, 'C'))
+                        || targetSquareObject.equals(new Square(8, 'G')))) {
 
+                    boolean kingMovesThroughCheck = ((King) selectedPiece).getCastlingCheckStatus(gameBoard, targetSquareObject, opponent);
+                    if(!kingMovesThroughCheck){
                         ((King) selectedPiece).castlingMove(targetSquareObject, gameBoard);
+                    } else {
+                        selectedPiece.setPosition(startPosition);
+                        startPosition.setSquareContent(selectedPiece);
+                        targetSquareObject.setSquareContent(null);
+                        throw new IllegalMoveException("Koning staat of beweegt door schaaktoestand");
                     }
-                    System.out.println("na castlingmove" + targetSquareObject.getSquareContent());
 
-                    if (selectedPiece instanceof Pawn && targetSquareContent == null && targetSquareObject.getColumnLetter() != startPosition.getColumnLetter()) {
-                        Piece enPassantPawn = ((Pawn) selectedPiece).enPassantCapture(targetSquareObject, gameBoard);
-                        opponent.addCapturedPieces(enPassantPawn);
-                    }
+                }
+                System.out.println("na castlingmove" + targetSquareObject.getSquareContent());
+
+                if (selectedPiece instanceof Pawn && targetSquareContent == null && targetSquareObject.getColumnLetter() != startPosition.getColumnLetter()) {
+                    Piece enPassantPawn = ((Pawn) selectedPiece).enPassantCapture(targetSquareObject, gameBoard);
+                    opponent.addCapturedPieces(enPassantPawn);
                 }
             }
-            if (!isFound) {
-                throw new IllegalMoveException("Invoer behoort niet tot de mogelijke zetten, probeer opnieuw: ");
-            }
-            king = kingLookup(color);
-            boolean kingIsChecked = king.defineCheckStatus(gameBoard, opponent);
+        }
+        if (!isFound) {
+            throw new IllegalMoveException("Invoer behoort niet tot de mogelijke zetten, probeer opnieuw: ");
+        }
+        king = kingLookup(color);
+        boolean kingIsChecked = king.defineCheckStatus(gameBoard, opponent);
 
-            if (kingIsChecked) {
-                selectedPiece.setPosition(startPosition);
-                startPosition.setSquareContent(selectedPiece);
-                targetSquareObject.setSquareContent(targetSquareContent);
-                if (targetSquareContent != null) {
-                    targetSquareContent.setPosition(targetSquareObject);
-                }
-                throw new IllegalMoveException("Je kan deze zet niet doen omdat je jezelf dan in check gaat zetten. Probeer opnieuw: ");
-            } else {
-                king.setChecked(false);
+        if (kingIsChecked) {
+            selectedPiece.setPosition(startPosition);
+            startPosition.setSquareContent(selectedPiece);
+            targetSquareObject.setSquareContent(targetSquareContent);
+            if (targetSquareContent != null) {
+                targetSquareContent.setPosition(targetSquareObject);
             }
-            moves.add(targetSquareObject); // add move to moves list in the player
-            selectedPiece.addMove(targetSquareObject); // add the move to the move list in piece
+            throw new IllegalMoveException("Je kan deze zet niet doen omdat je jezelf dan in check gaat zetten. Probeer opnieuw: ");
+        } else {
+            king.setChecked(false);
+        }
+        moves.add(targetSquareObject); // add move to moves list in the player
+        selectedPiece.addMove(targetSquareObject); // add the move to the move list in piece
 
 //        } catch (IllegalMoveException ime) {
 //            System.out.println(ime.getMessage());
@@ -391,17 +398,17 @@ public class Player {
         return player;
     }
 
-    public String log(){
+    public String log() {
         StringBuilder builder = new StringBuilder();
         StringBuilder capturedPiecesString = new StringBuilder();
         for (int i = 0; i < capturedPieces.size(); i++) {
             capturedPiecesString.append(capturedPieces.get(i).toString());
-            if (i <capturedPieces.size()-1){
+            if (i < capturedPieces.size() - 1) {
                 capturedPiecesString.append(":");
             }
         }
 
-        builder.append(String.format("%s,%s,%s",player, getLastMove(), capturedPiecesString));
+        builder.append(String.format("%s,%s,%s", player, getLastMove(), capturedPiecesString));
         return builder.toString();
     }
 }
