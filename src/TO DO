@@ -7,14 +7,15 @@ LAY-OUT HOME PAGE --> NAAR BORDERPANE VERANDEREN --> DONE
 INPUT VALIDATIE --> DONE
 WINDOW EVENT HANDLERS TERUG TOEVOEGEN --> DONE
 
-Nice to have's
-
-- Rood oplichten van een stuk dat aangevallen kan worden
-- Drag & drop functionaliteit
-- opgeslagen spellen vanuit de GUI laden, inclusief een overzicht van de gegevens van het opgeslagen spel in een tabel.
 
 Lijst:
-
+PRIO 1
 - venstertitels
-- menu pictogrammen op elke view
--
+- menu pictogrammen op elke view zetten
+- JAR
+
+PRIO 2
+- Rood oplichten van een stuk dat aangevallen kan worden (enPassant pieces)
+- aanduiding rij en kolom in de GUI
+
+

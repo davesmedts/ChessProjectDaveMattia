@@ -113,6 +113,7 @@ public class GamePresenter {
 //                                        if (backendSquare.getSquareContent() != null && backendSquare.getSquareContent().getColor() != model.getTurn() ) {
 //                                            frontendSquare.setStyle("-fx-background-color:RED");
 //                                        }
+
                                     }
                                 }
                             }
