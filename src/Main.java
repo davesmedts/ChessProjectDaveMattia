@@ -29,8 +29,8 @@ public class Main extends Application {
 //    }
 
         Game model = new Game();
-        StartView view = new StartView();
-        SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, view);
+        HomeView view = new HomeView();
+        HomePresenter splashScreenPresenter = new HomePresenter(model, view);
         Scene scene = new Scene(view, 1100, 700);
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 

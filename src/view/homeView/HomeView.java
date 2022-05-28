@@ -5,8 +5,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.TextAlignment;
 
 
 public class HomeView extends BorderPane {
@@ -32,6 +34,11 @@ public class HomeView extends BorderPane {
     private ImageView helpIcon;
     private ImageView infoIcon;
     private ImageView settingsIcon;
+
+    private ImageView homeImage;
+    private ImageView newGameImage;
+    private ImageView historyImage;
+    private ImageView hervatSpelImage;
 
     private Label statusBarText;
 
@@ -65,12 +72,21 @@ public class HomeView extends BorderPane {
         titel.setId("titel");
 
 //        menuNodes
+
+        this.homeImage = new ImageView("/homeimageicon.png");
+        this.newGameImage = new ImageView("/newgameimageicon.png");
+        this.historyImage = new ImageView("/historyimageicon.png");
+        this.hervatSpelImage = new ImageView("/hervatspelicon.png");
+
         this.menuContainer = new HBox(100);
 
-        this.hervatSpel = new Button("HERVAT SPEL");
-        this.home = new Button("HOME");
-        this.newGame = new Button("NIEUW SPEL");
-        this.historiek = new Button("HISTORIEK");
+        this.hervatSpel = new Button("HERVAT SPEL",this.hervatSpelImage);
+        this.home = new Button("HOME", this.homeImage);
+        this.newGame = new Button("NIEUW SPEL", this.newGameImage);
+        this.historiek = new Button("HISTORIEK",this.historyImage);
+
+
+
 
 
 //        Icons on the right part of the screen
@@ -81,6 +97,7 @@ public class HomeView extends BorderPane {
 
 //        statusbar
         this.statusBarText = new Label("designed and build by Dave Smedts and Mattia Verreydt");
+
     }
 
     private void layoutNodes() {
@@ -104,7 +121,8 @@ public class HomeView extends BorderPane {
         this.GridPane = new GridPane();
         this.setCenter(GridPane);
         GridPane.add(mainContainer,1,1);
-//        GridPane.setGridLinesVisible(true);
+
+
 
 
 //      HelpIcons
