@@ -110,9 +110,10 @@ public class GamePresenter {
                                 for (ChessBoardSquare frontendSquare : frontendSquares) {
                                     if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
                                         frontendSquare.setStyle("-fx-background-color:GREEN");
-                                        if (backendSquare.getSquareContent() != null && backendSquare.getSquareContent().getColor() != model.getTurn() ) {
-                                            frontendSquare.setStyle("-fx-background-color:RED");
-                                        }
+//                                        if (backendSquare.getSquareContent() != null && backendSquare.getSquareContent().getColor() != model.getTurn() ) {
+//                                            frontendSquare.setStyle("-fx-background-color:RED");
+//                                        }
+
                                     }
                                 }
                             }
@@ -166,7 +167,7 @@ public class GamePresenter {
 
                                     Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("Game over!");
-                                    alert.setContentText(model.getWhitePlayer().toString() + " wint");
+                                    alert.setContentText("schaakmat! " + model.getWhitePlayer().toString() + " wint");
                                     alert.showAndWait();
 
                                     HomeView homeView = new HomeView();
@@ -211,9 +212,9 @@ public class GamePresenter {
                                     model.setWinner(model.getBlackPlayer());
                                     model.getSaver().logHistory();
 
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
                                     alert.setTitle("Game over!");
-                                    alert.setContentText(model.getBlackPlayer().toString() + " wint");
+                                    alert.setContentText("Schaakmat! " + model.getBlackPlayer().toString() + " wint");
                                     alert.showAndWait();
 
                                     HomeView homeView = new HomeView();
