@@ -52,8 +52,10 @@ public class HomePresenter {
       view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent actionEvent) {
+
               NewGameView newGameView = new NewGameView();
               NewGamePresenter gamePresenter = new NewGamePresenter(model, newGameView);
+
               view.getScene().setRoot(newGameView);
               newGameView.getScene().getWindow().sizeToScene();
 
@@ -232,6 +234,7 @@ public class HomePresenter {
 
 
     private void updateView() {
+
     }
 
 }

@@ -40,17 +40,4 @@ public class SplashScreenPresenter {
     private void updateView() {
     }
 
-//    private void setupTimeline() {
-//        stopwatchTimeline = new Timeline(new KeyFrame(
-//                Duration.millis(this.model.getTickDurationMillis()),
-//                new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(ActionEvent event) {
-//                        model.tick();
-//                        updateView();
-//                    }
-//                }));
-//        stopwatchTimeline.setCycleCount(Animation.INDEFINITE);
-
-
 }
