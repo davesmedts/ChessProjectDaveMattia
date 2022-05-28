@@ -157,7 +157,9 @@ public class King extends Piece {
 
 //        get the castlingSquares
         List<Square> castlingSquares = getCastlingSquares(gameBoard, opponent);
-        possibleSquares.addAll(castlingSquares);
+        if (this.getMoves().size() == 0) {
+            possibleSquares.addAll(castlingSquares);
+        }
 
         return possibleSquares;
     }
