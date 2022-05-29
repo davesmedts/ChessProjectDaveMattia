@@ -10,14 +10,16 @@ WINDOW EVENT HANDLERS TERUG TOEVOEGEN --> DONE
 
 Lijst:
 PRIO 1
-- windowEventhandlers
-- venstertitels
+- windowEventhandlers - Done
+- venstertitels - Done
 - menu pictogrammen op elke view zetten
+- aantal seconden splashscreen bij openen terugzetten
 - JAR
 
 PRIO 2
 - Rood oplichten van een stuk dat aangevallen kan worden (enPassant pieces)
 - aanduiding rij en kolom in de GUI
+- loadGameView verwijderen - Done
 
 
 TESTSESSIE !!!

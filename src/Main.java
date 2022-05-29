@@ -23,20 +23,21 @@ public class Main extends Application {
 
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(800),
-                ae -> openHome(model, scene)));
+                ae -> openHome(model, scene, primaryStage)));
         timeline.play();
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Splashscreen");
+        primaryStage.setTitle("Chess");
         primaryStage.show();
 
 
     }
-    public void openHome(Game model, Scene scene) {
+    public void openHome(Game model, Scene scene, Stage primaryStage) {
 
         HomeView homeView = new HomeView();
         HomePresenter homePresenter = new HomePresenter(model, homeView);
         scene.setRoot(homeView);
+        primaryStage.setTitle("home");
         homePresenter.addWindowEventHandlers();
         homeView.getScene().getWindow().sizeToScene();
     }

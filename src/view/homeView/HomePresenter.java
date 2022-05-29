@@ -1,5 +1,6 @@
 package view.homeView;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -51,10 +52,11 @@ public class HomePresenter {
 
       view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
           @Override
-          public void handle(ActionEvent actionEvent) {
-
+          public void handle(ActionEvent event) {
               NewGameView newGameView = new NewGameView();
-              NewGamePresenter gamePresenter = new NewGamePresenter(model, newGameView);
+              NewGamePresenter newGamePresenter = new NewGamePresenter(model, newGameView);
+              Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+              stage.setTitle("Nieuw spel");
 
               view.getScene().setRoot(newGameView);
               newGameView.getScene().getWindow().sizeToScene();
@@ -65,9 +67,12 @@ public class HomePresenter {
 
         view.getGeschiedenis().setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent event) {
                 RankingView rankingView = new RankingView();
                 RankingPresenter presenter = new RankingPresenter(model, rankingView);
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Historiek");
+
                 view.getScene().setRoot(rankingView);
                 rankingView.getScene().getWindow().sizeToScene();
 
@@ -92,6 +97,9 @@ public class HomePresenter {
 
                     GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
                     GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Schaakspel");
+
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
 
@@ -109,6 +117,9 @@ public class HomePresenter {
             public void handle(ActionEvent event) {
                 NewGameView newGameView = new NewGameView();
                 NewGamePresenter newGamePresenter = new NewGamePresenter(model, newGameView);
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Nieuw spel");
+
                 view.getScene().setRoot(newGameView);
                 newGameView.getScene().getWindow().sizeToScene();
             }
@@ -122,6 +133,8 @@ public class HomePresenter {
             public void handle(ActionEvent event) {
                 RankingView RankingView = new RankingView();
                 RankingPresenter loadGamePresenter = new RankingPresenter(model, RankingView);
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Historiek");
                 view.getScene().setRoot(RankingView);
                 RankingView.getScene().getWindow().sizeToScene();
             }
@@ -148,12 +161,14 @@ public class HomePresenter {
 
                     GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
                     GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Schaakspel");
+
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
 
                     gameView.setBlackPlayerName(model.getBlackPlayer().toString());
                     gameView.setWhitePlayerName(model.getWhitePlayer().toString());
-
 
                 }
             }
@@ -182,11 +197,10 @@ public class HomePresenter {
                 SettingsView settingsView = new SettingsView();
                 SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
                 Stage settingPresenter = new Stage();
+                settingPresenter.setTitle("Settings");
                 settingPresenter.initOwner(view.getScene().getWindow());
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
                 settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
                 settingPresenter.showAndWait();
 
             }
@@ -198,13 +212,12 @@ public class HomePresenter {
             public void handle(MouseEvent mouseEvent) {
                 SplashScreenView splashScreenView = new SplashScreenView();
                 SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
+                Stage splashStage = new Stage();
+                splashStage.setTitle("Info");
+                splashStage.initOwner(view.getScene().getWindow());
+                splashStage.initModality(Modality.APPLICATION_MODAL);
+                splashStage.setScene(new Scene(splashScreenView, 800, 400));
+                splashStage.showAndWait();
             }
 
         });

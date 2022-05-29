@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,9 @@ public class RankingPresenter {
             public void handle(ActionEvent event) {
                 HomeView homeView = new HomeView();
                 HomePresenter homePresenter = new HomePresenter(model, homeView);
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Home");
+
                 view.getScene().setRoot(homeView);
                 homeView.getScene().getWindow().sizeToScene();
             }
@@ -55,9 +59,12 @@ public class RankingPresenter {
 
         view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent event) {
                 NewGameView newGameView = new NewGameView();
                 NewGamePresenter gamePresenter = new NewGamePresenter(model, newGameView);
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Nieuw spel");
+
                 view.getScene().setRoot(newGameView);
                 newGameView.getScene().getWindow().sizeToScene();
 
@@ -82,6 +89,9 @@ public class RankingPresenter {
 
                     GameView gameView = new GameView(view.getColorOne(), view.getColorTwo());
                     GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Schaakspel");
+
                     view.getScene().setRoot(gameView);
                     gameView.getScene().getWindow().sizeToScene();
 
@@ -105,8 +115,6 @@ public class RankingPresenter {
                 Scene scene = new Scene(helpView);
 //                scene.getStylesheets().add("stylesheets/style.css");
                 helpStage.setScene(scene);
-                helpStage.setX(view.getScene().getWindow().getX());
-                helpStage.setY(view.getScene().getWindow().getY() + 100);
                 helpStage.showAndWait();
             }
         });
@@ -116,13 +124,12 @@ public class RankingPresenter {
             public void handle(MouseEvent mouseEvent) {
                 SettingsView settingsView = new SettingsView();
                 SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(settingsView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
+                Stage settingsStage = new Stage();
+                settingsStage.setTitle("Settings");
+                settingsStage.initOwner(view.getScene().getWindow());
+                settingsStage.initModality(Modality.APPLICATION_MODAL);
+                settingsStage.setScene(new Scene(settingsView));
+                settingsStage.showAndWait();
 
             }
 
@@ -133,13 +140,12 @@ public class RankingPresenter {
             public void handle(MouseEvent mouseEvent) {
                 SplashScreenView splashScreenView = new SplashScreenView();
                 SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView, 800, 400));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
+                Stage infoStage = new Stage();
+                infoStage.setTitle("Info");
+                infoStage.initOwner(view.getScene().getWindow());
+                infoStage.initModality(Modality.APPLICATION_MODAL);
+                infoStage.setScene(new Scene(splashScreenView, 800, 400));
+                infoStage.showAndWait();
 
             }
 
