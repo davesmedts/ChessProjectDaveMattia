@@ -374,12 +374,6 @@ public class Player {
             System.out.println("Schaakmat!");
         }
 
-//        if (selectedPiece instanceof Pawn && selectedPiece.getPosition().getRowNumber() == 8 && selectedPiece.getColor() == Color.WHITE) {
-//            System.out.println("U kan uw pion promoveren. Geef de letter van het stuk in (Q,K,B,R):");
-//            String desiredPiece = keyboard.nextLine().toUpperCase();
-//            ((Pawn) selectedPiece).promotePiece(desiredPiece);
-//        }
-
         selectedPiece = null;
     }
 

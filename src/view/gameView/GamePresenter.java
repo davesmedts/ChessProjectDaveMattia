@@ -96,23 +96,45 @@ public class GamePresenter {
                     if (selectCounter == 0 || selectCounter % 2 == 0) {
 
                         try {
+                            selectionColumn = frontEndSquare.getColumnLetter();
+                            selectionRow = frontEndSquare.getRowNumber();
+                            Square backEndSelectionSquare = model.getGameBoard().lookupSquare(selectionColumn, selectionRow);
                             if (model.getTurn() == Color.WHITE) {
                                 backendValidMoveSquares.addAll(model.selectWhitePiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                                if (backEndSelectionSquare.getSquareContent() instanceof Pawn) {
+                                    Square leftEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn - 1), selectionRow);
+                                    Square rightEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn + 1), selectionRow);
+                                    if (rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 5 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                        backendValidMoveSquares.add(rightEnPassantSquare);
+                                    }
+                                    if (leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 5 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                        backendValidMoveSquares.add(leftEnPassantSquare);
+                                    }
+                                }
                             } else {
                                 backendValidMoveSquares.addAll(model.selectBlackPiece(iv.get(finalI).getColumnLetter(), iv.get(finalI).getRowNumber()));
+                                if (backEndSelectionSquare.getSquareContent() instanceof Pawn) {
+                                    Square leftEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn - 1), selectionRow);
+                                    Square rightEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn + 1), selectionRow);
+                                    if (rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 4 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                        backendValidMoveSquares.add(rightEnPassantSquare);
+                                    }
+                                    if (leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 4 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                        backendValidMoveSquares.add(leftEnPassantSquare);
+                                    }
+                                }
+
                             }
                             List<ChessBoardSquare> frontendSquares = view.getChessBoardSquares();
                             frontEndSquare.setStyle("-fx-background-color: BLUE");
-                            selectionColumn = frontEndSquare.getColumnLetter();
-                            selectionRow = frontEndSquare.getRowNumber();
 
                             for (Square backendSquare : backendValidMoveSquares) {
                                 for (ChessBoardSquare frontendSquare : frontendSquares) {
                                     if (backendSquare.getRowNumber() == frontendSquare.getRowNumber() && backendSquare.getColumnLetter() == frontendSquare.getColumnLetter()) {
                                         frontendSquare.setStyle("-fx-background-color:GREEN");
-//                                        if (backendSquare.getSquareContent() != null && backendSquare.getSquareContent().getColor() != model.getTurn() ) {
-//                                            frontendSquare.setStyle("-fx-background-color:RED");
-//                                        }
+                                        if (backendSquare.getSquareContent() != null && backendSquare.getSquareContent().getColor() != model.getTurn() ) {
+                                            frontendSquare.setStyle("-fx-background-color:RED");
+                                        }
 
                                     }
                                 }

@@ -16,8 +16,6 @@ import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import view.help.HelpPresenter;
 import view.help.HelpView;
-import view.loadGameView.LoadGamePresenter;
-import view.loadGameView.LoadGameView;
 import view.newGameView.NewGamePresenter;
 import view.newGameView.NewGameView;
 import view.rankingView.RankingPresenter;
