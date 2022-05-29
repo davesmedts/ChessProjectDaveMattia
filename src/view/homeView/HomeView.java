@@ -33,11 +33,6 @@ public class HomeView extends BorderPane {
     private ImageView infoIcon;
     private ImageView settingsIcon;
 
-    private ImageView homeImage;
-    private ImageView newGameImage;
-    private ImageView historyImage;
-    private ImageView hervatSpelImage;
-
     private Label statusBarText;
 
     String colorOne = "#57271d";
@@ -71,17 +66,12 @@ public class HomeView extends BorderPane {
 
 //        menuNodes
 
-        this.homeImage = new ImageView("/menuIcons/homeimageicon.png");
-        this.newGameImage = new ImageView("/menuIcons/newgameimageicon.png");
-        this.historyImage = new ImageView("/menuIcons/historyimageicon.png");
-        this.hervatSpelImage = new ImageView("/menuIcons/hervatspelicon.png");
-
         this.menuContainer = new HBox(100);
 
-        this.hervatSpel = new Button("HERVAT SPEL",this.hervatSpelImage);
-        this.home = new Button("HOME", this.homeImage);
-        this.newGame = new Button("NIEUW SPEL", this.newGameImage);
-        this.historiek = new Button("HISTORIEK",this.historyImage);
+        this.hervatSpel = new Button("HERVAT SPEL");
+        this.home = new Button("HOME");
+        this.newGame = new Button("NIEUW SPEL");
+        this.historiek = new Button("HISTORIEK");
 
 
 

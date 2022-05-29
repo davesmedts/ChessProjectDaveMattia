@@ -104,10 +104,10 @@ public class GamePresenter {
                                 if (backEndSelectionSquare.getSquareContent() instanceof Pawn) {
                                     Square leftEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn - 1), selectionRow);
                                     Square rightEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn + 1), selectionRow);
-                                    if (rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 5 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                    if (rightEnPassantSquare != null && rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 5 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
                                         backendValidMoveSquares.add(rightEnPassantSquare);
                                     }
-                                    if (leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 5 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                    if (leftEnPassantSquare != null && leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 5 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
                                         backendValidMoveSquares.add(leftEnPassantSquare);
                                     }
                                 }
@@ -116,10 +116,10 @@ public class GamePresenter {
                                 if (backEndSelectionSquare.getSquareContent() instanceof Pawn) {
                                     Square leftEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn - 1), selectionRow);
                                     Square rightEnPassantSquare = model.getGameBoard().lookupSquare((char) (selectionColumn + 1), selectionRow);
-                                    if (rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 4 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                    if (rightEnPassantSquare != null && rightEnPassantSquare.getSquareContent() != null && rightEnPassantSquare.getSquareContent() instanceof Pawn && rightEnPassantSquare.getRowNumber() == 4 && rightEnPassantSquare.getSquareContent().getMoves().size() == 1){
                                         backendValidMoveSquares.add(rightEnPassantSquare);
                                     }
-                                    if (leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 4 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
+                                    if (leftEnPassantSquare != null && leftEnPassantSquare.getSquareContent() != null && leftEnPassantSquare.getSquareContent() instanceof Pawn && leftEnPassantSquare.getRowNumber() == 4 && leftEnPassantSquare.getSquareContent().getMoves().size() == 1){
                                         backendValidMoveSquares.add(leftEnPassantSquare);
                                     }
                                 }
@@ -164,6 +164,7 @@ public class GamePresenter {
                                     PromotionPresenter promotionPresenter = new PromotionPresenter(model, promotionView);
                                     promotionPresenter.setPawn((Pawn) backendSquare.getSquareContent());
                                     Stage stage = new Stage();
+                                    stage.setTitle("pion promoveren");
                                     stage.initOwner(view.getScene().getWindow());
                                     stage.initModality(Modality.APPLICATION_MODAL);
                                     Scene promotionScene = new Scene(promotionView, 600, 400);
@@ -209,6 +210,7 @@ public class GamePresenter {
                                     PromotionPresenter promotionPresenter = new PromotionPresenter(model, promotionView);
                                     promotionPresenter.setPawn((Pawn) backendSquare.getSquareContent());
                                     Stage stage = new Stage();
+                                    stage.setTitle("pion promoveren");
                                     stage.initOwner(view.getScene().getWindow());
                                     stage.initModality(Modality.APPLICATION_MODAL);
                                     Scene promotionScene = new Scene(promotionView, 600, 400);
@@ -285,10 +287,7 @@ public class GamePresenter {
                 helpStage.initOwner(view.getScene().getWindow());
                 helpStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(helpView);
-//                scene.getStylesheets().add("stylesheets/style.css");
                 helpStage.setScene(scene);
-                helpStage.setX(view.getScene().getWindow().getX());
-                helpStage.setY(view.getScene().getWindow().getY() + 100);
                 helpStage.showAndWait();
             }
         });
@@ -299,14 +298,12 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 SplashScreenView splashScreenView = new SplashScreenView();
                 SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                Stage settingPresenter = new Stage();
-                settingPresenter.initOwner(view.getScene().getWindow());
-                settingPresenter.initModality(Modality.APPLICATION_MODAL);
-                settingPresenter.setScene(new Scene(splashScreenView));
-                settingPresenter.setX(view.getScene().getWindow().getX() + 100);
-                settingPresenter.setY(view.getScene().getWindow().getY() + 100);
-                settingPresenter.showAndWait();
-
+                Stage splashStage = new Stage();
+                splashStage.setTitle("Info");
+                splashStage.initOwner(view.getScene().getWindow());
+                splashStage.initModality(Modality.APPLICATION_MODAL);
+                splashStage.setScene(new Scene(splashScreenView, 800, 400));
+                splashStage.showAndWait();
             }
 
         });

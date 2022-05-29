@@ -24,7 +24,6 @@ import view.settingView.SettingsPresenter;
 import view.settingView.SettingsView;
 import view.splashScreenView.SplashScreenPresenter;
 import view.splashScreenView.SplashScreenView;
-import view.startView.StartView;
 
 import java.io.File;
 
@@ -183,8 +182,6 @@ public class HomePresenter {
                 helpStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(helpView);
                 helpStage.setScene(scene);
-                helpStage.setX(view.getScene().getWindow().getX());
-                helpStage.setY(view.getScene().getWindow().getY() + 100);
                 helpStage.showAndWait();
             }
         });
@@ -200,9 +197,7 @@ public class HomePresenter {
                 settingPresenter.initModality(Modality.APPLICATION_MODAL);
                 settingPresenter.setScene(new Scene(settingsView));
                 settingPresenter.showAndWait();
-
             }
-
         });
 
         view.getInfoIcon().setOnMouseClicked(new EventHandler<>() {
@@ -242,8 +237,6 @@ public class HomePresenter {
         });
 
     }
-
-
     private void updateView() {
 
     }

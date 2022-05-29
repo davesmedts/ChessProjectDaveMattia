@@ -327,6 +327,7 @@ public class Player {
             selectedPiece.setPosition(startPosition);
             startPosition.setSquareContent(selectedPiece);
             targetSquareObject.setSquareContent(targetSquareContent);
+            opponent.getCapturedPieces().remove(opponent.getCapturedPieces().size()-1);
             if (targetSquareContent != null) {
                 targetSquareContent.setPosition(targetSquareObject);
             }

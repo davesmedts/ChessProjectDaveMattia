@@ -166,8 +166,11 @@ public class GameView extends BorderPane {
 
 
         // padding
+//        helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
+//        titel.setPadding(new Insets(10,50, 0, 50));
         helpIconsContainer.setPadding(new Insets(10,50, 0, 50));
         titel.setPadding(new Insets(10,50, 0, 50));
+
     }
 
     public List<ChessBoardSquare> getChessBoardSquares() {
