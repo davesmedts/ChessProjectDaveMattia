@@ -271,14 +271,14 @@ public class King extends Piece {
             if (a8.getSquareContent() instanceof Rook && a8.getSquareContent().getMoves().size() == 0) {
                 if (b8.getSquareContent() == null && c8.getSquareContent() == null && d8.getSquareContent() == null) {
 
-                    castleMoves.add(gameBoard.lookupSquare('C', 8)); // left castling move: kings always moves to C1
+                    castleMoves.add(gameBoard.lookupSquare('C', 8)); // left castling move: kings always moves to C8
                 }
             }
 
             if (h8.getSquareContent() instanceof Rook && h8.getSquareContent().getMoves().size() == 0) {
                 if (f8.getSquareContent() == null && g8.getSquareContent() == null) {
 
-                    castleMoves.add(gameBoard.lookupSquare('G', 8)); // left castling move: kings always moves to G1
+                    castleMoves.add(gameBoard.lookupSquare('G', 8)); // left castling move: kings always moves to G8
                 }
             }
 

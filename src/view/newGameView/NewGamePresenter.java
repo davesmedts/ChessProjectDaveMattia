@@ -187,15 +187,12 @@ public class NewGamePresenter {
                     public void handle(MouseEvent event) {
                         SettingsView settingsView = new SettingsView();
                         SettingsPresenter settingsPresenter = new SettingsPresenter(model, settingsView);
-                        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-                        stage.setTitle("Settings");
-
                         Stage settingPresenter = new Stage();
+                        settingPresenter.setTitle("Settings");
                         settingPresenter.initOwner(view.getScene().getWindow());
                         settingPresenter.initModality(Modality.APPLICATION_MODAL);
                         settingPresenter.setScene(new Scene(settingsView));
                         settingPresenter.showAndWait();
-
                     }
 
                 });
@@ -205,10 +202,9 @@ public class NewGamePresenter {
                     public void handle(MouseEvent event) {
                         SplashScreenView splashScreenView = new SplashScreenView();
                         SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenter(model, splashScreenView);
-                        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-                        stage.setTitle("Info");
 
                         Stage settingPresenter = new Stage();
+                        settingPresenter.setTitle("Info");
                         settingPresenter.initOwner(view.getScene().getWindow());
                         settingPresenter.initModality(Modality.APPLICATION_MODAL);
                         settingPresenter.setScene(new Scene(splashScreenView, 800, 400));

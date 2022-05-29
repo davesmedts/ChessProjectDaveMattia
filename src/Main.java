@@ -22,7 +22,7 @@ public class Main extends Application {
         scene.getStylesheets().add("/stylesheets/generalStyling.css");
 
         Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(800),
+                Duration.millis(7500),
                 ae -> openHome(model, scene, primaryStage)));
         timeline.play();
 

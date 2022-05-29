@@ -13,11 +13,11 @@ PRIO 1
 - windowEventhandlers - Done
 - venstertitels - Done
 - menu pictogrammen op elke view zetten
-- aantal seconden splashscreen bij openen terugzetten
+- aantal seconden splashscreen bij openen terugzetten - done
 - JAR
 
 PRIO 2
-- Rood oplichten van een stuk dat aangevallen kan worden (enPassant pieces)
+- Rood oplichten van een stuk dat aangevallen kan worden (enPassant pieces) - done
 - aanduiding rij en kolom in de GUI
 - loadGameView verwijderen - Done
 
